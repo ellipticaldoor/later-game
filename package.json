@@ -1,0 +1,31 @@
+{
+  "name": "later",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development parcel index.html --no-hmr --no-autoinstall",
+    "build": "rm -rf build/ && cross-env NODE_ENV=production parcel build index.html --no-source-maps --out-dir build/"
+  },
+  "dependencies": {
+    "matter-js": "^0.14.1",
+    "mousetrap": "^1.6.1",
+    "pixi.js": "^5.0.0-alpha.2",
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-ramda": "^1.6.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-runtime": "^6.26.0",
+    "cross-env": "^5.1.5",
+    "node-sass": "^4.9.0",
+    "standard": "^11.0.1"
+  },
+  "engines": {
+    "node": ">= 9.4.0",
+    "npm": ">= 5.8.0"
+  }
+}

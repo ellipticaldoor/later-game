@@ -1,0 +1,19 @@
+{
+  "env": { "browser": true },
+  "ignore": [],
+  "plugins": [
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }],
+    ["module-resolver", {
+      "alias": { "~": "./src" }
+    }],
+    "transform-object-rest-spread",
+    "ramda"
+  ],
+  "presets": [
+    "es2017",
+    "env"
+  ]
+}
