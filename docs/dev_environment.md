@@ -1,14 +1,14 @@
 # Dev environment
 
 ## Terminal emulators
-* [https://www.iterm2.com/version3.html](iTerm2 (macos only - version 3))
-* [http://cmder.net/](cmder (windows only - download full version))
-* [https://gnometerminator.blogspot.co.uk/p/introduction.html](Terminator - (linux only)])
-* [https://hyper.is/](Hyper)
+* [iTerm2 (macos only - version 3)](https://www.iterm2.com/version3.html)
+* [cmder (windows only - download full version)](http://cmder.net/)
+* [Terminator - (linux only)](https://gnometerminator.blogspot.co.uk/p/introduction.html)
+* [Hyper](https://hyper.is/)
 
 
 ## Instal node
-[https://nodejs.org/en/download/](Download and install node)
+[Download and install node](https://nodejs.org/en/download/)
 
 
 ## Install yarn
@@ -18,7 +18,7 @@ npm install -g yarn
 
 ## Editor
 
-Install [vscode](https://code.visualstudio.com/)
+Install [https://code.visualstudio.com/](vscode)
 
 * Plugins for code editing
     * EditorConfig
@@ -52,9 +52,9 @@ Settings config
 
 ## Gitlab ssh config
 
-1. Login / register on [https://gitlab.com/](GitLab)
-2. [https://gitlab.com/profile/keys](Add your SSH key)
-    * [https://gitlab.com/help/ssh/README#generating-a-new-ssh-key-pair](Docs for generating an ssh key)
+1. Login / register on [GitLab](https://gitlab.com/)
+2. [Add your SSH key](https://gitlab.com/profile/keys)
+    * [Docs for generating an ssh key](https://gitlab.com/help/ssh/README#generating-a-new-ssh-key-pair)
 
 Git global setup
 ``` shell
