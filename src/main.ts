@@ -1,12 +1,16 @@
 import pixi from '~/pixi'
 import game from '~/game'
-import resize from '~/helpers/resize.helper'
+import resize from '~/helpers/resize.helpers'
 import assets from '~/assets'
 import { Loader } from '@pixi/loaders'
+import { rand } from '~/helpers/utils.helpers'
 
-if (module.hot) {
-	module.hot.accept(() => {})
-	module.hot.dispose(() => window.location.reload())
+console.log(rand('ñ', 'j'))
+console.log(process.env.NODE_ENV)
+
+if ((module as any).hot) {
+	(module as any).accept(() => {})
+	(module as any).dispose(() => window.location.reload())
 }
 
 document.body.appendChild(pixi.view)
