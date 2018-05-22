@@ -7,6 +7,7 @@ export const makeBody = (x, y) => {
 		inertia: Infinity,
 		friction: 0,
 		frictionAir: 0.1,
+		restitution: 0,
 	})
 
 	World.add(physics.engine.world, body)
@@ -17,6 +18,8 @@ export const makeBody = (x, y) => {
 export const makeStaticBody = (x, y) => {
 	const body = Bodies.rectangle(x, y, tileSize, tileSize, {
 		isStatic: true,
+		friction: 0,
+		restitution: 0,
 	})
 
 	World.add(physics.engine.world, body)
@@ -25,9 +28,9 @@ export const makeStaticBody = (x, y) => {
 }
 
 export const moveEntity = (delta, body, force, dirX, dirY) =>
-	Body.applyForce(body, body.position, {
-		x: dirX * force * delta,
-		y: dirY * force * delta,
+	Body.setVelocity(body, {
+		x: body.velocity.x + dirX * force * delta,
+		y: body.velocity.y + dirY * force * delta,
 	})
 
 export const updateEntityPosition = (sprite, body) => {

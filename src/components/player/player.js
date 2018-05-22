@@ -10,7 +10,7 @@ import {
 export const player = {
 	sprite: undefined,
 	body: undefined,
-	force: 2,
+	force: 0.8,
 }
 
 const gameLoop = (delta, { sprite, body }) => {
