@@ -15,7 +15,10 @@
     "ramda": "^0.25.0"
   },
   "devDependencies": {
+    "@types/matter-js": "^0.10.0",
+    "@types/mousetrap": "^1.6.0",
     "@types/node": "^10.1.2",
+    "@types/ramda": "^0.25.29",
     "babel-core": "^6.26.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-ramda": "^1.6.1",

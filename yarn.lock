@@ -330,9 +330,21 @@
     remove-array-items "^1.0.0"
     url "^0.11.0"
 
+"@types/matter-js@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@types/matter-js/-/matter-js-0.10.0.tgz#b533b537209577e5e4abed74c63c86b575568fba"
+
+"@types/mousetrap@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@types/mousetrap/-/mousetrap-1.6.0.tgz#c3951ab98b88ff6093cd0b1e4f8591af439141b8"
+
 "@types/node@^10.1.2":
   version "10.1.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.1.2.tgz#1b928a0baa408fc8ae3ac012cc81375addc147c6"
+
+"@types/ramda@^0.25.29":
+  version "0.25.29"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.29.tgz#05a58a3ba728344ecc9d99e37beb2adf822fb01c"
 
 abbrev@1:
   version "1.1.1"
