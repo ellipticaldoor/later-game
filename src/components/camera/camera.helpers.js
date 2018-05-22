@@ -6,7 +6,10 @@ export const attachContainersToCamera = (camera, containers) => {
 }
 
 export const setContainerZindex = (camera, containers) => {
-	map(({ container, zIndex }) => camera.setChildIndex(container, zIndex), containers)
+	map(
+		({ container, zIndex }) => camera.setChildIndex(container, zIndex),
+		containers
+	)
 }
 
 export const moveCamera = (delta, view, speed, dirX, dirY) => {

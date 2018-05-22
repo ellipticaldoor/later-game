@@ -37,7 +37,12 @@ const gameLoop = (delta, { keys, states }, renderer) => {
 
 	if (states.framePlayer) {
 		// Camera travelling for player
-		frameCamera(renderer, camera.view, player.sprite.position.x, player.sprite.position.y)
+		frameCamera(
+			renderer,
+			camera.view,
+			player.sprite.position.x,
+			player.sprite.position.y
+		)
 	}
 }
 

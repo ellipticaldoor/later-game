@@ -19,7 +19,8 @@ export const loadAtlasTextures = tilesImage => {
 
 	const tilesetSize = [320, 64] // In pixels
 
-	const cropHelper = viewport => cropTexture(textureOf(tilesImage), { tilesetSize, viewport })
+	const cropHelper = viewport =>
+		cropTexture(textureOf(tilesImage), { tilesetSize, viewport })
 
 	return map(cropHelper, viewports)
 }

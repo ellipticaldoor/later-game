@@ -1,6 +1,10 @@
 import tilesImage from '~/assets/img/tiles.png'
 import { groundTileLayer, topTileLayer } from './atlas.constants'
-import { loadAtlasTextures, loadSpritesForLayer, loadBodiesForLayer } from './helpers/atlas.helpers'
+import {
+	loadAtlasTextures,
+	loadSpritesForLayer,
+	loadBodiesForLayer,
+} from './helpers/atlas.helpers'
 import { camera } from '~/components/camera/camera'
 
 const atlas = {

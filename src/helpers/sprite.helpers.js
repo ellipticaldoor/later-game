@@ -14,7 +14,9 @@ export const textureOf = imagePath => {
 	return texture
 }
 
-export const spriteOf = imagePath => new Sprite(textureOf(imagePath))
+export const spriteOf = imagePath => {
+	return new Sprite(textureOf(imagePath))
+}
 
 export const cropTexture = (_texture, { tilesetSize, viewport }) => {
 	const texture = new Texture(_texture)
