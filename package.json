@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development parcel index.html --no-autoinstall --no-hmr",
     "start:reload": "cross-env NODE_ENV=development parcel index.html --no-autoinstall",
-    "build": "rm -rf build/ && cross-env NODE_ENV=production parcel build index.html --no-source-maps --out-dir build/",
+    "build": "rimraf build && cross-env NODE_ENV=production parcel build index.html --no-source-maps --out-dir build",
     "test": "cross-env NODE_ENV=development jest",
     "test:watch": "cross-env NODE_ENV=development jest --watch",
     "test:coverage": "cross-env NODE_ENV=development jest --coverage",
@@ -38,6 +38,7 @@
     "node-sass": "^4.9.0",
     "parcel-bundler": "^1.8.1",
     "parcel-plugin-typescript": "^0.7.1",
+    "rimraf": "^2.6.2",
     "standard": "^11.0.1",
     "ts-jest": "^22.4.6",
     "typescript": "^2.8.3"
