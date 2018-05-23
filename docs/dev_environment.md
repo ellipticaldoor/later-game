@@ -25,6 +25,7 @@ Install [https://code.visualstudio.com/](vscode)
     * Bracker Pair Colorizer
     * ESLint
     * Prettier - Code formatter
+    * Jest
 
 
 Settings config

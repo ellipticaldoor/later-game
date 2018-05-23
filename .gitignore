@@ -5,6 +5,7 @@ node_modules/
 dist/
 build/
 .cache/
+coverage/
 
 # IDEs and editors (shamelessly copied from @angular/cli's .gitignore)
 /.idea
