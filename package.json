@@ -11,7 +11,7 @@
     "test:watch": "cross-env NODE_ENV=development jest --watch",
     "test:coverage": "cross-env NODE_ENV=development jest --coverage",
     "test:coverage:all": "cross-env NODE_ENV=development COVERAGE=all jest --coverage",
-    "test:report": "http-server -s -o -c-1 coverage/lcov-report"
+    "test:report": "http-server -s -o -c-1 -p 8888 coverage/lcov-report"
   },
   "dependencies": {
     "matter-js": "^0.14.1",
