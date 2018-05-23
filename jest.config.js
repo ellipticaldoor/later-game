@@ -10,4 +10,5 @@ module.exports = {
 		'^.+\\.jsx?$': 'babel-jest',
 	},
 	testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
+	collectCoverageFrom: ['src/**/*.js', 'src/**/*.ts'],
 }
