@@ -1,4 +1,6 @@
-module.exports = {
+const { COVERAGE } = process.env
+
+const jestConfig = {
 	moduleFileExtensions: ['ts', 'tsx', 'js'],
 	globals: {
 		'ts-jest': {
@@ -10,5 +12,10 @@ module.exports = {
 		'^.+\\.jsx?$': 'babel-jest',
 	},
 	testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
-	collectCoverageFrom: ['src/**/*.js', 'src/**/*.ts'],
 }
+
+if (COVERAGE === 'all') {
+	jestConfig.collectCoverageFrom = ['src/**/*.js', 'src/**/*.ts']
+}
+
+module.exports = jestConfig

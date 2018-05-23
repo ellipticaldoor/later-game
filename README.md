@@ -32,6 +32,9 @@ yarn test
 # Run jest tests watcher
 yarn test:watch
 
-# Run jest tests coverage
+# Run jest tests coverage only on files with associated spec
 yarn test:coverage
+
+# Run jest tests coverage in all *.js and *.ts files
+yarn test:coverage:all
 ```
