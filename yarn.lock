@@ -330,6 +330,10 @@
     remove-array-items "^1.0.0"
     url "^0.11.0"
 
+"@types/jest@^22.2.3":
+  version "22.2.3"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.2.3.tgz#0157c0316dc3722c43a7b71de3fdf3acbccef10d"
+
 "@types/matter-js@^0.10.0":
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@types/matter-js/-/matter-js-0.10.0.tgz#b533b537209577e5e4abed74c63c86b575568fba"
