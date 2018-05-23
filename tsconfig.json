@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"module": "commonjs",
 		"moduleResolution": "node",
-		"types": ["node"],
+		"types": ["node", "jest"],
 		"newLine": "LF",
 		"outDir": "./lib/",
 		"target": "es5",

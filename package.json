@@ -6,7 +6,10 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development parcel index.html --no-autoinstall --no-hmr",
     "start:reload": "cross-env NODE_ENV=development parcel index.html --no-autoinstall",
-    "build": "rm -rf build/ && cross-env NODE_ENV=production parcel build index.html --no-source-maps --out-dir build/"
+    "build": "rm -rf build/ && cross-env NODE_ENV=production parcel build index.html --no-source-maps --out-dir build/",
+    "test": "cross-env NODE_ENV=development jest",
+    "test:watch": "cross-env NODE_ENV=development jest --watch",
+    "test:coverage": "cross-env NODE_ENV=development jest --coverage"
   },
   "dependencies": {
     "matter-js": "^0.14.1",
@@ -15,6 +18,7 @@
     "ramda": "^0.25.0"
   },
   "devDependencies": {
+    "@types/jest": "^22.2.3",
     "@types/matter-js": "^0.10.0",
     "@types/mousetrap": "^1.6.0",
     "@types/node": "^10.1.2",
@@ -24,11 +28,15 @@
     "babel-plugin-ramda": "^1.6.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2017": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "cross-env": "^5.1.5",
+    "jest": "^22.4.4",
     "node-sass": "^4.9.0",
+    "parcel-bundler": "^1.8.1",
     "parcel-plugin-typescript": "^0.7.1",
     "standard": "^11.0.1",
+    "ts-jest": "^22.4.6",
     "typescript": "^2.8.3"
   },
   "engines": {
