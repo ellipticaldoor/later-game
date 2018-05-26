@@ -1,5 +1,5 @@
 import { map, range } from 'ramda'
-import { tileSize } from '~/constants'
+import { tileSize } from '@client/constants'
 
 export const getTileIndex = (row, col, cols) => row * cols + col
 

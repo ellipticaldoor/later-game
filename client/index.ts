@@ -1,7 +1,7 @@
-import pixi from '~/pixi'
-import game from '~/game'
-import resize from '~/helpers/resize.helpers'
-import assets from '~/assets'
+import pixi from './pixi'
+import game from './game'
+import resize from './helpers/resize.helpers'
+import assets from './assets'
 import { Loader } from '@pixi/loaders'
 
 if ((module as any).hot) {

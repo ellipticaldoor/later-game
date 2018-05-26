@@ -1,12 +1,12 @@
-import { World, Bodies } from 'matter-js'
+import { World } from 'matter-js'
 import { Sprite } from '@pixi/sprite'
 import { map } from 'ramda'
-import { textureOf, cropTexture } from '~/helpers/sprite.helpers'
-import { tileSize } from '~/constants'
+import { textureOf, cropTexture } from '@client/helpers/sprite.helpers'
+import { tileSize } from '@client/constants'
 import { staticTiles } from '../atlas.constants'
 import { getTileXY, getTileType, tileLayerIterator } from './utils.helpers'
-import { physics } from '~/components/physics/physics'
-import { makeStaticBody } from '~/components/physics/physics.helpers'
+import { physics } from '@client/modules/physics/physics'
+import { makeStaticBody } from '@client/modules/physics/physics.helpers'
 
 export const loadAtlasTextures = tilesImage => {
 	const viewports = [

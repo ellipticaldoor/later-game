@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-        "strict": false,
+		"strict": false,
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"types": ["node", "jest"],
@@ -17,14 +17,14 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true,
-		"baseUrl": "./src",
+        "noFallthroughCasesInSwitch": true,
+        "baseUrl": ".",
 		"paths": {
-			"~/*": ["*"]
+			"@client/*": ["./client/*"]
 		}
 	},
 	"include": [
-		"src/**/*"
+		"client/**/*"
 	],
 	"exclude": [
 		".git",

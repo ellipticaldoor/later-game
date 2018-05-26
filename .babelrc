@@ -7,13 +7,12 @@
       "regenerator": true
     }],
     ["module-resolver", {
-      "alias": { "~": "./src" }
+      "alias": { "@client": "./client" }
     }],
     "transform-object-rest-spread",
     "ramda"
   ],
   "presets": [
-    "es2017",
     "env"
   ]
 }

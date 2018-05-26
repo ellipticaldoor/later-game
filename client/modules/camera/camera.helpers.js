@@ -1,5 +1,5 @@
 import { map } from 'ramda'
-import { tileSize } from '~/constants'
+import { tileSize } from '@client/constants'
 
 export const attachContainersToCamera = (camera, containers) => {
 	map(({ container }) => camera.addChild(container), containers)
