@@ -1,5 +1,3 @@
-const { COVERAGE } = process.env
-
 const jestConfig = {
 	moduleFileExtensions: ['ts', 'tsx', 'js'],
 	globals: {
@@ -14,7 +12,7 @@ const jestConfig = {
 	testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
 }
 
-if (COVERAGE === 'all') {
+if (process.env.COVERAGE === 'all') {
 	jestConfig.collectCoverageFrom = ['src/**/*.js', 'src/**/*.ts']
 }
 

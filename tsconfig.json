@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+        "strict": false,
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"types": ["node", "jest"],
@@ -13,7 +14,6 @@
 			"es2017",
 			"dom"
 		],
-		// "strict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
@@ -22,10 +22,6 @@
 		"paths": {
 			"~/*": ["*"]
 		}
-	},
-	"parcelTsPluginOptions": {
-		// If true type-checking is disabled
-		"transpileOnly": false
 	},
 	"include": [
 		"src/**/*"
