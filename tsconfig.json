@@ -19,7 +19,7 @@
 		"noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "experimentalDecorators": true,
-		"baseUrl": ".",
+		"baseUrl": "./src",
 		"paths": {
             "@client/*": ["./client/*"],
             "@server/*": ["./server/*"]
