@@ -6,6 +6,12 @@ module.exports = {
 	},
 	extends: 'standard',
 	parserOptions: {
+		ecmaFeatures: {
+			globalReturn: true,
+			experimentalObjectRestSpread: true,
+			jsx: true,
+		},
+		ecmaVersion: 2017,
 		sourceType: 'module',
 	},
 	rules: {

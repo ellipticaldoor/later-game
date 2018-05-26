@@ -7,7 +7,10 @@
       "regenerator": true
     }],
     ["module-resolver", {
-      "alias": { "@client": "./client" }
+      "alias": {
+        "@client": "./client",
+        "@server": "./server"
+      }
     }],
     "transform-object-rest-spread",
     "ramda"

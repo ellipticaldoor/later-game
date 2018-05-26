@@ -1,13 +1,13 @@
 {
   "name": "later",
   "version": "1.0.0",
-  "main": "src/index.ts",
   "private": true,
   "scripts": {
     "client": "cross-env NODE_ENV=development parcel index.html --no-autoinstall --no-hmr",
     "client:watch": "cross-env NODE_ENV=development parcel index.html --no-autoinstall",
     "client:no-cache": "cross-env NODE_ENV=development parcel index.html --no-autoinstall --no-hmr --no-cache",
     "build": "rimraf build && cross-env NODE_ENV=production parcel build index.html --no-source-maps --out-dir build",
+    "server": "NODE_ENV=development ts-node server",
     "test": "cross-env NODE_ENV=development jest",
     "test:watch": "cross-env NODE_ENV=development jest --watch",
     "test:coverage": "cross-env NODE_ENV=development jest --coverage",
@@ -15,12 +15,17 @@
     "test:report": "http-server -s -o -c-1 -p 8888 coverage/lcov-report"
   },
   "dependencies": {
+    "@colyseus/monitor": "^0.1.7",
+    "colyseus": "^0.9.9",
+    "colyseus.js": "^0.9.5",
+    "express": "^4.16.3",
     "matter-js": "^0.14.1",
     "mousetrap": "^1.6.1",
     "pixi.js": "^5.0.0-alpha.2",
     "ramda": "^0.25.0"
   },
   "devDependencies": {
+    "@types/express": "^4.11.1",
     "@types/jest": "^22.2.3",
     "@types/matter-js": "^0.10.0",
     "@types/mousetrap": "^1.6.0",
@@ -41,6 +46,7 @@
     "rimraf": "^2.6.2",
     "standard": "^11.0.1",
     "ts-jest": "^22.4.6",
+    "ts-node": "^6.0.5",
     "typescript": "^2.8.3"
   },
   "engines": {

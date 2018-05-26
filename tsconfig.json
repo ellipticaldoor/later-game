@@ -5,8 +5,8 @@
 		"moduleResolution": "node",
 		"types": ["node", "jest"],
 		"newLine": "LF",
-		"outDir": "./lib/",
-		"target": "es5",
+		"outDir": "lib",
+		"target": "es2017",
 		"sourceMap": true,
 		"declaration": true,
 		"jsx": "preserve",
@@ -18,13 +18,15 @@
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
-        "baseUrl": ".",
+        "experimentalDecorators": true,
+		"baseUrl": ".",
 		"paths": {
-			"@client/*": ["./client/*"]
+            "@client/*": ["./client/*"],
+            "@server/*": ["./server/*"]
 		}
 	},
 	"include": [
-		"client/**/*"
+		"**/*.ts"
 	],
 	"exclude": [
 		".git",
