@@ -1,8 +1,8 @@
-import { bindKeys } from './keys.helpers'
-import { moveCamera, frameCamera } from '@client/modules/camera/camera.helpers'
-import { moveEntity } from '@client/modules/physics/physics.helpers'
-import { camera } from '@client/modules/camera/camera'
-import { player } from '@client/modules/player/player'
+import { bindKeys } from './keys.helper'
+import { moveCamera, frameCamera } from '@client/camera/camera.helper'
+import { moveEntity } from '@client/physics/physics.helper'
+import { camera } from '@client/camera/camera'
+import { player } from '@client/player/player'
 
 const keys = {
 	keys: {

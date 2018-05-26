@@ -1,11 +1,8 @@
 import characterImage from '@client/assets/img/character.png'
-import { spriteOf } from '@client/helpers/sprite.helpers'
-import { camera } from '@client/modules/camera/camera'
-import { getTileXY } from '@client/modules/atlas/helpers/utils.helpers'
-import {
-	makeBody,
-	updateEntityPosition,
-} from '@client/modules/physics/physics.helpers'
+import { spriteOf } from '@client/helpers/sprite.helper'
+import { camera } from '@client/camera/camera'
+import { getTileXY } from '@client/atlas/helpers/utils.helper'
+import { makeBody, updateEntityPosition } from '@client/physics/physics.helper'
 
 export const player = {
 	sprite: undefined,

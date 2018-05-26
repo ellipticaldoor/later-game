@@ -4,8 +4,8 @@ import {
 	loadAtlasTextures,
 	loadSpritesForLayer,
 	loadBodiesForLayer,
-} from './helpers/atlas.helpers'
-import { camera } from '@client/modules/camera/camera'
+} from './helpers/atlas.helper'
+import { camera } from '@client/camera/camera'
 
 const atlas = {
 	textures: [],
