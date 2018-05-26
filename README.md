@@ -17,11 +17,14 @@ yarn
 ## Commands
 
 ``` shell
-# Start dev environment
-yarn start
+# Start client dev environment
+yarn client
 
-# Start dev environment with auto reload on code change
-yarn start:reload
+# Start client dev environment with auto reload on code changes
+yarn client:watch
+
+# Start client dev environment without cache
+yarn client:no-cache
 
 # Build the app for production
 yarn build
