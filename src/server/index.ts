@@ -8,6 +8,9 @@ import { ChatRoom } from './chat'
 const port = Number(process.env.PORT || 2222)
 const app = express()
 
+// let a: number = 1
+// console.log(a)
+
 // Attach WebSocket Server on HTTP Server.
 const gameServer = new Server({
 	engine: WebSocket.Server,
