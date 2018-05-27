@@ -382,8 +382,8 @@
   resolved "https://registry.yarnpkg.com/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
 
 "@types/express-serve-static-core@*":
-  version "4.11.1"
-  resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.11.1.tgz#f6f7212382d59b19d696677bcaa48a37280f5d45"
+  version "4.11.2"
+  resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.11.2.tgz#b3c4bd7d45f765dbb782842fa80200967ae14eba"
   dependencies:
     "@types/events" "*"
     "@types/node" "*"
@@ -413,12 +413,12 @@
   resolved "https://registry.yarnpkg.com/@types/mousetrap/-/mousetrap-1.6.0.tgz#c3951ab98b88ff6093cd0b1e4f8591af439141b8"
 
 "@types/node@*", "@types/node@^10.1.2":
-  version "10.1.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.1.2.tgz#1b928a0baa408fc8ae3ac012cc81375addc147c6"
+  version "10.1.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.1.3.tgz#5c16980936c4e3c83ce64e8ed71fb37bd7aea135"
 
 "@types/ramda@^0.25.29":
-  version "0.25.29"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.29.tgz#05a58a3ba728344ecc9d99e37beb2adf822fb01c"
+  version "0.25.30"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.30.tgz#422a7514591cddb2be37374d595aa5990014bd59"
 
 "@types/serve-static@*":
   version "1.13.2"
@@ -430,14 +430,6 @@
 "@types/shortid@0.0.29":
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/shortid/-/shortid-0.0.29.tgz#8093ee0416a6e2bf2aa6338109114b3fbffa0e9b"
-
-"@types/strip-bom@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/strip-bom/-/strip-bom-3.0.0.tgz#14a8ec3956c2e81edb7520790aecf21c290aebd2"
-
-"@types/strip-json-comments@0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
 
 "@types/uws@^0.13.2":
   version "0.13.2"
@@ -5083,6 +5075,17 @@ nice-try@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.4.tgz#d93962f6c52f2c1558c0fbda6d512819f1efe1c4"
 
+node-dev@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/node-dev/-/node-dev-3.1.3.tgz#582719223ebdef5d63059e6a7fbcd2399fc0f84d"
+  dependencies:
+    dateformat "~1.0.4-1.2.3"
+    dynamic-dedupe "^0.2.0"
+    filewatcher "~3.0.0"
+    minimist "^1.1.3"
+    node-notifier "^4.0.2"
+    resolve "^1.0.0"
+
 node-emoji@^1.4.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.8.1.tgz#6eec6bfb07421e2148c75c6bba72421f8530a826"
@@ -7171,7 +7174,7 @@ strip-indent@^1.0.1:
   dependencies:
     get-stdin "^4.0.1"
 
-strip-json-comments@^2.0.0, strip-json-comments@~2.0.1:
+strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
@@ -7404,22 +7407,7 @@ ts-jest@^22.4.6:
     source-map-support "^0.5.5"
     yargs "^11.0.0"
 
-ts-node-dev@^1.0.0-pre.24:
-  version "1.0.0-pre.24"
-  resolved "https://registry.yarnpkg.com/ts-node-dev/-/ts-node-dev-1.0.0-pre.24.tgz#0a01ad09e0667ba2a6acbb16b0d658e625ab2578"
-  dependencies:
-    dateformat "~1.0.4-1.2.3"
-    dynamic-dedupe "^0.2.0"
-    filewatcher "~3.0.0"
-    minimist "^1.1.3"
-    mkdirp "^0.5.1"
-    node-notifier "^4.0.2"
-    resolve "^1.0.0"
-    rimraf "^2.6.1"
-    ts-node "*"
-    tsconfig "^7.0.0"
-
-ts-node@*, ts-node@^6.0.5:
+ts-node@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-6.0.5.tgz#977c1c931da7a2b09ae2930101f0104a5c2271e9"
   dependencies:
@@ -7431,15 +7419,6 @@ ts-node@*, ts-node@^6.0.5:
     mkdirp "^0.5.1"
     source-map-support "^0.5.3"
     yn "^2.0.0"
-
-tsconfig@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/tsconfig/-/tsconfig-7.0.0.tgz#84538875a4dc216e5c4a5432b3a4dec3d54e91b7"
-  dependencies:
-    "@types/strip-bom" "^3.0.0"
-    "@types/strip-json-comments" "0.0.30"
-    strip-bom "^3.0.0"
-    strip-json-comments "^2.0.0"
 
 tslib@^1.8.1:
   version "1.9.1"
