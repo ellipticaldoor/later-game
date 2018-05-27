@@ -28,7 +28,7 @@ Client
 yarn client
 
 # Start client dev environment with auto reload on code changes
-yarn client:watch
+yarn client:reload
 
 # Start client dev environment without cache
 yarn client:no-cache

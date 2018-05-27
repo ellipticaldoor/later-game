@@ -5,7 +5,7 @@
   "scripts": {
     "start": "concurrently \"yarn client\" \"yarn server\"",
     "client": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr",
-    "client:watch": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall",
+    "client:reload": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall",
     "client:no-cache": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr --no-cache",
     "client:build": "rimraf client_build && cross-env NODE_ENV=production parcel build src/client/index.html --no-source-maps --out-dir client_build",
     "server": "cross-env NODE_ENV=development ts-node-dev --inspect=9228 --no-notify --respawn src/server/index.ts",
