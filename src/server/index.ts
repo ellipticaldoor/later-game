@@ -26,4 +26,4 @@ app.use('/colyseus', monitor(gameServer))
 
 gameServer.listen(port)
 
-console.log(`Listening on http://localhost:${port}`)
+console.log(`\n👂  Backend server Listening on http://localhost:${port}`)
