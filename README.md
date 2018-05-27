@@ -44,6 +44,12 @@ yarn server
 
 # Build the server for production
 yarn server:build
+
+# Run the compiled server in production mode
+yarn server:prod
+
+# Build the server for production and run the compiled server
+yarn server:build:run
 ```
 
 Testing
