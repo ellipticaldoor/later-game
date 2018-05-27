@@ -5,11 +5,11 @@
 		"moduleResolution": "node",
 		"types": ["node", "jest"],
 		"newLine": "LF",
-		"outDir": "lib",
-		"target": "es2017",
+		"outDir": "server_build",
 		"sourceMap": true,
 		"declaration": true,
 		"jsx": "preserve",
+		"target": "es2017",
 		"lib": [
 			"es2017",
 			"dom"
@@ -26,10 +26,11 @@
 		}
 	},
 	"include": [
-		"**/*.ts"
+		"src/server/**/*.ts"
 	],
 	"exclude": [
 		".git",
-		"node_modules"
+        "node_modules",
+        "src/client/**/*.ts"
 	]
 }
