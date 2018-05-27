@@ -1,4 +1,5 @@
 import * as express from 'express'
+import * as WebSocket from 'uws'
 import { createServer } from 'http'
 import { Server } from 'colyseus'
 import { monitor } from '@colyseus/monitor'
@@ -9,6 +10,7 @@ const app = express()
 
 // Attach WebSocket Server on HTTP Server.
 const gameServer = new Server({
+	engine: WebSocket.Server,
 	server: createServer(app),
 })
 

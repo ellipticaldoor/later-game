@@ -24,7 +24,8 @@
     "matter-js": "^0.14.1",
     "mousetrap": "^1.6.1",
     "pixi.js": "^5.0.0-alpha.2",
-    "ramda": "^0.25.0"
+    "ramda": "^0.25.0",
+    "uws": "^10.148.0"
   },
   "devDependencies": {
     "@types/express": "^4.11.1",
@@ -33,6 +34,7 @@
     "@types/mousetrap": "^1.6.0",
     "@types/node": "^10.1.2",
     "@types/ramda": "^0.25.29",
+    "@types/uws": "^0.13.2",
     "babel-core": "^6.26.3",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-ramda": "^1.6.1",
