@@ -13,7 +13,7 @@ const jestConfig = {
 }
 
 if (process.env.COVERAGE === 'all') {
-	jestConfig.collectCoverageFrom = ['client/**/*.js', 'client/**/*.ts']
+	jestConfig.collectCoverageFrom = ['src/**/*.js', 'src/**/*.ts']
 }
 
 module.exports = jestConfig

@@ -16,6 +16,13 @@ yarn
 
 ## Commands
 
+General
+``` shell
+# Start both client and server dev environment
+yarn start
+```
+
+Client
 ``` shell
 # Start client dev environment
 yarn client
@@ -26,9 +33,21 @@ yarn client:watch
 # Start client dev environment without cache
 yarn client:no-cache
 
-# Build the app for production
-yarn build
+# Build the client for production
+yarn client:build
+```
 
+Server
+``` shell
+# Start server dev environment
+yarn server
+
+# Build the server for production
+yarn server:build
+```
+
+Testing
+``` shell
 # Run jest tests
 yarn test
 

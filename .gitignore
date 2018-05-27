@@ -4,6 +4,8 @@ npm-debug.log*
 node_modules/
 dist/
 build/
+client_build/
+server_build/
 .cache/
 coverage/
 

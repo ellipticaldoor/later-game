@@ -17,12 +17,12 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "experimentalDecorators": true,
+		"noFallthroughCasesInSwitch": true,
+		"experimentalDecorators": true,
 		"baseUrl": "./src",
 		"paths": {
-            "@client/*": ["./client/*"],
-            "@server/*": ["./server/*"]
+			"@client/*": ["./client/*"],
+			"@server/*": ["./server/*"]
 		}
 	},
 	"include": [

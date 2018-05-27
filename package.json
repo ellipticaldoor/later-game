@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "start": "echo 'hola'",
     "client": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr",
     "client:watch": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall",
     "client:no-cache": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr --no-cache",
-    "build": "rimraf build && cross-env NODE_ENV=production parcel build src/client/index.html --no-source-maps --out-dir build",
-    "server": "NODE_ENV=development ts-node src/server",
+    "client:build": "rimraf client_build && cross-env NODE_ENV=production parcel build src/client/index.html --no-source-maps --out-dir client_build",
+    "server": "NODE_ENV=development ts-node-dev src/server",
+    "server:build": "rimraf server_build && NODE_ENV=production echo 'Not ready yet ;)'",
     "test": "cross-env NODE_ENV=development jest",
     "test:watch": "cross-env NODE_ENV=development jest --watch",
     "test:coverage": "cross-env NODE_ENV=development jest --coverage",
@@ -47,10 +49,12 @@
     "standard": "^11.0.1",
     "ts-jest": "^22.4.6",
     "ts-node": "^6.0.5",
+    "ts-node-dev": "^1.0.0-pre.24",
     "typescript": "^2.8.3"
   },
   "engines": {
-    "node": ">= 9.4.0",
-    "npm": ">= 5.8.0"
+    "node": ">= 10.2.1",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.7.0"
   }
 }
