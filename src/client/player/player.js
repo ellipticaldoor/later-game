@@ -14,7 +14,7 @@ const gameLoop = (delta, { sprite, body }) => {
 	updateEntityPosition(sprite, body)
 }
 
-const setup = ({ ticker, something }) => {
+const setup = ({ ticker }) => {
 	const initialPlayerXY = getTileXY(2, 3)
 
 	player.sprite = spriteOf(characterImage)

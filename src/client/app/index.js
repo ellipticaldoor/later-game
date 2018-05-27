@@ -5,9 +5,9 @@ import assets from '@client/assets'
 import { Loader } from '@pixi/loaders'
 import './colyseus'
 
-if ((module as any).hot) {
-	(module as any).accept(() => {})
-	(module as any).dispose(() => window.location.reload())
+if (module.hot) {
+	module.accept(() => {})
+	module.dispose(() => window.location.reload())
 }
 
 document.body.appendChild(pixi.view)
