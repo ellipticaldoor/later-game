@@ -35,6 +35,9 @@ yarn client:no-cache
 
 # Build the client for production
 yarn client:build
+
+# Build the client for production and show bundle report
+yarn client:build:report
 ```
 
 Server

@@ -8,6 +8,7 @@
     "client:reload": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall",
     "client:no-cache": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr --no-cache",
     "client:build": "rimraf client_build && cross-env NODE_ENV=production parcel build src/client/index.html --no-source-maps --out-dir client_build",
+    "client:build:report": "yarn client:build && opn report.html",
     "server": "cross-env NODE_ENV=development node-dev -r ts-node/register --inspect=9228 src/server/index.ts",
     "server:build": "rimraf server_build && cross-env NODE_ENV=production tsc -p src/server/tsconfig.json",
     "server:prod": "cross-env NODE_ENV=production node server_build",
@@ -16,7 +17,7 @@
     "test:watch": "cross-env NODE_ENV=development jest --watch",
     "test:coverage": "cross-env NODE_ENV=development jest --coverage",
     "test:coverage:all": "cross-env NODE_ENV=development COVERAGE=all jest --coverage",
-    "test:report": "http-server -s -o -c-1 -p 8888 coverage/lcov-report"
+    "test:report": "open coverage/lcov-report/index.html"
   },
   "dependencies": {
     "@colyseus/monitor": "^0.1.7",
@@ -46,11 +47,13 @@
     "babel-runtime": "^6.26.0",
     "concurrently": "^3.5.1",
     "cross-env": "^5.1.6",
-    "http-server": "^0.11.1",
     "jest": "^22.4.4",
     "node-dev": "^3.1.3",
     "node-sass": "^4.9.0",
+    "opn-cli": "^3.1.0",
     "parcel-bundler": "^1.8.1",
+    "parcel-plugin-bundle-visualiser": "^1.1.2",
+    "parcel-plugin-compress": "^1.0.3",
     "parcel-plugin-typescript": "^0.7.1",
     "rimraf": "^2.6.2",
     "standard": "^11.0.1",

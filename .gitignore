@@ -9,6 +9,7 @@ server_build/
 .cache/
 coverage/
 lib/
+report.html
 
 # IDEs and editors (shamelessly copied from @angular/cli's .gitignore)
 /.idea
