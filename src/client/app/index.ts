@@ -3,7 +3,7 @@ import game from './game'
 import resize from '@client/helpers/resize.helper'
 import assets from '@client/assets'
 import { Loader } from '@pixi/loaders'
-import './colyseus'
+// import './colyseus'
 
 if ((module as any).hot) {
 	(module as any).accept(() => {})
