@@ -38,7 +38,6 @@
     "@types/node": "^10.1.2",
     "@types/ramda": "^0.25.29",
     "@types/uws": "^0.13.2",
-    "babel-core": "^6.26.3",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-ramda": "^1.6.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",

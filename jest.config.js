@@ -10,6 +10,7 @@ const jestConfig = {
 		'^.+\\.jsx?$': 'babel-jest',
 	},
 	testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
+	coveragePathIgnorePatterns: ['.*\\.d\\.ts', '<rootDir>/node_modules/'],
 }
 
 if (process.env.COVERAGE === 'all') {
