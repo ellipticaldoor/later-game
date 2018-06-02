@@ -9,6 +9,10 @@ const jestConfig = {
 		'^.+\\.tsx?$': 'ts-jest',
 		'^.+\\.jsx?$': 'babel-jest',
 	},
+	moduleNameMapper: {
+		'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+			'identity-obj-proxy',
+	},
 	testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
 	coveragePathIgnorePatterns: ['.*\\.d\\.ts', '<rootDir>/node_modules/'],
 }
