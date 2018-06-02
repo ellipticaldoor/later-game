@@ -10,17 +10,14 @@ import { makeStaticBody } from '@client/physics/physics.helper'
 
 export const loadAtlasTextures = tilesImage => {
 	const viewports = [
-		[0, 0], // 1: Grass
-		[tileSize, 0], // 2: Ground
-		[tileSize * 2, 0], // 3: Tree
-		[tileSize * 3, 0], // 4: Top of the tree
-		[tileSize * 4, 0], // 5: Bush
+		{ x: 0, y: 0 }, // 1: Grass
+		{ x: tileSize, y: 0 }, // 2: Ground
+		{ x: tileSize * 2, y: 0 }, // 3: Tree
+		{ x: tileSize * 3, y: 0 }, // 4: Top of the tree
+		{ x: tileSize * 4, y: 0 }, // 5: Bush
 	]
 
-	const tilesetSize = [320, 64] // In pixels
-
-	const cropHelper = viewport =>
-		cropTexture(textureOf(tilesImage), { tilesetSize, viewport })
+	const cropHelper = viewport => cropTexture(textureOf(tilesImage), viewport)
 
 	return map(cropHelper, viewports)
 }

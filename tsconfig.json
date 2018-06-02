@@ -3,7 +3,7 @@
 		"strict": false,
 		"module": "commonjs",
 		"moduleResolution": "node",
-		"types": ["node", "jest"],
+		"types": ["node", "jest", "pixi.js"],
 		"newLine": "LF",
 		"outDir": "lib",
 		"jsx": "preserve",
