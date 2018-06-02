@@ -1,8 +1,9 @@
 import { bindKeys } from './keys.helper'
-import { moveCamera, frameCamera } from '@client/camera/camera.helper'
+import { moveCamera, frameView } from '@client/camera/camera.helper'
 import { moveEntity } from '@client/physics/physics.helper'
 import { camera } from '@client/camera/camera'
 import { player } from '@client/player/player'
+import { Point } from 'pixi.js'
 
 const keys = {
 	keys: {
@@ -37,12 +38,7 @@ const gameLoop = (delta, { keys, states }, renderer) => {
 
 	if (states.framePlayer) {
 		// Camera travelling for player
-		frameCamera(
-			renderer,
-			camera.view,
-			player.sprite.position.x,
-			player.sprite.position.y
-		)
+		frameView(renderer, camera.view, player.sprite.position)
 	}
 }
 

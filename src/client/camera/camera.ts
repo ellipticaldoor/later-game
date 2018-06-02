@@ -1,6 +1,6 @@
 import { Container } from 'pixi.js'
 import { defaultContainers, defaultCameraSpeed } from './camera.constants'
-import { attachContainersToCamera, setContainerZindex } from './camera.helper'
+import { attachContainersToView, applyContainersZindex } from './camera.helper'
 
 export const camera: Camera = {
 	view: new Container(),
@@ -10,8 +10,8 @@ export const camera: Camera = {
 
 const setup = ({ stage }: PIXI.Application) => {
 	stage.addChild(camera.view)
-	attachContainersToCamera(camera.view, camera.containers)
-	setContainerZindex(camera.view, camera.containers)
+	attachContainersToView(camera.view, camera.containers)
+	applyContainersZindex(camera.view, camera.containers)
 }
 
 export default setup

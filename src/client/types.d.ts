@@ -1,11 +1,15 @@
+interface Dictionary<T> {
+	[key: string]: T;
+}
+
 interface Size {
-    width: number,
-    height: number
+	width: number,
+	height: number
 }
 
 interface Point {
-    x: number,
-    y: number
+	x: number,
+	y: number
 }
 
 type Image = string

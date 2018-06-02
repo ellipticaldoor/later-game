@@ -1,28 +1,47 @@
 import { map } from 'ramda'
 import { tileSize } from '@client/constants'
 
-export const attachContainersToCamera = (camera, containers) => {
-	map(({ container }) => camera.addChild(container), containers)
+export const attachContainersToView = (
+	view: PIXI.Container,
+	containers: Dictionary<GameContainer>
+): void => {
+	map(({ container }: GameContainer) => {
+		view.addChild(container)
+	}, Object.values(containers))
 }
 
-export const setContainerZindex = (camera, containers) => {
-	map(
-		({ container, zIndex }) => camera.setChildIndex(container, zIndex),
-		containers
-	)
+export const applyContainersZindex = (
+	view: PIXI.Container,
+	containers: Dictionary<GameContainer>
+): void => {
+	map(({ container, zIndex }: GameContainer) => {
+		view.setChildIndex(container, zIndex)
+	}, Object.values(containers))
 }
 
-export const moveCamera = (delta, view, speed, dirX, dirY) => {
+export const moveCamera = (
+	delta: number,
+	view: PIXI.Container,
+	speed: number,
+	dirX: number,
+	dirY: number
+): void => {
 	view.position.x += dirX * speed * delta
 	view.position.y += dirY * speed * delta
 }
 
-export const frameCamera = (renderer, { position }, x, y) => {
-	const _x = Math.floor(renderer.screen.width / 2 - x)
-	const _y = Math.floor(renderer.screen.height / 2 - y)
+export const frameView = (
+	renderer: PIXI.Renderer,
+	view: PIXI.Container,
+	moveTo: Point
+): void => {
+	const _moveTo: Point = {
+		x: Math.floor(renderer.screen.width / 2 - moveTo.x),
+		y: Math.floor(renderer.screen.height / 2 - moveTo.y),
+	}
 
-	const centerX = _x - tileSize / 2
-	const centerY = _y - tileSize / 2
+	const centerX = _moveTo.x - tileSize / 2
+	const centerY = _moveTo.y - tileSize / 2
 
-	position.set(centerX, centerY)
+	view.position.set(centerX, centerY)
 }
