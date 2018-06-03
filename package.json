@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"yarn server\" \"yarn client\" \"yarn prettier:js:watch\" \"yarn prettier:ts:watch\"",
+    "start": "concurrently \"yarn server\" \"yarn client\" \"yarn prettier:ts:watch\" \"yarn prettier:js:watch\"",
     "client": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr",
     "client:reload": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall",
     "client:no-cache": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr --no-cache",
@@ -24,7 +24,7 @@
     "prettier:js": "yarn prettier:base --write 'src/**/*.js'",
     "prettier:js:watch": "onchange \"src/**/*.js\" -- yarn prettier:base --write {{changed}}",
     "prettier:watch": "concurrently \"yarn prettier:js:watch\" \"yarn prettier:ts:watch\"",
-    "prettier": "yarn prettier:js && yarn prettier:ts"
+    "prettier": "yarn prettier:ts && yarn prettier:js"
   },
   "dependencies": {
     "express": "^4.16.3",

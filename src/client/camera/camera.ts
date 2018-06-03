@@ -12,6 +12,8 @@ const setup = ({ stage }: PIXI.Application) => {
 	stage.addChild(camera.view)
 	attachContainersToView(camera.view, camera.containers)
 	applyContainersZindex(camera.view, camera.containers)
+
+	return camera
 }
 
 export default setup
