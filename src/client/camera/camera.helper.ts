@@ -1,5 +1,10 @@
-import { map } from 'ramda'
+import { map, propEq, find } from 'ramda'
 import { tileSize } from '@client/constants'
+
+export const getContainerByName = (
+	name: string,
+	containers: GameContainer[]
+): GameContainer => find(propEq('name', name))(containers)
 
 export const attachContainersToView = (
 	view: PIXI.Container,

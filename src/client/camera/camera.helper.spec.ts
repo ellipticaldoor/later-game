@@ -1,6 +1,7 @@
 import { map } from 'ramda'
 import { camera } from './camera'
 import {
+	getContainerByName,
 	attachContainersToView,
 	// applyContainersZindex,
 	// moveCamera,
@@ -8,6 +9,16 @@ import {
 } from './camera.helper'
 
 const testCamera: Camera = { ...camera }
+
+test('Get a container by name', () => {
+	const ground = getContainerByName('ground', testCamera.containers)
+	const entities = getContainerByName('entities', testCamera.containers)
+	const top = getContainerByName('top', testCamera.containers)
+
+	expect(ground.name).toBe('ground')
+	expect(entities.name).toBe('entities')
+	expect(top.name).toBe('top')
+})
 
 test('Attach the camera containers to the main view PIXI container', () => {
 	attachContainersToView(testCamera.view, testCamera.containers)
