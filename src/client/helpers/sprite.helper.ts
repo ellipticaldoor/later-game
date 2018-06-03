@@ -8,9 +8,9 @@ export const textureOf = (imagePath: Image): PIXI.Texture => {
 	let texture: PIXI.Texture = TextureCache[imagePath]
 
 	if (!texture) {
-		console.warn(`${imagePath} is not loaded from the texture cache.`)
-		texture = Texture.fromImage(imagePath)
-	}
+    console.warn(`${imagePath} is not loaded from the texture cache.`)
+    texture = Texture.fromImage(imagePath)
+}
 
 	return texture
 }

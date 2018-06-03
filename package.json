@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"yarn server\" \"yarn client\" \"yarn prettier:watch\"",
+    "start": "concurrently \"yarn server\" \"yarn client\" \"yarn prettier:js:watch\" \"yarn prettier:ts:watch\"",
     "client": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr",
     "client:reload": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall",
     "client:no-cache": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr --no-cache",
@@ -20,9 +20,11 @@
     "test:report": "open coverage/lcov-report/index.html",
     "prettier:base": "prettier --config .prettierrc",
     "prettier:ts": "yarn prettier:base --parser typescript --write 'src/**/*.{ts,tsx}'",
+    "prettier:ts:watch": "onchange \"src/**/*.ts\" -- yarn prettier:base --parser typescript --write {{changed}}",
     "prettier:js": "yarn prettier:base --write 'src/**/*.js'",
-    "prettier": "yarn prettier:js && yarn prettier:ts",
-    "prettier:watch": "onchange src/**/*.{js,ts,tsx} -- yarn prettier"
+    "prettier:js:watch": "onchange \"src/**/*.js\" -- yarn prettier:base --write {{changed}}",
+    "prettier:watch": "concurrently \"yarn prettier:js:watch\" \"yarn prettier:ts:watch\"",
+    "prettier": "yarn prettier:js && yarn prettier:ts"
   },
   "dependencies": {
     "express": "^4.16.3",
