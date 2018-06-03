@@ -21,32 +21,26 @@ npm install -g yarn
 Install [https://code.visualstudio.com/](vscode)
 
 * Plugins for code editing
-    * EditorConfig
-    * Bracker Pair Colorizer
-    * ESLint
-    * Prettier - Code formatter
-    * Jest
+	* EditorConfig
+	* Bracker Pair Colorizer
+	* ESLint
+	* Jest
 
 
 Settings config
 ``` json
 {
-    "telemetry.enableTelemetry": false,
-    "files.autoSave": "onFocusChange",
-    "editor.multiCursorModifier": "ctrlCmd",
-    "editor.wordWrap": "on",
-    "files.insertFinalNewline": true,
-    "workbench.tips.enabled": false,
-    "workbench.activityBar.visible": false,
-    "editor.lightbulb.enabled": false,
-    "javascript.suggestionActions.enabled": false,
-    "files.trimTrailingWhitespace": true,
-    "editor.formatOnPaste": true,
-    "prettier.eslintIntegration": true,
-    "editor.formatOnSave": true,
-    "[markdown]": {
-        "editor.formatOnSave": false
-    },
+	"telemetry.enableTelemetry": false,
+	"files.autoSave": "onFocusChange",
+	"editor.multiCursorModifier": "ctrlCmd",
+	"editor.wordWrap": "on",
+	"files.insertFinalNewline": true,
+	"workbench.tips.enabled": false,
+	"workbench.activityBar.visible": false,
+	"editor.lightbulb.enabled": false,
+	"javascript.suggestionActions.enabled": false,
+	"files.trimTrailingWhitespace": true,
+	"editor.formatOnPaste": true
 }
 ```
 
@@ -55,7 +49,7 @@ Settings config
 
 1. Login / register on [GitLab](https://gitlab.com/)
 2. [Add your SSH key](https://gitlab.com/profile/keys)
-    * [Docs for generating an ssh key](https://gitlab.com/help/ssh/README#generating-a-new-ssh-key-pair)
+	* [Docs for generating an ssh key](https://gitlab.com/help/ssh/README#generating-a-new-ssh-key-pair)
 
 Git global setup
 ``` shell

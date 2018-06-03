@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"yarn server\" \"yarn client\"",
+    "start": "concurrently \"yarn server\" \"yarn client\" \"yarn prettier:watch\"",
     "client": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr",
     "client:reload": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall",
     "client:no-cache": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr --no-cache",
@@ -21,7 +21,8 @@
     "prettier:base": "prettier --config .prettierrc",
     "prettier:ts": "yarn prettier:base --parser typescript --write 'src/**/*.{ts,tsx}'",
     "prettier:js": "yarn prettier:base --write 'src/**/*.js'",
-    "prettier": "yarn prettier:js && yarn prettier:ts"
+    "prettier": "yarn prettier:js && yarn prettier:ts",
+    "prettier:watch": "onchange src/**/*.{js,ts,tsx} -- yarn prettier"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -50,6 +51,7 @@
     "jest": "^23.1.0",
     "node-dev": "^3.1.3",
     "node-sass": "^4.9.0",
+    "onchange": "^4.0.0",
     "opn-cli": "^3.1.0",
     "parcel-bundler": "^1.8.1",
     "parcel-plugin-bundle-visualiser": "^1.1.2",
