@@ -1,9 +1,9 @@
 export default ({ renderer }: PIXI.Application) => {
-    renderer.autoResize = true
+	renderer.autoResize = true
 
-    const resize = () => renderer.resize(window.innerWidth, window.innerHeight)
+	const resize = () => renderer.resize(window.innerWidth, window.innerHeight)
 
-    window.addEventListener('resize', resize, false)
+	window.addEventListener('resize', resize, false)
 
-    resize()
+	resize()
 }

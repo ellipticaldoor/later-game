@@ -19,7 +19,7 @@ export const spriteOf = (imagePath: Image): PIXI.Sprite =>
 	new Sprite(textureOf(imagePath))
 
 export interface CropTexture {
-	(_texture: PIXI.Texture, viewport: Point): PIXI.Texture;
+	(_texture: PIXI.Texture, viewport: Point): PIXI.Texture
 }
 
 export const cropTexture: CropTexture = (_texture, viewport) => {

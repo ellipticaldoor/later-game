@@ -5,9 +5,9 @@ const defaultImage: Image = '/default_image.png'
 const defaultImageSize: Size = { width: tileSize * 3, height: tileSize }
 
 test('textureOf creates a new pixi texture', () => {
-const texture: PIXI.Texture = textureOf(defaultImage)
-const { cacheId } = (texture.baseTexture as any)
-expect(cacheId).toBe(defaultImage)
+	const texture: PIXI.Texture = textureOf(defaultImage)
+	const { cacheId } = texture.baseTexture as any
+	expect(cacheId).toBe(defaultImage)
 })
 
 test('spriteOf creates a new pixi Sprite', () => {
@@ -29,7 +29,6 @@ test('cropTexture creates a new cropped texture from a tileset image', () => {
 	expect(croppedTexture1.orig.width).toBe(tileSize)
 	expect(croppedTexture1.orig.height).toBe(tileSize)
 
-
 	// Crop second tile
 	const viewport2: Point = { x: tileSize, y: 0 }
 	const croppedTexture2: PIXI.Texture = cropTexture(tilesetTexture, viewport2)
@@ -39,4 +38,3 @@ test('cropTexture creates a new cropped texture from a tileset image', () => {
 	expect(croppedTexture2.orig.width).toBe(tileSize)
 	expect(croppedTexture2.orig.height).toBe(tileSize)
 })
-

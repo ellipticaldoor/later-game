@@ -17,7 +17,11 @@
     "test:watch": "cross-env NODE_ENV=development jest --watch",
     "test:coverage": "cross-env NODE_ENV=development jest --coverage",
     "test:coverage:all": "cross-env NODE_ENV=development COVERAGE=all jest --coverage",
-    "test:report": "open coverage/lcov-report/index.html"
+    "test:report": "open coverage/lcov-report/index.html",
+    "prettier:base": "prettier --config .prettierrc",
+    "prettier:ts": "yarn prettier:base --parser typescript --write 'src/**/*.{ts,tsx}'",
+    "prettier:js": "yarn prettier:base --write 'src/**/*.js'",
+    "prettier": "yarn prettier:js && yarn prettier:ts"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -51,6 +55,7 @@
     "parcel-plugin-bundle-visualiser": "^1.1.2",
     "parcel-plugin-compress": "^1.0.3",
     "parcel-plugin-typescript": "^0.7.1",
+    "prettier": "^1.13.4",
     "rimraf": "^2.6.2",
     "standard": "^11.0.1",
     "ts-jest": "^22.4.6",
