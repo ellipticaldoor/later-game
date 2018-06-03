@@ -3,20 +3,21 @@ import { tileSize } from '@client/constants'
 
 export const attachContainersToView = (
 	view: PIXI.Container,
-	containers: Dictionary<GameContainer>
+	containers: GameContainer[]
 ): void => {
-	map(({ container }: GameContainer) => {
+	map(({ name, container }: GameContainer) => {
 		view.addChild(container)
-	}, Object.values(containers))
+		container.name = name
+	}, containers)
 }
 
 export const applyContainersZindex = (
 	view: PIXI.Container,
-	containers: Dictionary<GameContainer>
+	containers: GameContainer[]
 ): void => {
 	map(({ container, zIndex }: GameContainer) => {
 		view.setChildIndex(container, zIndex)
-	}, Object.values(containers))
+	}, containers)
 }
 
 export const moveCamera = (
