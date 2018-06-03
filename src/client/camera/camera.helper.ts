@@ -29,11 +29,10 @@ export const moveCamera = (
 	delta: number,
 	view: PIXI.Container,
 	speed: number,
-	dirX: number,
-	dirY: number
+	dir: Direction
 ): void => {
-	view.position.x += dirX * speed * delta
-	view.position.y += dirY * speed * delta
+	view.position.x += dir.x * speed * delta
+	view.position.y += dir.y * speed * delta
 }
 
 export const frameView = (

@@ -21,10 +21,10 @@ const gameLoop = (delta, { keys, states }, renderer) => {
 	if (i | j | k | l) {
 		states.framePlayer = false
 
-		if (i) moveCamera(delta, camera.view, camera.speed, 0, 1)
-		if (j) moveCamera(delta, camera.view, camera.speed, 1, 0)
-		if (k) moveCamera(delta, camera.view, camera.speed, 0, -1)
-		if (l) moveCamera(delta, camera.view, camera.speed, -1, 0)
+		if (i) moveCamera(delta, camera.view, camera.speed, { x: 0, y: 1 })
+		if (j) moveCamera(delta, camera.view, camera.speed, { x: 1, y: 0 })
+		if (k) moveCamera(delta, camera.view, camera.speed, { x: 0, y: -1 })
+		if (l) moveCamera(delta, camera.view, camera.speed, { x: -1, y: 0 })
 	} else {
 		const { w, a, s, d } = keys
 

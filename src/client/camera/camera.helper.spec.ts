@@ -1,15 +1,16 @@
-import { map } from 'ramda'
 import { camera } from './camera'
 import {
 	getContainerByName,
 	attachContainersToView,
 	applyContainersZindex,
-	// moveCamera,
+	moveCamera,
 	// frameView,
 } from './camera.helper'
 
 const testCamera: Camera = { ...camera }
 const { view, containers } = testCamera
+const speed = 1
+const delta = 1
 
 test('Get a container by name', () => {
 	const ground = getContainerByName('ground', containers)
@@ -40,4 +41,34 @@ test('Apply zIndex to the child containers of the main view', () => {
 	expect(view.getChildIndex(ground.container)).toBe(2)
 	expect(view.getChildIndex(entities.container)).toBe(0)
 	expect(view.getChildIndex(top.container)).toBe(1)
+})
+
+describe('Move camera position', () => {
+	test('Move camera position UP', () => {
+		moveCamera(delta, view, speed, { x: 0, y: 1 })
+
+		expect(view.position.x).toBe(0)
+		expect(view.position.y).toBe(1)
+	})
+
+	test('Move camera position DOWN', () => {
+		moveCamera(delta, view, speed, { x: 0, y: -1 })
+
+		expect(view.position.x).toBe(0)
+		expect(view.position.y).toBe(0)
+	})
+
+	test('Move camera position RIGTH', () => {
+		moveCamera(delta, view, speed, { x: 1, y: 0 })
+
+		expect(view.position.x).toBe(1)
+		expect(view.position.y).toBe(0)
+	})
+
+	test('Move camera position LEFT', () => {
+		moveCamera(delta, view, speed, { x: -1, y: 0 })
+
+		expect(view.position.x).toBe(0)
+		expect(view.position.y).toBe(0)
+	})
 })

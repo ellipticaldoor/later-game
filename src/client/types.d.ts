@@ -12,6 +12,11 @@ interface Point {
 	y: number
 }
 
+interface Direction {
+	x: number
+	y: number
+}
+
 type Image = string
 declare module '*.png' {
 	export default Image
