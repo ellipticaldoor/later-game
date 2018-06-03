@@ -4,7 +4,7 @@ import {
 	attachContainersToView,
 	applyContainersZindex,
 	moveCamera,
-	// frameView,
+	frameView,
 } from './camera.helper'
 
 const testCamera: Camera = { ...camera }
@@ -44,6 +44,8 @@ test('Apply zIndex to the child containers of the main view', () => {
 })
 
 describe('Move camera position', () => {
+	view.position.set(0, 0)
+
 	test('Move camera position UP', () => {
 		moveCamera(delta, view, speed, { x: 0, y: 1 })
 
@@ -71,4 +73,17 @@ describe('Move camera position', () => {
 		expect(view.position.x).toBe(0)
 		expect(view.position.y).toBe(0)
 	})
+})
+
+test('Frame a point in the center of a camera', () => {
+	// @ts-ignore
+	const rendererMock: PIXI.Renderer = { screen: { width: 1920, height: 1080 } }
+	const playerPosition: Point = { x: 200, y: 400 }
+
+	view.position.set(0, 0)
+
+	frameView(rendererMock, view, playerPosition)
+
+	expect(view.position.x).toBe(728)
+	expect(view.position.y).toBe(108)
 })
