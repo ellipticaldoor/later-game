@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
-		"strict": false,
+        "strict": false,
+        // "alwaysStrict": true,
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"types": ["node", "jest", "pixi.js"],
@@ -15,7 +16,7 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true,
+        "noFallthroughCasesInSwitch": true,
 		"experimentalDecorators": true,
 		"baseUrl": "./src",
 		"paths": {
