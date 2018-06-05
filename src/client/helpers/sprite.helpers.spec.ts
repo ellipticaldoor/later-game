@@ -1,4 +1,4 @@
-import { textureOf, spriteOf, cropTexture } from './sprite.helper'
+import { textureOf, spriteOf, cropTexture } from './sprite.helpers'
 
 const tileSize = 64
 const defaultImage: Image = '/default_image.png'

@@ -1,6 +1,6 @@
 import pixi from './pixi'
 import game from './game'
-import resize from '@client/helpers/resize.helper'
+import resize from '@client/helpers/resize.helpers'
 import assets from '@client/assets'
 import { Loader } from '@pixi/loaders'
 

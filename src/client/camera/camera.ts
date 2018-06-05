@@ -1,6 +1,6 @@
 import { Container } from 'pixi.js'
 import { defaultContainers, defaultCameraSpeed } from './camera.constants'
-import { attachContainersToView, applyContainersZindex } from './camera.helper'
+import { attachContainersToView, applyContainersZindex } from './camera.helpers'
 
 export const camera: Camera = {
 	view: new Container(),

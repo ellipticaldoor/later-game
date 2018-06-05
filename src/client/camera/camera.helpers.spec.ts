@@ -5,7 +5,7 @@ import {
 	applyContainersZindex,
 	moveCamera,
 	frameView,
-} from './camera.helper'
+} from './camera.helpers'
 
 const testCamera: Camera = { ...camera }
 const { view, containers } = testCamera

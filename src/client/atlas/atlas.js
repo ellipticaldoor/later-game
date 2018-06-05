@@ -1,12 +1,12 @@
 import tilesImage from '@client/assets/img/tiles.png'
 import { groundTileLayer, topTileLayer } from './atlas.constants'
 import { camera } from '@client/camera/camera'
-import { getContainerByName } from '@client/camera/camera.helper'
+import { getContainerByName } from '@client/camera/camera.helpers'
 import {
 	loadAtlasTextures,
 	loadSpritesForLayer,
 	loadBodiesForLayer,
-} from './helpers/atlas.helper'
+} from './helpers/atlas.helpers'
 
 const atlas = {
 	textures: [],
