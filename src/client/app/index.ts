@@ -1,5 +1,4 @@
 import pixi from './pixi'
-import game from './game'
 import resize from '@client/helpers/resize.helpers'
 import assets from '@client/assets'
 import { Loader } from '@pixi/loaders'
@@ -16,4 +15,7 @@ resize(pixi)
 
 Loader.shared
 	.add(assets) // Load assets
-	.load(() => game(pixi))
+	.load(async () => {
+		const { default: game } = await import('./game')
+		game(pixi)
+	})

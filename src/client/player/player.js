@@ -4,10 +4,11 @@ import { camera } from '@client/camera/camera'
 import { getContainerByName } from '@client/camera/camera.helpers'
 import { getTileXY } from '@client/atlas/helpers/utils.helpers'
 import { makeBody, updateEntityPosition } from '@client/physics/physics.helpers'
+const initialPlayerXY = getTileXY(2, 3)
 
 export const player = {
-	sprite: undefined,
-	body: undefined,
+	sprite: spriteOf(characterImage),
+	body: makeBody(...initialPlayerXY),
 	force: 0.8,
 }
 
@@ -16,16 +17,14 @@ const gameLoop = (delta, { sprite, body }) => {
 }
 
 const setup = ({ ticker }) => {
-	const initialPlayerXY = getTileXY(2, 3)
-
-	player.sprite = spriteOf(characterImage)
 	player.sprite.position.set(...initialPlayerXY)
-	player.body = makeBody(...initialPlayerXY)
 
 	const entities = getContainerByName('entities', camera.containers)
 	entities.container.addChild(player.sprite)
 
 	ticker.add(delta => gameLoop(delta, player))
+
+	return player
 }
 
 export default setup

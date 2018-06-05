@@ -8,7 +8,7 @@ export const camera: Camera = {
 	speed: defaultCameraSpeed,
 }
 
-const setup = ({ stage }: PIXI.Application) => {
+const setup = ({ stage }: PIXI.Application): Camera => {
 	stage.addChild(camera.view)
 	attachContainersToView(camera.view, camera.containers)
 	applyContainersZindex(camera.view, camera.containers)

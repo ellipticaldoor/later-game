@@ -21,6 +21,8 @@ const setup = ({ ticker }) => {
 	Render.run(physics.render)
 
 	ticker.add(delta => gameLoop(delta, physics.engine))
+
+	return physics
 }
 
 export default setup

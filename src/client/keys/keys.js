@@ -3,7 +3,6 @@ import { moveCamera, frameView } from '@client/camera/camera.helpers'
 import { moveEntity } from '@client/physics/physics.helpers'
 import { camera } from '@client/camera/camera'
 import { player } from '@client/player/player'
-import { Point } from 'pixi.js'
 
 const keys = {
 	keys: {
@@ -45,6 +44,8 @@ const gameLoop = (delta, { keys, states }, renderer) => {
 const setup = ({ ticker, renderer }) => {
 	bindKeys(keys.keys)
 	ticker.add(delta => gameLoop(delta, keys, renderer))
+
+	return keys
 }
 
 export default setup

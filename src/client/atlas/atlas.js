@@ -29,6 +29,8 @@ const setup = () => {
 
 	ground.container.addChild(...sprites.ground)
 	top.container.addChild(...sprites.top)
+
+	return atlas
 }
 
 export default setup
