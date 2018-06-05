@@ -51,7 +51,7 @@ export const loadSpritesForLayer = (tileLayer, textures) => {
 	return tileSprites
 }
 
-export const loadBodiesForLayer = tileLayer => {
+export const loadTileBodiesForLayer = tileLayer => {
 	const { cols, rows } = tileLayer
 	const bodies = []
 

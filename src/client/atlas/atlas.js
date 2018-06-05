@@ -5,7 +5,7 @@ import { getContainerByName } from '@client/camera/camera.helpers'
 import {
 	loadAtlasTextures,
 	loadSpritesForLayer,
-	loadBodiesForLayer,
+	loadTileBodiesForLayer,
 } from './helpers/atlas.helpers'
 
 const atlas = {
@@ -22,7 +22,7 @@ const setup = () => {
 	sprites.ground = loadSpritesForLayer(layers.groundTileLayer, atlas.textures)
 	sprites.top = loadSpritesForLayer(layers.topTileLayer, atlas.textures)
 
-	bodies.ground = loadBodiesForLayer(layers.groundTileLayer)
+	bodies.ground = loadTileBodiesForLayer(layers.groundTileLayer)
 
 	const ground = getContainerByName('ground', camera.containers)
 	const top = getContainerByName('top', camera.containers)

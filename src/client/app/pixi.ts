@@ -11,7 +11,7 @@ settings.SCALE_MODE = SCALE_MODES.NEAREST
 
 skipHello()
 
-const pixiConfig = {
+const pixiConfig: PIXI.ApplicationOptions = {
 	antialias: false,
 	transparent: false,
 	resolution: 1,
