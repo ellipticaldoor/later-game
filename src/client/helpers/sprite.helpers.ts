@@ -4,7 +4,7 @@ import { TextureCache } from '@pixi/utils'
 import { Rectangle } from '@pixi/math'
 import { tileSize } from '@client/constants'
 
-export const textureOf = (imagePath: Image): PIXI.Texture => {
+export const textureOf = (imagePath: Asset): PIXI.Texture => {
 	let texture: PIXI.Texture = TextureCache[imagePath]
 
 	if (!texture) {
@@ -15,7 +15,7 @@ export const textureOf = (imagePath: Image): PIXI.Texture => {
 	return texture
 }
 
-export const spriteOf = (imagePath: Image): PIXI.Sprite =>
+export const spriteOf = (imagePath: Asset): PIXI.Sprite =>
 	new Sprite(textureOf(imagePath))
 
 export interface CropTexture {

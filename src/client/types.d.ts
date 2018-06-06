@@ -13,13 +13,14 @@ interface Point {
 }
 
 interface Direction {
-	x: number
-	y: number
+	x: 0 | 1 | -1
+	y: 0 | 1 | -1
 }
 
-type Image = string
+type Asset = string
 declare module '*.png' {
-	export default Image
+	const png: Asset
+	export default png
 }
 
 declare module '@pixi/core'
