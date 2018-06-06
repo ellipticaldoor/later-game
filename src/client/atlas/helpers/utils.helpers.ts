@@ -1,15 +1,17 @@
 import { map, range } from 'ramda'
 import { tileSize } from '@client/constants'
 
-export const getTileIndex = (row: number, col: number, cols: number): number =>
-	row * cols + col
+export const getTileIndex = (
+	cols: number,
+	{ col, row }: TileLocation
+): number => row * cols + col
 
 export const getTileType = (
 	tileLayer: TileLayer,
 	col: number,
 	row: number
 ): Tile => {
-	const tileIndex = getTileIndex(row, col, tileLayer.cols)
+	const tileIndex = getTileIndex(tileLayer.cols, { row, col })
 
 	return tileLayer.data[tileIndex]
 }
