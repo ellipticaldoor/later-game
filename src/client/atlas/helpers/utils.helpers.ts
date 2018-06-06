@@ -8,8 +8,7 @@ export const getTileIndex = (
 
 export const getTileType = (
 	tileLayer: TileLayer,
-	col: number,
-	row: number
+	{ col, row }: TileLocation
 ): Tile => {
 	const tileIndex = getTileIndex(tileLayer.cols, { row, col })
 
