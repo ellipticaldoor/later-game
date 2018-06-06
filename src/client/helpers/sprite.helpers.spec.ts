@@ -1,7 +1,7 @@
 import { textureOf, spriteOf, cropTexture } from './sprite.helpers'
 
 const tileSize = 64
-const defaultImage: Image = '/default_image.png'
+const defaultImage: Asset = '/default_image.png'
 const defaultImageSize: Size = { width: tileSize * 3, height: tileSize }
 
 test('textureOf creates a new pixi texture', () => {

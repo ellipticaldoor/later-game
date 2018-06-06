@@ -12,7 +12,7 @@ export const physics: Physics = {
 	}),
 }
 
-const gameLoop = (delta: number, engine: Matter.Engine) => {
+const gameLoop = (delta: number, engine: Matter.Engine): void => {
 	Engine.update(engine, delta)
 }
 

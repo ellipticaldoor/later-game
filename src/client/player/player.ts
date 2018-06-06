@@ -1,4 +1,3 @@
-import characterImage from '@client/assets/img/character.png'
 import { spriteOf } from '@client/helpers/sprite.helpers'
 import { camera } from '@client/camera/camera'
 import { getContainerByName } from '@client/camera/camera.helpers'
@@ -7,22 +6,22 @@ import { makeBody, updateEntityPosition } from '@client/physics/physics.helpers'
 const initialPlayerPoint = getTilePoint(2, 3)
 
 export const player = {
-	sprite: spriteOf(characterImage),
+	sprite: spriteOf(require('@client/assets/img/character.png')),
 	body: makeBody(initialPlayerPoint),
 	force: 0.8,
 }
 
-const gameLoop = (delta, { sprite, body }) => {
+const gameLoop = (sprite: PIXI.Sprite, body: Matter.Body): void => {
 	updateEntityPosition(sprite, body)
 }
 
-const setup = ({ ticker }) => {
+const setup = ({ ticker }: PIXI.Application): Player => {
 	player.sprite.position.set(initialPlayerPoint.x, initialPlayerPoint.y)
 
 	const entities = getContainerByName('entities', camera.containers)
 	entities.container.addChild(player.sprite)
 
-	ticker.add(delta => gameLoop(delta, player))
+	ticker.add(() => gameLoop(player.sprite, player.body))
 
 	return player
 }

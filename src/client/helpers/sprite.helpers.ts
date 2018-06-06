@@ -18,11 +18,10 @@ export const textureOf = (imagePath: Asset): PIXI.Texture => {
 export const spriteOf = (imagePath: Asset): PIXI.Sprite =>
 	new Sprite(textureOf(imagePath))
 
-export interface CropTexture {
-	(_texture: PIXI.Texture, viewport: Point): PIXI.Texture
-}
-
-export const cropTexture: CropTexture = (_texture, viewport) => {
+export const cropTexture = (
+	_texture: PIXI.Texture,
+	viewport: Point
+): PIXI.Texture => {
 	const texture = new Texture(_texture)
 
 	texture.frame = new Rectangle(viewport.x, viewport.y, tileSize, tileSize)
