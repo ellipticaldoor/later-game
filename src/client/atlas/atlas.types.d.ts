@@ -1,3 +1,8 @@
+interface TileLocation {
+	col: number
+	row: number
+}
+
 type Tile =
 	| 0 // Empty
 	| 1 // Grass

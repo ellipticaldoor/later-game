@@ -31,7 +31,7 @@ export const makeTileSprite = (
 ): PIXI.Sprite => {
 	const texture = textures[type - 1]
 	const tile = new Sprite(texture)
-	const tilePoint = getTilePoint(col, row)
+	const tilePoint = getTilePoint({ col, row })
 
 	tile.position.set(tilePoint.x, tilePoint.y)
 
@@ -65,7 +65,7 @@ export const loadTileBodiesForLayer = (tileLayer: TileLayer): Matter.Body[] => {
 	const makeTileBody = (col: number, row: number): void => {
 		const type = getTileType(tileLayer, col, row)
 		if (staticTiles.includes(type)) {
-			const body = makeStaticBody(getTilePoint(col, row))
+			const body = makeStaticBody(getTilePoint({ col, row }))
 			bodies.push(body)
 		}
 	}
