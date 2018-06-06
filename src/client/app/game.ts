@@ -4,7 +4,7 @@ import physicsSetup from '@client/physics/physics'
 import cameraSetup from '@client/camera/camera'
 import keysSetup from '@client/keys/keys'
 
-export default pixi => {
+export default (pixi: PIXI.Application) => {
 	physicsSetup(pixi)
 	cameraSetup(pixi)
 	atlasSetup()

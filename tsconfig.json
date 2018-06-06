@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"strict": true,
-		// "alwaysStrict": true,
+		"alwaysStrict": true,
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"types": ["node", "jest", "pixi.js"],
