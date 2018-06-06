@@ -55,7 +55,7 @@ export const loadTileBodiesForLayer = tileLayer => {
 	const { cols, rows } = tileLayer
 	const bodies = []
 
-	const makeBody = (col, row) => {
+	const makeTileBody = (col, row) => {
 		const type = getTileType(tileLayer, col, row)
 		if (staticTiles.includes(type)) {
 			const body = makeStaticBody(...getTileXY(col, row))
@@ -63,7 +63,7 @@ export const loadTileBodiesForLayer = tileLayer => {
 		}
 	}
 
-	tileLayerIterator(cols, rows, makeBody)
+	tileLayerIterator(cols, rows, makeTileBody)
 	World.add(physics.engine.world, bodies)
 
 	return bodies
