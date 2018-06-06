@@ -1,21 +1,22 @@
 import { Engine, Render } from 'matter-js'
 import { renderOptions } from '@client/physics/physics.constants'
-const engine = Engine.create()
+const engine: Matter.Engine = Engine.create()
+const element: any = document.getElementById('physics')
 
-export const physics = {
+export const physics: Physics = {
 	engine,
 	render: Render.create({
 		engine,
-		element: document.getElementById('physics'),
+		element,
 		options: renderOptions,
 	}),
 }
 
-const gameLoop = (delta, engine) => {
+const gameLoop = (delta: number, engine: Matter.Engine) => {
 	Engine.update(engine, delta)
 }
 
-const setup = ({ ticker }) => {
+const setup = ({ ticker }: PIXI.Application): Physics => {
 	physics.engine.world.gravity.y = 0
 
 	Render.run(physics.render)
