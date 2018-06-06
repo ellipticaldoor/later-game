@@ -24,7 +24,7 @@ export const getTilePoint = ({ col, row }: TileLocation): Point => ({
 export const tileLayerIterator = (
 	cols: number,
 	rows: number,
-	method: any
+	method: any // TODO: Don't use any
 ): void => {
-	map(col => map(row => method(col, row), range(0, rows)), range(0, cols))
+	map(col => map(row => method({ col, row }), range(0, rows)), range(0, cols))
 }

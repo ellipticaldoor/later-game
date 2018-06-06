@@ -2,7 +2,7 @@ import { World, Bodies, Body } from 'matter-js'
 import { tileSize } from '@client/constants'
 import { physics } from './physics'
 
-export const makeBody = (point: Point): Matter.Body => {
+export const makeTileBody = (point: Point): Matter.Body => {
 	const body: Matter.Body = Bodies.rectangle(
 		point.x,
 		point.y,
@@ -21,7 +21,7 @@ export const makeBody = (point: Point): Matter.Body => {
 	return body
 }
 
-export const makeStaticBody = (point: Point): Matter.Body => {
+export const makeTileStaticBody = (point: Point): Matter.Body => {
 	const body: Matter.Body = Bodies.rectangle(
 		point.x,
 		point.y,
