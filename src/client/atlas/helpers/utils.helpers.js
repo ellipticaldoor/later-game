@@ -8,7 +8,10 @@ export const getTileType = (tileLayer, col, row) => {
 	return tileLayer.data[tileIndex]
 }
 
-export const getTileXY = (col, row) => [col * tileSize, row * tileSize]
+export const getTilePoint = (col, row) => ({
+	x: col * tileSize,
+	y: row * tileSize,
+})
 
 export const tileLayerIterator = (cols, rows, method) => {
 	map(col => map(row => method(col, row), range(0, rows)), range(0, cols))

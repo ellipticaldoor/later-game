@@ -4,7 +4,7 @@ import { map } from 'ramda'
 import { textureOf, cropTexture } from '@client/helpers/sprite.helpers'
 import { tileSize } from '@client/constants'
 import { staticTiles } from '../atlas.constants'
-import { getTileXY, getTileType, tileLayerIterator } from './utils.helpers'
+import { getTilePoint, getTileType, tileLayerIterator } from './utils.helpers'
 import { physics } from '@client/physics/physics'
 import { makeStaticBody } from '@client/physics/physics.helpers'
 
@@ -26,7 +26,9 @@ export const makeTileSprite = (textures, type, col, row) => {
 	if (type) {
 		const texture = textures[type - 1]
 		const tile = new Sprite(texture)
-		tile.position.set(...getTileXY(col, row))
+		const tilePoint = getTilePoint(col, row)
+
+		tile.position.set(tilePoint.x, tilePoint.y)
 
 		return tile
 	} else {
@@ -58,7 +60,7 @@ export const loadTileBodiesForLayer = tileLayer => {
 	const makeTileBody = (col, row) => {
 		const type = getTileType(tileLayer, col, row)
 		if (staticTiles.includes(type)) {
-			const body = makeStaticBody(...getTileXY(col, row))
+			const body = makeStaticBody(getTilePoint(col, row))
 			bodies.push(body)
 		}
 	}

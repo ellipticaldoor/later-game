@@ -2,8 +2,8 @@ import { World, Bodies, Body } from 'matter-js'
 import { tileSize } from '@client/constants'
 import { physics } from './physics'
 
-export const makeBody = (x, y) => {
-	const body = Bodies.rectangle(x, y, tileSize, tileSize, {
+export const makeBody = point => {
+	const body = Bodies.rectangle(point.x, point.y, tileSize, tileSize, {
 		inertia: Infinity,
 		friction: 0,
 		frictionAir: 0.1,
@@ -15,8 +15,8 @@ export const makeBody = (x, y) => {
 	return body
 }
 
-export const makeStaticBody = (x, y) => {
-	const body = Bodies.rectangle(x, y, tileSize, tileSize, {
+export const makeStaticBody = point => {
+	const body = Bodies.rectangle(point.x, point.y, tileSize, tileSize, {
 		isStatic: true,
 		friction: 0,
 		restitution: 0,
