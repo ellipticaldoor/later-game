@@ -7,9 +7,9 @@ import { player } from '@client/player/player'
 const keys: Keys = {
 	// prettier-ignore
 	keys: {
-        w: false, a: false, s: false, d: false,
-        i: false, j: false, k: false, l: false,
-    },
+		w: false, a: false, s: false, d: false,
+		i: false, j: false, k: false, l: false,
+	},
 	states: {
 		framePlayer: true,
 	},
