@@ -47,14 +47,14 @@ describe('Move camera position', () => {
 	view.position.set(0, 0)
 
 	test('Move camera position UP', () => {
-		moveCamera(delta, view, speed, { x: 0, y: 1 })
+		moveCamera(delta, view, speed, { x: 0, y: -1 })
 
 		expect(view.position.x).toBe(0)
 		expect(view.position.y).toBe(1)
 	})
 
 	test('Move camera position DOWN', () => {
-		moveCamera(delta, view, speed, { x: 0, y: -1 })
+		moveCamera(delta, view, speed, { x: 0, y: 1 })
 
 		expect(view.position.x).toBe(0)
 		expect(view.position.y).toBe(0)
@@ -63,7 +63,7 @@ describe('Move camera position', () => {
 	test('Move camera position RIGTH', () => {
 		moveCamera(delta, view, speed, { x: 1, y: 0 })
 
-		expect(view.position.x).toBe(1)
+		expect(view.position.x).toBe(-1)
 		expect(view.position.y).toBe(0)
 	})
 

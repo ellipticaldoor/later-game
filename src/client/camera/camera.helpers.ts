@@ -31,8 +31,8 @@ export const moveCamera = (
 	speed: number,
 	dir: Direction
 ): void => {
-	view.position.x += dir.x * speed * delta
-	view.position.y += dir.y * speed * delta
+	view.position.x += dir.x * speed * delta * -1
+	view.position.y += dir.y * speed * delta * -1
 }
 
 export const frameView = (
