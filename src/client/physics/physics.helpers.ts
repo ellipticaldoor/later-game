@@ -1,9 +1,12 @@
 import { World, Bodies, Body } from 'matter-js'
 import { tileSize } from '@client/constants'
 import { entityBodyParams, staticBodyParams } from './physics.constants'
-import { physics } from './physics'
 
-export const makeBody = (point: Point, bodyType: BodyType): Matter.Body => {
+export const makeBody = (
+	engine: Matter.Engine,
+	point: Point,
+	bodyType: BodyType
+): Matter.Body => {
 	const options: Matter.IBodyDefinition =
 		bodyType === 'entity' ? entityBodyParams : staticBodyParams
 
@@ -15,7 +18,7 @@ export const makeBody = (point: Point, bodyType: BodyType): Matter.Body => {
 		options
 	)
 
-	World.add(physics.engine.world, body)
+	World.add(engine.world, body)
 
 	return body
 }

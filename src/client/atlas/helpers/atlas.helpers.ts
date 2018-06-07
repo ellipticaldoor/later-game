@@ -64,7 +64,11 @@ export const loadTileBodiesForLayer = (tileLayer: TileLayer): Matter.Body[] => {
 	const addTileBody = ({ col, row }: TileLocation): void => {
 		const type = getTileType(tileLayer, { col, row })
 		if (staticTiles.includes(type)) {
-			const body = makeBody(getTilePoint({ col, row }), 'static')
+			const body = makeBody(
+				physics.engine,
+				getTilePoint({ col, row }),
+				'static'
+			)
 			bodies.push(body)
 		}
 	}

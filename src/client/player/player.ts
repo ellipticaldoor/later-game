@@ -3,11 +3,12 @@ import { camera } from '@client/camera/camera'
 import { getContainerByName } from '@client/camera/camera.helpers'
 import { getTilePoint } from '@client/atlas/helpers/utils.helpers'
 import { makeBody, updateEntityPosition } from '@client/physics/physics.helpers'
+import { physics } from '@client/physics/physics'
 const initialPlayerPoint = getTilePoint({ col: 2, row: 3 })
 
 export const player = {
 	sprite: spriteOf(require('@client/assets/img/character.png')),
-	body: makeBody(initialPlayerPoint, 'entity'),
+	body: makeBody(physics.engine, initialPlayerPoint, 'entity'),
 	force: 0.8,
 }
 
