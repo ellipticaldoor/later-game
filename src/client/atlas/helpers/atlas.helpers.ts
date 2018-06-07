@@ -26,8 +26,7 @@ export const loadAtlasTextures = (tilesImage: Asset): PIXI.Texture[] => {
 export const makeTileSprite = (
 	textures: PIXI.Texture[],
 	type: Tile,
-	col: number,
-	row: number
+	{ col, row }: TileLocation
 ): PIXI.Sprite => {
 	const texture = textures[type - 1]
 	const tile = new Sprite(texture)
@@ -48,7 +47,7 @@ export const loadSpritesForLayer = (
 	const makeSprite = ({ col, row }: TileLocation) => {
 		const type = getTileType(tileLayer, { col, row })
 		if (type) {
-			const tile = makeTileSprite(textures, type, col, row)
+			const tile = makeTileSprite(textures, type, { col, row })
 			tileSprites.push(tile)
 		}
 	}

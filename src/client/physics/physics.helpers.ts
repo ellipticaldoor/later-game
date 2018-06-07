@@ -1,5 +1,6 @@
 import { World, Bodies, Body } from 'matter-js'
 import { tileSize } from '@client/constants'
+import { bodyParams, staticBodyParams } from './physics.constants'
 import { physics } from './physics'
 
 export const makeTileBody = (point: Point): Matter.Body => {
@@ -8,12 +9,7 @@ export const makeTileBody = (point: Point): Matter.Body => {
 		point.y,
 		tileSize,
 		tileSize,
-		{
-			inertia: Infinity,
-			friction: 0,
-			frictionAir: 0.1,
-			restitution: 0,
-		}
+		bodyParams
 	)
 
 	World.add(physics.engine.world, body)
@@ -27,11 +23,7 @@ export const makeTileStaticBody = (point: Point): Matter.Body => {
 		point.y,
 		tileSize,
 		tileSize,
-		{
-			isStatic: true,
-			friction: 0,
-			restitution: 0,
-		}
+		staticBodyParams
 	)
 
 	World.add(physics.engine.world, body)
