@@ -23,20 +23,25 @@ const gameLoop = (
 	const { i, j, k, l } = keys
 
 	if (i || j || k || l) {
-		states.framePlayer = false
+		const dir: Direction = { x: 0, y: 0 }
 
-		if (i) moveCamera(delta, camera.view, camera.speed, { x: 0, y: -1 })
-		if (j) moveCamera(delta, camera.view, camera.speed, { x: -1, y: 0 })
-		if (k) moveCamera(delta, camera.view, camera.speed, { x: 0, y: 1 })
-		if (l) moveCamera(delta, camera.view, camera.speed, { x: 1, y: 0 })
+		if (i) dir.y += -1
+		if (j) dir.x += -1
+		if (k) dir.y += 1
+		if (l) dir.x += 1
+
+		moveCamera(delta, camera.view, camera.speed, dir)
+		states.framePlayer = false
 	} else {
 		const { w, a, s, d } = keys
+		const dir: Direction = { x: 0, y: 0 }
 
-		if (w) moveEntity(delta, player.body, player.force, { x: 0, y: -1 })
-		if (a) moveEntity(delta, player.body, player.force, { x: -1, y: 0 })
-		if (s) moveEntity(delta, player.body, player.force, { x: 0, y: 1 })
-		if (d) moveEntity(delta, player.body, player.force, { x: 1, y: 0 })
+		if (w) dir.y += -1
+		if (a) dir.x += -1
+		if (s) dir.y += 1
+		if (d) dir.x += 1
 
+		moveEntity(delta, player.body, player.force, dir)
 		if (w || a || s || d) states.framePlayer = true
 	}
 
