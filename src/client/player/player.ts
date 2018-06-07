@@ -2,7 +2,7 @@ import { spriteOf } from '@client/helpers/sprite.helpers'
 import { camera } from '@client/camera/camera'
 import { getContainerByName } from '@client/camera/camera.helpers'
 import { getTilePoint } from '@client/atlas/helpers/utils.helpers'
-import { makeBody, updateBodyPosition } from '@client/physics/physics.helpers'
+import { makeBody, syncSpritePosition } from '@client/physics/physics.helpers'
 import { physics } from '@client/physics/physics'
 const initialPlayerPoint = getTilePoint({ col: 2, row: 3 })
 
@@ -13,7 +13,7 @@ export const player = {
 }
 
 const gameLoop = (sprite: PIXI.Sprite, body: Matter.Body): void => {
-	updateBodyPosition(sprite, body)
+	syncSpritePosition(sprite, body)
 }
 
 const setup = ({ ticker }: PIXI.Application): Player => {

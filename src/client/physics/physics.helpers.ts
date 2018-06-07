@@ -35,7 +35,7 @@ export const moveBody = (
 	})
 }
 
-export const updateBodyPosition = (
+export const syncSpritePosition = (
 	sprite: PIXI.Sprite,
 	body: Matter.Body
 ): void => {
