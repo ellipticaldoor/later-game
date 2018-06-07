@@ -1,6 +1,6 @@
 import { bindKeys } from './keys.helpers'
 import { moveCamera, frameView } from '@client/camera/camera.helpers'
-import { moveEntity } from '@client/physics/physics.helpers'
+import { moveBody } from '@client/physics/physics.helpers'
 import { camera } from '@client/camera/camera'
 import { player } from '@client/player/player'
 
@@ -41,7 +41,7 @@ const gameLoop = (
 		if (s) dir.y += 1
 		if (d) dir.x += 1
 
-		moveEntity(delta, player.body, player.force, dir)
+		moveBody(delta, player.body, player.force, dir)
 		if (w || a || s || d) states.framePlayer = true
 	}
 

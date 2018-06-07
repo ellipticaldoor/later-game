@@ -23,7 +23,7 @@ export const makeBody = (
 	return body
 }
 
-export const moveEntity = (
+export const moveBody = (
 	delta: number,
 	body: Matter.Body,
 	force: number,
@@ -35,7 +35,7 @@ export const moveEntity = (
 	})
 }
 
-export const updateEntityPosition = (
+export const updateBodyPosition = (
 	sprite: PIXI.Sprite,
 	body: Matter.Body
 ): void => {
