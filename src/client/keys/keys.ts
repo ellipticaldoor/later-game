@@ -8,7 +8,7 @@ const keys: Keys = {
 	// prettier-ignore
 	keys: {
 		w: false, a: false, s: false, d: false,
-		i: false, j: false, k: false, l: false,
+        i: false, j: false, k: false, l: false,
 	},
 	states: {
 		framePlayer: true,

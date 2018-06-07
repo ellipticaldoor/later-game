@@ -3,9 +3,7 @@ type Key = // TODO: Validate KeyTypes with this
 	'w' | 'a' | 's' | 'd' |
 	'i' | 'j' | 'k' | 'l'
 
-interface KeyTypes {
-	[key: string]: boolean
-}
+type KeyTypes = { [key in Key]: boolean }
 
 interface Keys {
 	keys: KeyTypes
