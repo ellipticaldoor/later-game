@@ -1,8 +1,9 @@
 import { Engine } from 'matter-js'
+import { Sprite } from '@pixi/sprite'
 import { makeBody, moveBody, syncSpritePosition } from './physics.helpers'
 
 const engine: Matter.Engine = Engine.create()
-const point: Point = { x: 0, y: 0 }
+const point: Point = { x: 5, y: 5 }
 const defaultBody = makeBody(engine, point, 'entity')
 const delta = 1
 const force = 10
@@ -53,4 +54,17 @@ describe('Increase body velocity to move it', () => {
 		expect(body.velocity.x).toBe(0)
 		expect(body.velocity.y).toBe(0)
 	})
+})
+
+test('Sync Sprite position with a body', () => {
+	const sprite = new Sprite()
+	const body = { ...defaultBody }
+
+	expect(sprite.position.x).toBe(0)
+	expect(sprite.position.y).toBe(0)
+
+	syncSpritePosition(sprite, body)
+
+	expect(sprite.position.x).toBe(5)
+	expect(sprite.position.y).toBe(5)
 })
