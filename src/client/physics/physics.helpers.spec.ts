@@ -43,7 +43,7 @@ describe('Increase body velocity to move it', () => {
 	test('Accelerate body Rigth', () => {
 		moveBody(delta, body, force, { x: 1, y: 0 })
 
-		expect(body.velocity.x).toBe(10)
+		expect(body.velocity.x).toBe(force)
 		expect(body.velocity.y).toBe(0)
 	})
 
