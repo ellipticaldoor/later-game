@@ -1,3 +1,4 @@
+import { pixiMock } from '@client/constants/testing'
 import { camera } from './camera'
 import {
 	getContainerByName,
@@ -76,13 +77,11 @@ describe('Move camera position', () => {
 })
 
 test('Frame a point in the center of a camera', () => {
-	// @ts-ignore
-	const rendererMock: PIXI.Renderer = { screen: { width: 1920, height: 1080 } }
 	const playerPosition: Point = { x: 200, y: 400 }
 
 	view.position.set(0, 0)
 
-	frameView(rendererMock, view, playerPosition)
+	frameView(pixiMock.renderer, view, playerPosition)
 
 	expect(view.position.x).toBe(728)
 	expect(view.position.y).toBe(108)

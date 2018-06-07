@@ -1,5 +1,5 @@
 // prettier-ignore
-type Key = // TODO: Validate KeyTypes with this
+type Key =
 	'w' | 'a' | 's' | 'd' |
 	'i' | 'j' | 'k' | 'l'
 
