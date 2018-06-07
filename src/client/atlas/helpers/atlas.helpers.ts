@@ -6,7 +6,7 @@ import { tileSize } from '@client/constants'
 import { staticTiles } from '../atlas.constants'
 import { getTilePoint, getTileType, tileLayerIterator } from './utils.helpers'
 import { physics } from '@client/physics/physics'
-import { makeTileStaticBody } from '@client/physics/physics.helpers'
+import { makeBody } from '@client/physics/physics.helpers'
 
 export const loadAtlasTextures = (tilesImage: Asset): PIXI.Texture[] => {
 	const viewports: Point[] = [
@@ -44,7 +44,7 @@ export const loadSpritesForLayer = (
 	const { cols, rows } = tileLayer
 	const tileSprites: PIXI.Sprite[] = []
 
-	const makeSprite = ({ col, row }: TileLocation) => {
+	const addTileSprite = ({ col, row }: TileLocation) => {
 		const type = getTileType(tileLayer, { col, row })
 		if (type) {
 			const tile = makeTileSprite(textures, type, { col, row })
@@ -52,7 +52,7 @@ export const loadSpritesForLayer = (
 		}
 	}
 
-	tileLayerIterator(cols, rows, makeSprite)
+	tileLayerIterator(cols, rows, addTileSprite)
 
 	return tileSprites
 }
@@ -61,15 +61,15 @@ export const loadTileBodiesForLayer = (tileLayer: TileLayer): Matter.Body[] => {
 	const { cols, rows } = tileLayer
 	const bodies: Matter.Body[] = []
 
-	const makeBody = ({ col, row }: TileLocation): void => {
+	const addTileBody = ({ col, row }: TileLocation): void => {
 		const type = getTileType(tileLayer, { col, row })
 		if (staticTiles.includes(type)) {
-			const body = makeTileStaticBody(getTilePoint({ col, row }))
+			const body = makeBody(getTilePoint({ col, row }), 'static')
 			bodies.push(body)
 		}
 	}
 
-	tileLayerIterator(cols, rows, makeBody)
+	tileLayerIterator(cols, rows, addTileBody)
 	World.add(physics.engine.world, bodies)
 
 	return bodies

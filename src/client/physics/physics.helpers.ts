@@ -1,29 +1,18 @@
 import { World, Bodies, Body } from 'matter-js'
 import { tileSize } from '@client/constants'
-import { bodyParams, staticBodyParams } from './physics.constants'
+import { entityBodyParams, staticBodyParams } from './physics.constants'
 import { physics } from './physics'
 
-export const makeTileBody = (point: Point): Matter.Body => {
+export const makeBody = (point: Point, bodyType: BodyType): Matter.Body => {
+	const options: Matter.IBodyDefinition =
+		bodyType === 'entity' ? entityBodyParams : staticBodyParams
+
 	const body: Matter.Body = Bodies.rectangle(
 		point.x,
 		point.y,
 		tileSize,
 		tileSize,
-		bodyParams
-	)
-
-	World.add(physics.engine.world, body)
-
-	return body
-}
-
-export const makeTileStaticBody = (point: Point): Matter.Body => {
-	const body: Matter.Body = Bodies.rectangle(
-		point.x,
-		point.y,
-		tileSize,
-		tileSize,
-		staticBodyParams
+		options
 	)
 
 	World.add(physics.engine.world, body)

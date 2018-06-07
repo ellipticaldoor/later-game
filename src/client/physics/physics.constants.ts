@@ -1,4 +1,4 @@
-export const bodyParams: Matter.IBodyDefinition = {
+export const entityBodyParams: Matter.IBodyDefinition = {
 	inertia: Infinity,
 	friction: 0,
 	frictionAir: 0.1,
