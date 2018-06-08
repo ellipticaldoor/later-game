@@ -1,4 +1,4 @@
-import cameraSetup from './camera'
+import cameraSetup, { camera } from './camera'
 import { defaultContainers } from './camera.constants'
 import { getContainerByName } from './camera.helpers'
 import { pixiMock } from '@client/constants/testing'
@@ -6,7 +6,7 @@ import { pixiMock } from '@client/constants/testing'
 const pixi = Object.assign({}, pixiMock)
 
 describe('Test camera setup', () => {
-	const camera = cameraSetup(pixi)
+	cameraSetup(pixi)
 	const { view, containers } = camera
 
 	test('The main camera view was added to the game view', () => {

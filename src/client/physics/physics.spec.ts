@@ -1,10 +1,10 @@
-import physicsSetup from './physics'
+import physicsSetup, { physics } from './physics'
 import { pixiMock } from '@client/constants/testing'
 
 const pixi = Object.assign({}, pixiMock)
 
 describe('Test physics setup', () => {
-	const physics = physicsSetup(pixi)
+	physicsSetup(pixi)
 
 	test('A gameloop was added to the ticker', () => {
 		expect(pixi.ticker.add).toHaveBeenCalledTimes(1)
