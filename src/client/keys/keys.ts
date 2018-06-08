@@ -5,7 +5,7 @@ import { player } from '@client/player/player'
 
 const keys: Keys = {
 	// prettier-ignore
-	keys: {
+	toggle: {
 		w: false, a: false, s: false, d: false,
 		i: false, j: false, k: false, l: false,
 	},
@@ -16,16 +16,16 @@ const keys: Keys = {
 
 const gameLoop = (
 	delta: number,
-	{ keys, states }: Keys,
+	{ toggle, states }: Keys,
 	renderer: PIXI.Renderer
 ): void => {
-	const { i, j, k, l } = keys
+	const { i, j, k, l } = toggle
 
 	if (i || j || k || l) {
 		keyMoveCamera(delta, camera, { i, j, k, l })
 		states.framePlayer = false
 	} else {
-		const { w, a, s, d } = keys
+		const { w, a, s, d } = toggle
 		keyMovePlayer(delta, player, { w, a, s, d })
 		states.framePlayer = true
 	}
@@ -37,7 +37,7 @@ const gameLoop = (
 }
 
 const setup = ({ ticker, renderer }: PIXI.Application): Keys => {
-	bindKeys(keys.keys)
+	bindKeys(keys.toggle)
 	ticker.add(delta => gameLoop(delta, keys, renderer))
 
 	return keys

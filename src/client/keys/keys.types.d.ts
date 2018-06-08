@@ -9,7 +9,7 @@ type ValidKeys = WASD | IJKL
 type ToggleKeys = { [key in ValidKeys]: boolean }
 
 interface Keys {
-	keys: ToggleKeys
+	toggle: ToggleKeys
 	states: {
 		framePlayer: boolean
 	}
