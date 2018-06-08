@@ -17,12 +17,10 @@ export const keyMovePlayer = (
 	player: Player,
 	keys: ToggleWASD
 ): void => {
-	const dir: Direction = { x: 0, y: 0 }
-
-	if (keys.w) dir.y += -1
-	if (keys.a) dir.x += -1
-	if (keys.s) dir.y += 1
-	if (keys.d) dir.x += 1
+	const dir: Direction = {
+		x: keys.a ? -1 : keys.d ? 1 : 0,
+		y: keys.w ? -1 : keys.s ? 1 : 0,
+	}
 
 	moveBody(delta, player.body, player.force, dir)
 }
@@ -32,12 +30,10 @@ export const keyMoveCamera = (
 	camera: Camera,
 	keys: ToggleIJKL
 ): void => {
-	const dir: Direction = { x: 0, y: 0 }
-
-	if (keys.i) dir.y += -1
-	if (keys.j) dir.x += -1
-	if (keys.k) dir.y += 1
-	if (keys.l) dir.x += 1
+	const dir: Direction = {
+		x: keys.j ? -1 : keys.l ? 1 : 0,
+		y: keys.i ? -1 : keys.k ? 1 : 0,
+	}
 
 	moveCamera(delta, camera.view, camera.speed, dir)
 }

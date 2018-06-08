@@ -23,6 +23,7 @@ const gameLoop = (
 
 	if (i || j || k || l) {
 		states.framePlayer = false
+		keyMoveCamera(delta, camera, { i, j, k, l })
 	} else {
 		const { w, a, s, d } = keys
 		keyMovePlayer(delta, player, { w, a, s, d })
