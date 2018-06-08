@@ -8,7 +8,7 @@ import {
 	frameView,
 } from './camera.helpers'
 
-const testCamera: Camera = { ...camera }
+const testCamera = Object.assign({}, camera)
 const { view, containers } = testCamera
 const speed = 1
 const delta = 1

@@ -3,8 +3,7 @@ import { defaultContainers } from './camera.constants'
 import { getContainerByName } from './camera.helpers'
 import { pixiMock } from '@client/constants/testing'
 
-// @ts-ignore
-const pixi: PIXI.Application = { ...pixiMock }
+const pixi = Object.assign({}, pixiMock)
 
 describe('Test camera setup', () => {
 	const camera = cameraSetup(pixi)

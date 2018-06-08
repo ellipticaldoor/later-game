@@ -25,7 +25,7 @@ describe('Test moveCamera', () => {
 })
 
 describe('Increase body velocity to move it', () => {
-	const body = { ...defaultBody }
+	const body = Object.assign({}, defaultBody)
 
 	test('Accelerate body Up', () => {
 		moveBody(delta, body, force, { x: 0, y: -1 })
@@ -58,7 +58,7 @@ describe('Increase body velocity to move it', () => {
 
 test('Sync Sprite position with a body', () => {
 	const sprite = new Sprite()
-	const body = { ...defaultBody }
+	const body = Object.assign({}, defaultBody)
 
 	expect(sprite.position.x).toBe(0)
 	expect(sprite.position.y).toBe(0)
