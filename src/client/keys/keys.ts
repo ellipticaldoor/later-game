@@ -1,6 +1,5 @@
-import { bindKeys } from './keys.helpers'
+import { bindKeys, keyMovePlayer } from './keys.helpers'
 import { moveCamera, frameView } from '@client/camera/camera.helpers'
-import { moveBody } from '@client/physics/physics.helpers'
 import { camera } from '@client/camera/camera'
 import { player } from '@client/player/player'
 
@@ -34,14 +33,7 @@ const gameLoop = (
 		states.framePlayer = false
 	} else {
 		const { w, a, s, d } = keys
-		const dir: Direction = { x: 0, y: 0 }
-
-		if (w) dir.y += -1
-		if (a) dir.x += -1
-		if (s) dir.y += 1
-		if (d) dir.x += 1
-
-		moveBody(delta, player.body, player.force, dir)
+		keyMovePlayer(delta, player, { w, a, s, d })
 		if (w || a || s || d) states.framePlayer = true
 	}
 
