@@ -1,3 +1,4 @@
+import { map } from 'ramda'
 import { groundTileLayer, topTileLayer } from './atlas.constants'
 import { camera } from '@client/camera/camera'
 import { getContainerByName } from '@client/camera/camera.helpers'
@@ -26,10 +27,8 @@ const setup = (): Atlas => {
 	const ground = getContainerByName('ground', camera.containers)
 	const top = getContainerByName('top', camera.containers)
 
-	// @ts-ignore
-	ground.container.addChild(...sprites.ground)
-	// @ts-ignore
-	top.container.addChild(...sprites.top)
+	map(sprite => ground.container.addChild(sprite), sprites.ground)
+	map(sprite => top.container.addChild(sprite), sprites.top)
 
 	return atlas
 }
