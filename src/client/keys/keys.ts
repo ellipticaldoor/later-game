@@ -22,12 +22,12 @@ const gameLoop = (
 	const { i, j, k, l } = keys
 
 	if (i || j || k || l) {
-		states.framePlayer = false
 		keyMoveCamera(delta, camera, { i, j, k, l })
+		states.framePlayer = false
 	} else {
 		const { w, a, s, d } = keys
 		keyMovePlayer(delta, player, { w, a, s, d })
-		if (w || a || s || d) states.framePlayer = true
+		states.framePlayer = true
 	}
 
 	if (states.framePlayer) {
