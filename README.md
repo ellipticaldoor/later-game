@@ -75,17 +75,11 @@ yarn test:report
 
 Prettier
 ``` shell
-# Run prettier for js and ts
+# Run prettier for ts
 yarn prettier
 
-# Watch prettier for js and ts
+# Watch prettier ts
 yarn prettier:watch
-
-# Run prettier for ts
-yarn prettier:ts
-
-# Watch prettier for js and ts
-yarn prettier:ts:watch
 
 # Run prettier for js
 yarn prettier:js

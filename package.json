@@ -19,12 +19,10 @@
     "test:coverage:all": "cross-env NODE_ENV=development COVERAGE=all jest --coverage",
     "test:report": "open coverage/lcov-report/index.html",
     "prettier:base": "prettier --config .prettierrc",
-    "prettier:ts": "yarn prettier:base --parser typescript --write 'src/**/*.{ts,tsx}'",
-    "prettier:ts:watch": "onchange \"src/**/*.ts\" -- yarn prettier:base --parser typescript --write {{changed}}",
+    "prettier": "yarn prettier:base --parser typescript --write 'src/**/*.{ts,tsx}'",
+    "prettier:watch": "onchange \"src/**/*.ts\" -- yarn prettier:base --parser typescript --write {{changed}}",
     "prettier:js": "yarn prettier:base --write 'src/**/*.js'",
-    "prettier:js:watch": "onchange \"src/**/*.js\" -- yarn prettier:base --write {{changed}}",
-    "prettier:watch": "concurrently \"yarn prettier:js:watch\" \"yarn prettier:ts:watch\"",
-    "prettier": "yarn prettier:ts && yarn prettier:js"
+    "prettier:js:watch": "onchange \"src/**/*.js\" -- yarn prettier:base --write {{changed}}"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -37,7 +35,7 @@
     "@types/jest": "^22.2.3",
     "@types/matter-js": "^0.10.1",
     "@types/mousetrap": "^1.6.0",
-    "@types/node": "^10.3.0",
+    "@types/node": "^10.3.2",
     "@types/pixi.js": "^4.7.5",
     "@types/ramda": "^0.25.32",
     "babel-plugin-module-resolver": "^3.1.1",
@@ -59,7 +57,7 @@
     "parcel-plugin-bundle-visualiser": "^1.1.2",
     "parcel-plugin-compress": "^1.0.3",
     "parcel-plugin-typescript": "^0.7.1",
-    "prettier": "^1.13.4",
+    "prettier": "^1.13.5",
     "rimraf": "^2.6.2",
     "standard": "^11.0.1",
     "ts-jest": "^22.4.6",
