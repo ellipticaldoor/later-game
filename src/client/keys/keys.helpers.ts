@@ -7,8 +7,10 @@ export const bindKeyDownUp = (keys: KeyTypes, key: Key): void => {
 }
 
 export const bindKeys = (keys: KeyTypes): void => {
-	// @ts-ignore
-	map((key: key) => {
-		bindKeyDownUp(keys, key)
-	}, Object.keys(keys))
+	map(
+		key => {
+			bindKeyDownUp(keys, key)
+		},
+		Object.keys(keys) as Key[]
+	)
 }

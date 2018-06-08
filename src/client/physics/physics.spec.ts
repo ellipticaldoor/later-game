@@ -1,4 +1,3 @@
-import { Render } from 'matter-js'
 import physicsSetup from './physics'
 import { pixiMock } from '@client/constants/testing'
 
