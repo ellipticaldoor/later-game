@@ -1,8 +1,31 @@
-import { keyMovePlayer, keyMoveCamera } from './keys.helpers'
+import { bindKeyDownUp, keyMovePlayer, keyMoveCamera } from './keys.helpers'
 import { player as defaultPlayer } from '@client/player/player'
 import { camera as defaultCamera } from '@client/camera/camera'
+import { keys } from './keys'
+import * as mousetrap from 'mousetrap'
 
 const delta = 1
+describe('Ensure mousetrap keybindings are set', () => {
+	const mockBind = ((mousetrap.bind as any) = jest.fn())
+	const toggle = Object.assign({}, keys.toggle)
+
+	test('A key gets toggled when pressed and untoggled when released', () => {
+		bindKeyDownUp(toggle, 'w')
+
+		expect(mousetrap.bind).toHaveBeenCalledTimes(2)
+		expect(toggle.w).toBe(false)
+
+		const onKeydown = mockBind.mock.calls[0]
+		expect(onKeydown[2]).toBe('keydown')
+		onKeydown[1]() // Simulate W keydown
+		expect(toggle.w).toBe(true)
+
+		const onKeyup = mockBind.mock.calls[1]
+		expect(onKeyup[2]).toBe('keyup')
+		onKeyup[1]() // Simulate W keyup
+		expect(toggle.w).toBe(false)
+	})
+})
 
 describe('WASD keys when toggled accelerate the player', () => {
 	let toggleWASD: ToggleWASD = { w: false, a: false, s: false, d: false }

@@ -3,7 +3,7 @@ import { frameView } from '@client/camera/camera.helpers'
 import { camera } from '@client/camera/camera'
 import { player } from '@client/player/player'
 
-const keys: Keys = {
+export const keys: Keys = {
 	// prettier-ignore
 	toggle: {
 		w: false, a: false, s: false, d: false,
