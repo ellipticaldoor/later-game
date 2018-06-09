@@ -1,15 +1,19 @@
-import { bind as mouseBind } from 'mousetrap'
+import * as mousetrap from 'mousetrap'
 import { map } from 'ramda'
 import { moveBody } from '@client/physics/physics.helpers'
 import { moveCamera } from '@client/camera/camera.helpers'
 
 export const bindKeyDownUp = (toggle: ToggleKeys, key: ValidKeys): void => {
-	mouseBind(key, () => (toggle[key] = true), 'keydown')
-	mouseBind(key, () => (toggle[key] = false), 'keyup')
+	mousetrap.bind(key, () => (toggle[key] = true), 'keydown')
+	mousetrap.bind(key, () => (toggle[key] = false), 'keyup')
 }
 
 export const bindKeys = (toggle: ToggleKeys): void => {
-	map(key => bindKeyDownUp(toggle, key), Object.keys(toggle) as ValidKeys[])
+	const validKeys = Object.keys(toggle) as ValidKeys[]
+	map(key => bindKeyDownUp(toggle, key), validKeys)
+
+	// Reset every key toggle to false when the window gets out of focus
+	window.onblur = () => map(key => (toggle[key] = false), validKeys)
 }
 
 export const keyMovePlayer = (
