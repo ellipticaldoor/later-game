@@ -10,17 +10,20 @@ describe('Ensure mousetrap keybindings are set', () => {
 	const toggle = Object.assign({}, keys.toggle)
 
 	test('A key gets toggled when pressed and untoggled when released', () => {
-		bindKeyDownUp(toggle, 'w')
+		const key = 'w'
+		bindKeyDownUp(toggle, key)
 
 		expect(mousetrap.bind).toHaveBeenCalledTimes(2)
 		expect(toggle.w).toBe(false)
 
 		const onKeydown = mockBind.mock.calls[0]
+		expect(onKeydown[0]).toBe(key)
 		expect(onKeydown[2]).toBe('keydown')
 		onKeydown[1]() // Simulate W keydown
 		expect(toggle.w).toBe(true)
 
 		const onKeyup = mockBind.mock.calls[1]
+		expect(onKeyup[0]).toBe(key)
 		expect(onKeyup[2]).toBe('keyup')
 		onKeyup[1]() // Simulate W keyup
 		expect(toggle.w).toBe(false)
