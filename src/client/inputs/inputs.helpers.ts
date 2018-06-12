@@ -25,7 +25,7 @@ export const inputMovePlayer = (
 		y: move.up ? -1 : move.down ? 1 : 0,
 	}
 
-	moveBody(delta, player.body, player.force, dir)
+	moveBody(delta, player.body, player.speed, dir)
 }
 
 export const inputMoveCamera = (

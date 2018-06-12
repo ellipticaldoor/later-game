@@ -33,7 +33,7 @@ describe('Ensure mousetrap keybindings are set', () => {
 describe('WASD keys when toggled accelerate the player', () => {
 	let toggleWASD: ToggleWASD = { w: false, a: false, s: false, d: false }
 	const player = Object.assign({}, defaultPlayer)
-	player.force = 10
+	player.speed = 10
 
 	beforeEach(() => {
 		toggleWASD = { w: false, a: false, s: false, d: false }

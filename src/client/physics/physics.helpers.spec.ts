@@ -6,7 +6,7 @@ const engine: Matter.Engine = Engine.create()
 const point: Point = { x: 5, y: 5 }
 const defaultBody = makeBody(engine, point, 'entity')
 const delta = 1
-const force = 10
+const speed = 10
 
 describe('Test moveCamera', () => {
 	test('Make an entity body and check that was added to the engine', () => {
@@ -28,28 +28,28 @@ describe('Increase body velocity to move it', () => {
 	const body = Object.assign({}, defaultBody)
 
 	test('Accelerate body Up', () => {
-		moveBody(delta, body, force, { x: 0, y: -1 })
+		moveBody(delta, body, speed, { x: 0, y: -1 })
 
 		expect(body.velocity.x).toBe(0)
-		expect(body.velocity.y).toBe(force * -1)
+		expect(body.velocity.y).toBe(speed * -1)
 	})
 
 	test('Accelerate body Down', () => {
-		moveBody(delta, body, force, { x: 0, y: 1 })
+		moveBody(delta, body, speed, { x: 0, y: 1 })
 
 		expect(body.velocity.x).toBe(0)
 		expect(body.velocity.y).toBe(0)
 	})
 
 	test('Accelerate body Rigth', () => {
-		moveBody(delta, body, force, { x: 1, y: 0 })
+		moveBody(delta, body, speed, { x: 1, y: 0 })
 
-		expect(body.velocity.x).toBe(force)
+		expect(body.velocity.x).toBe(speed)
 		expect(body.velocity.y).toBe(0)
 	})
 
 	test('Accelerate body Left', () => {
-		moveBody(delta, body, force, { x: -1, y: 0 })
+		moveBody(delta, body, speed, { x: -1, y: 0 })
 
 		expect(body.velocity.x).toBe(0)
 		expect(body.velocity.y).toBe(0)

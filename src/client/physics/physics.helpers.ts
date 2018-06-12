@@ -26,12 +26,12 @@ export const makeBody = (
 export const moveBody = (
 	delta: number,
 	body: Matter.Body,
-	force: number,
+	speed: number,
 	dir: Direction
 ): void => {
 	Body.setVelocity(body, {
-		x: body.velocity.x + dir.x * force * delta,
-		y: body.velocity.y + dir.y * force * delta,
+		x: body.velocity.x + dir.x * speed * delta,
+		y: body.velocity.y + dir.y * speed * delta,
 	})
 }
 
