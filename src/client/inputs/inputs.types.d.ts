@@ -1,19 +1,33 @@
-// Available kind of inputs
-type Movements = 'up' | 'down' | 'left' | 'right'
-type ValidInputs = Movements
-type Move = { [key in Movements]: boolean }
+// Player
+type PlayerInputEvent =
+	| 'player_up'
+	| 'player_left'
+	| 'player_down'
+	| 'player_right'
+type PlayerInputKey = 'w' | 'a' | 's' | 'd'
 
-// Key bindings
-type WASD = 'w' | 'a' | 's' | 'd'
-type IJKL = 'i' | 'j' | 'k' | 'l'
-type ValidKeys = WASD | IJKL
-type Keys = { [key in ValidInputs]: ValidKeys }
+// Camera
+type CameraInputEvent =
+	| 'camera_up'
+	| 'camera_left'
+	| 'camera_down'
+	| 'camera_right'
+type CameraInputKey = 'i' | 'j' | 'k' | 'l'
+
+// General
+type InputKind = 'press' | 'hold' | 'release'
+type InputEvent = PlayerInputEvent | CameraInputEvent
+type InputKey = PlayerInputKey | CameraInputKey
 
 interface Input {
-	move: Move
-	keys: Keys
+	[key: string]: {
+		readonly key: InputKey
+		readonly kind: InputKind
+	}
 }
 
 interface Inputs {
-	[key: string]: Input
+	events: {
+		[key: string]: boolean // TODO: Find a way of using InputEvent as key
+	}
 }

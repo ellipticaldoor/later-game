@@ -3,23 +3,22 @@ import { map } from 'ramda'
 import { moveBody } from '@client/physics/physics.helpers'
 import { moveCamera } from '@client/camera/camera.helpers'
 
-// export const bindKeyDownUp = (toggle: ToggleKeys, key: ValidKeys): void => {
-// 	mousetrap.bind(key, () => (toggle[key] = true), 'keydown')
-// 	mousetrap.bind(key, () => (toggle[key] = false), 'keyup')
-// }
+export const bindInputEvents = inputs => {
+	map(bindHoldEvent, inputs)
 
-// export const bindKeys = (toggle: ToggleKeys): void => {
-// 	const validKeys = Object.keys(toggle) as ValidKeys[]
-// 	map(key => bindKeyDownUp(toggle, key), validKeys)
+	// Reset inputs state when the window gets out of focus
+	window.onblur = () => map(input => (input.state = false), inputs)
+}
 
-// 	// Reset every key toggle to false when the window gets out of focus
-// 	window.onblur = () => map(key => (toggle[key] = false), validKeys)
-// }
+export const bindHoldEvent = input => {
+	mousetrap.bind(input.key, () => (input.state = true), 'keydown')
+	mousetrap.bind(input.key, () => (input.state = false), 'keyup')
+}
 
-export const keyMovePlayer = (
+export const inputMovePlayer = (
 	delta: number,
 	player: Player,
-	move: Move
+	move: any
 ): void => {
 	const dir: Direction = {
 		x: move.left ? -1 : move.right ? 1 : 0,
@@ -29,10 +28,10 @@ export const keyMovePlayer = (
 	moveBody(delta, player.body, player.force, dir)
 }
 
-export const keyMoveCamera = (
+export const inputMoveCamera = (
 	delta: number,
 	camera: Camera,
-	move: Move
+	move: any
 ): void => {
 	const dir: Direction = {
 		x: move.left ? -1 : move.right ? 1 : 0,

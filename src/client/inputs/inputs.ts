@@ -1,45 +1,52 @@
-import { bindInputs, keyMovePlayer, keyMoveCamera } from './inputs.helpers'
+import inputs from './inputs.state'
 import { frameView } from '@client/camera/camera.helpers'
 import { camera } from '@client/camera/camera'
 import { player } from '@client/player/player'
+import {
+	bindInputEvents,
+	inputMovePlayer,
+	inputMoveCamera,
+} from './inputs.helpers'
 
-export const inputs: Inputs = {
-	player: {
-		move: { up: false, left: false, down: false, right: false },
-		keys: { up: 'w', left: 'a', down: 's', right: 'd' },
-	},
-	camera: {
-		move: { up: false, left: false, down: false, right: false },
-		keys: { up: 'i', left: 'j', down: 'k', right: 'l' },
-	},
-}
-
-const gameLoop = (
-	delta: number,
-	inputs: Inputs,
-	renderer: PIXI.Renderer
-): void => {
+const gameLoop = (delta: number, inputs, renderer: PIXI.Renderer) => {
 	if (
-		inputs.camera.move.up ||
-		inputs.camera.move.down ||
-		inputs.camera.move.left ||
-		inputs.camera.move.right
+		inputs.cameraUp.state ||
+		inputs.cameraLeft.state ||
+		inputs.cameraDown.state ||
+		inputs.cameraRight.state
 	) {
-		keyMoveCamera(delta, camera, inputs.camera.move)
+		inputMoveCamera(delta, camera, {
+			up: inputs.cameraUp.state,
+			left: inputs.cameraLeft.state,
+			down: inputs.cameraDown.state,
+			right: inputs.cameraRight.state,
+		})
 		player.frame = false
 	} else {
-		keyMovePlayer(delta, player, inputs.player.move)
+		if (
+			inputs.playerUp.state ||
+			inputs.playerLeft.state ||
+			inputs.playerDown.state ||
+			inputs.playerRight.state
+		) {
+			inputMovePlayer(delta, player, {
+				up: inputs.playerUp.state,
+				left: inputs.playerLeft.state,
+				down: inputs.playerDown.state,
+				right: inputs.playerRight.state,
+			})
+		}
 		player.frame = true
 	}
 
-	if ((player.frame = false)) {
+	if (player.frame) {
 		// Make the camera follow player movement
 		frameView(renderer, camera.view, player.sprite.position)
 	}
 }
 
-const setup = ({ ticker, renderer }: PIXI.Application): Inputs => {
-	bindInputs(inputs)
+const setup = ({ ticker, renderer }: PIXI.Application): any => {
+	bindInputEvents(inputs)
 	ticker.add(delta => gameLoop(delta, inputs, renderer))
 
 	return inputs
