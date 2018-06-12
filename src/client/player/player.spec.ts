@@ -12,8 +12,12 @@ describe('Test player setup', () => {
 		expect(pixi.ticker.add).toHaveBeenCalledTimes(1)
 	})
 
-	test('Player wass added to camera entities container', () => {
+	test('Player was added to camera entities container', () => {
 		const entities = getContainerByName('entities', camera.containers)
 		expect(entities.container.getChildIndex(player.sprite))
+	})
+
+	test('Player is centered in the screen by default', () => {
+		expect(player.frame).toBe(true)
 	})
 })

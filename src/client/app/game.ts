@@ -2,14 +2,14 @@ import physicsSetup from '@client/physics/physics'
 import cameraSetup from '@client/camera/camera'
 import atlasSetup from '@client/atlas/atlas'
 import playerSetup from '@client/player/player'
-import keysSetup from '@client/keys/keys'
+import inputsSetup from '@client/inputs/inputs'
 
 interface Game {
 	physics: Physics
 	camera: Camera
 	atlas: Atlas
 	player: Player
-	keys: Keys
+	inputs: Inputs
 }
 
 export default (pixi: PIXI.Application): Game => ({
@@ -17,5 +17,5 @@ export default (pixi: PIXI.Application): Game => ({
 	camera: cameraSetup(pixi),
 	atlas: atlasSetup(),
 	player: playerSetup(pixi),
-	keys: keysSetup(pixi),
+	inputs: inputsSetup(pixi),
 })

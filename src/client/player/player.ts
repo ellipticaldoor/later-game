@@ -11,10 +11,11 @@ const characterImage = isEmpty(_characterImage) ? 'default' : _characterImage
 
 const initialPlayerPoint = getTilePoint({ col: 2, row: 3 })
 
-export const player = {
+export const player: Player = {
 	sprite: spriteOf(characterImage),
 	body: makeBody(physics.engine, initialPlayerPoint, 'entity'),
 	force: 0.8,
+	frame: true, // Tells if the player is centered in the screen
 }
 
 const gameLoop = (sprite: PIXI.Sprite, body: Matter.Body): void => {

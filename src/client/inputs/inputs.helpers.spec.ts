@@ -1,7 +1,7 @@
-import { bindKeyDownUp, keyMovePlayer, keyMoveCamera } from './keys.helpers'
+import { bindKeyDownUp, keyMovePlayer, keyMoveCamera } from './inputs.helpers'
 import { player as defaultPlayer } from '@client/player/player'
 import { camera as defaultCamera } from '@client/camera/camera'
-import { keys } from './keys'
+import { keys } from './inputs'
 import * as mousetrap from 'mousetrap'
 
 const delta = 1
