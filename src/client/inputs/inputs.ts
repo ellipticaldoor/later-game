@@ -5,7 +5,11 @@ import { player } from '@client/player/player'
 import { inputMovePlayer, inputMoveCamera } from './helpers/inputs.helpers'
 import { bindInputEvents } from './helpers/utils.helpers'
 
-const gameLoop = (delta: number, inputs, renderer: PIXI.Renderer) => {
+export const gameLoop = (
+	delta: number,
+	inputs: Inputs,
+	renderer: PIXI.Renderer
+): void => {
 	if (inputMoveCamera(delta, camera, inputs)) {
 		player.frame = false
 	} else {
@@ -19,7 +23,7 @@ const gameLoop = (delta: number, inputs, renderer: PIXI.Renderer) => {
 	}
 }
 
-const setup = ({ ticker, renderer }: PIXI.Application): any => {
+const setup = ({ ticker, renderer }: PIXI.Application): Inputs => {
 	bindInputEvents(inputs)
 	ticker.add(delta => gameLoop(delta, inputs, renderer))
 

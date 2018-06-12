@@ -4,7 +4,7 @@ import { moveCamera } from '@client/camera/camera.helpers'
 export const inputMoveCamera = (
 	delta: number,
 	camera: Camera,
-	inputs: any
+	inputs: Inputs
 ): boolean => {
 	const cameraMoved =
 		inputs.cameraUp.state ||
@@ -25,7 +25,7 @@ export const inputMoveCamera = (
 export const inputMovePlayer = (
 	delta: number,
 	player: Player,
-	inputs: any
+	inputs: Inputs
 ): boolean => {
 	const playerMoved =
 		inputs.playerUp.state ||
