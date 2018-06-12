@@ -1,4 +1,8 @@
-import { bindKeyDownUp, keyMovePlayer, keyMoveCamera } from './inputs.helpers'
+import {
+	bindKeyDownUp,
+	keyMovePlayer,
+	keyMoveCamera,
+} from './helpers/inputs.helpers'
 import { player as defaultPlayer } from '@client/player/player'
 import { camera as defaultCamera } from '@client/camera/camera'
 import { keys } from './inputs'
