@@ -45,7 +45,9 @@ test('Apply zIndex to the child containers of the main view', () => {
 })
 
 describe('Move camera position', () => {
-	view.position.set(0, 0)
+	beforeEach(() => {
+		view.position.set(0, 0)
+	})
 
 	test('Move camera position UP', () => {
 		moveCamera(delta, view, speed, { x: 0, y: -1 })
@@ -58,7 +60,7 @@ describe('Move camera position', () => {
 		moveCamera(delta, view, speed, { x: 0, y: 1 })
 
 		expect(view.position.x).toBe(0)
-		expect(view.position.y).toBe(0)
+		expect(view.position.y).toBe(-1)
 	})
 
 	test('Move camera position RIGTH', () => {
@@ -71,7 +73,7 @@ describe('Move camera position', () => {
 	test('Move camera position LEFT', () => {
 		moveCamera(delta, view, speed, { x: -1, y: 0 })
 
-		expect(view.position.x).toBe(0)
+		expect(view.position.x).toBe(1)
 		expect(view.position.y).toBe(0)
 	})
 })

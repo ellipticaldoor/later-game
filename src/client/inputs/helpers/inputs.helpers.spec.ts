@@ -1,85 +1,75 @@
 import { inputMoveCamera, inputMovePlayer } from './inputs.helpers'
+import inputsDefault from '../inputs.state'
+import { player as playerDefault } from '@client/player/player'
+import { map } from 'ramda'
 
-test('', () => {})
-// import {
-// 	bindKeyDownUp,
-// 	keyMovePlayer,
-// 	keyMoveCamera,
-// } from './helpers/inputs.helpers'
-// import { player as defaultPlayer } from '@client/player/player'
-// import { camera as defaultCamera } from '@client/camera/camera'
-// import { keys } from './inputs'
-// import * as mousetrap from 'mousetrap'
+const inputs = Object.assign({}, inputsDefault)
+const player = Object.assign({}, playerDefault)
+player.speed = 10
+const delta = 1
 
-// const delta = 1
-// describe('Ensure mousetrap keybindings are set', () => {
-// 	const mockBind = ((mousetrap.bind as any) = jest.fn())
-// 	const toggle = Object.assign({}, keys.toggle)
+beforeEach(() => {
+	map(input => (input.state = false), Object.values(inputs))
+	player.body.velocity.x = 0
+	player.body.velocity.y = 0
+})
 
-// 	test('A key gets toggled when pressed and untoggled when released', () => {
-// 		const key = 'w'
-// 		bindKeyDownUp(toggle, key)
+describe('Input event actions', () => {
+	describe('Player inputs events', () => {
+		test('Player is not accelerated if there is no movement event', () => {
+			const playerMoved = inputMovePlayer(delta, player, inputs)
 
-// 		expect(mousetrap.bind).toHaveBeenCalledTimes(2)
-// 		expect(toggle.w).toBe(false)
+			expect(playerMoved).toBe(false)
 
-// 		const onKeydown = mockBind.mock.calls[0]
-// 		expect(onKeydown[0]).toBe(key)
-// 		expect(onKeydown[2]).toBe('keydown')
-// 		onKeydown[1]() // Simulate W keydown
-// 		expect(toggle.w).toBe(true)
+			expect(player.body.velocity.x).toBe(0)
+			expect(player.body.velocity.y).toBe(0)
+		})
 
-// 		const onKeyup = mockBind.mock.calls[1]
-// 		expect(onKeyup[0]).toBe(key)
-// 		expect(onKeyup[2]).toBe('keyup')
-// 		onKeyup[1]() // Simulate W keyup
-// 		expect(toggle.w).toBe(false)
-// 	})
-// })
+		test('Player is not accelerates if there is no movement event', () => {
+			inputs.playerUp.state = true
 
-// describe('WASD keys when toggled accelerate the player', () => {
-// 	let toggleWASD: ToggleWASD = { w: false, a: false, s: false, d: false }
-// 	const player = Object.assign({}, defaultPlayer)
-// 	player.speed = 10
+			const playerMoved = inputMovePlayer(delta, player, inputs)
 
-// 	beforeEach(() => {
-// 		toggleWASD = { w: false, a: false, s: false, d: false }
-// 		player.body.velocity.x = 0
-// 		player.body.velocity.y = 0
-// 	})
+			expect(playerMoved).toBe(true)
+		})
 
-// 	test('Player accelerates up when W is toggled', () => {
-// 		toggleWASD.w = true
-// 		keyMovePlayer(delta, player, toggleWASD)
+		test('Player accelerates up when playerUp is active', () => {
+			inputs.playerUp.state = true
 
-// 		expect(player.body.velocity.x).toBe(0)
-// 		expect(player.body.velocity.y).toBe(-10)
-// 	})
+			inputMovePlayer(delta, player, inputs)
 
-// 	test('Player accelerates left when A is toggled', () => {
-// 		toggleWASD.a = true
-// 		keyMovePlayer(delta, player, toggleWASD)
+			expect(player.body.velocity.x).toBe(0)
+			expect(player.body.velocity.y).toBe(-10)
+		})
 
-// 		expect(player.body.velocity.x).toBe(-10)
-// 		expect(player.body.velocity.y).toBe(0)
-// 	})
+		test('Player accelerates left when playerLeft is active', () => {
+			inputs.playerLeft.state = true
 
-// 	test('Player accelerates down when S is toggled', () => {
-// 		toggleWASD.s = true
-// 		keyMovePlayer(delta, player, toggleWASD)
+			inputMovePlayer(delta, player, inputs)
 
-// 		expect(player.body.velocity.x).toBe(0)
-// 		expect(player.body.velocity.y).toBe(10)
-// 	})
+			expect(player.body.velocity.x).toBe(-10)
+			expect(player.body.velocity.y).toBe(0)
+		})
 
-// 	test('Player accelerates right when D is toggled', () => {
-// 		toggleWASD.d = true
-// 		keyMovePlayer(delta, player, toggleWASD)
+		test('Player accelerates down when playerDown is active', () => {
+			inputs.playerDown.state = true
 
-// 		expect(player.body.velocity.x).toBe(10)
-// 		expect(player.body.velocity.y).toBe(0)
-// 	})
-// })
+			inputMovePlayer(delta, player, inputs)
+
+			expect(player.body.velocity.x).toBe(0)
+			expect(player.body.velocity.y).toBe(10)
+		})
+
+		test('Player accelerates right when playerRight is active', () => {
+			inputs.playerRight.state = true
+
+			inputMovePlayer(delta, player, inputs)
+
+			expect(player.body.velocity.x).toBe(10)
+			expect(player.body.velocity.y).toBe(0)
+		})
+	})
+})
 
 // describe('IJKL keys when toggled move the camera', () => {
 // 	let toggleIJKL: ToggleIJKL = { i: false, j: false, k: false, l: false }
