@@ -4,6 +4,7 @@ import {
 	getTilePoint,
 	tileLayerIterator,
 } from './utils.atlas.helpers'
+import { map } from 'ramda'
 
 // prettier-ignore
 const tileLayer: TileLayer = {
@@ -40,4 +41,17 @@ test('Get the coordinates where the a tile is going to be drawed based in its lo
 	const coordinates = getTilePoint(tileLocation)
 
 	expect(coordinates).toEqual({ x: 768, y: 64 })
+})
+
+test('Iteration over all tiles', () => {
+	const method = jest.fn()
+
+	tileLayerIterator(tileLayer.cols, tileLayer.rows, method)
+
+	expect(method).toHaveBeenCalledTimes(tileLayer.cols * tileLayer.rows)
+
+	map(([call]) => {
+		expect(call).toHaveProperty('col')
+		expect(call).toHaveProperty('row')
+	}, method.mock.calls)
 })
