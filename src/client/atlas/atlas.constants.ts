@@ -5,7 +5,7 @@ export const groundTileLayer: TileLayer = {
 	zIndex: 0,
 	cols: 15,
 	rows: 12,
-	data: [
+	tiles: [
 		0, 0, 0, 0, 0, 0, 0, 0,	0, 0, 0, 0, 0, 0, 0,
 		3, 3, 3, 3, 3, 3, 3, 3,	3, 3, 3, 3, 3, 3, 3,
 		3, 1, 1, 1, 3, 1, 1, 1,	1, 1, 1, 1, 1, 1, 3,
@@ -26,7 +26,7 @@ export const topTileLayer: TileLayer = {
 	zIndex: 2,
 	cols: 15,
 	rows: 12,
-	data: [
+	tiles: [
 		4, 4, 4, 4, 4, 4, 4, 4,	4, 4, 4, 4, 4, 4, 4,
 		4, 0, 0, 0, 4, 0, 0, 0,	0, 0, 0, 0, 0, 0, 4,
 		4, 0, 0, 0, 4, 0, 0, 0,	0, 0, 0, 0, 0, 0, 4,

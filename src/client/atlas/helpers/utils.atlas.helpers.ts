@@ -12,7 +12,7 @@ export const getTileType = (
 ): Tile => {
 	const tileIndex = getTileIndex(tileLayer.cols, { row, col })
 
-	return tileLayer.data[tileIndex]
+	return tileLayer.tiles[tileIndex]
 }
 
 export const getTilePoint = ({ col, row }: TileLocation): Point => ({

@@ -15,7 +15,7 @@ interface TileLayer {
 	zIndex: number
 	cols: number
 	rows: number
-	data: Tile[]
+	tiles: Tile[]
 }
 
 interface Atlas {

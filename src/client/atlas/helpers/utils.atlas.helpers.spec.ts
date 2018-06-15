@@ -11,7 +11,7 @@ const tileLayer: TileLayer = {
 	zIndex: 0,
 	cols: 4,
 	rows: 4,
-	data: [
+	tiles: [
 		0, 0, 0, 0,
 		0, 1, 1, 1,
 		0, 1, 2, 2,

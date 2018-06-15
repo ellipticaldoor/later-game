@@ -13,7 +13,7 @@ const tileLayer: TileLayer = {
     zIndex: 0,
     cols: 4,
     rows: 4,
-    data: [ // Rename data to tiles
+    tiles: [
         0, 0, 0, 0,
         0, 1, 1, 1,
         0, 1, 2, 2,
@@ -46,7 +46,7 @@ test('Make a new sprite for each non empty tile', () => {
 
 	const nonEmptyTiles: Tile[] = filter(
 		tile => (tile ? true : false),
-		tileLayer.data
+		tileLayer.tiles
 	)
 
 	expect(sprites).toHaveLength(nonEmptyTiles.length)
