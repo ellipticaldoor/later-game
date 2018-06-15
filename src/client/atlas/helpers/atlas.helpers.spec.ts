@@ -4,21 +4,23 @@ import {
 	loadSpritesForLayer,
 	loadTileBodiesForLayer,
 } from './atlas.helpers'
+import { staticTiles } from '../atlas.constants'
+import { physics } from '@client/physics/physics'
 import { cropTexture, textureOf } from '@client/helpers/sprite.helpers'
 import { Sprite } from '@pixi/sprite'
 import { filter, map } from 'ramda'
 
 // prettier-ignore
 const tileLayer: TileLayer = {
-    zIndex: 0,
-    cols: 4,
-    rows: 4,
-    tiles: [
-        0, 0, 0, 0,
-        0, 1, 1, 1,
-        0, 1, 2, 2,
-        0, 1, 2, 3,
-    ],
+	zIndex: 0,
+	cols: 4,
+	rows: 4,
+	tiles: [
+		0, 0, 0, 0,
+		0, 1, 1, 1,
+		0, 1, 2, 3,
+		0, 1, 3, 3,
+	],
 }
 const tilesetImage = 'default'
 const image = 'default'
@@ -53,4 +55,18 @@ test('Make a new sprite for each non empty tile', () => {
 	map(sprite => {
 		expect(sprite).toBeInstanceOf(Sprite)
 	}, sprites)
+})
+
+test('Make a new matter-js body for each non empty tile', () => {
+	const bodies = loadTileBodiesForLayer(tileLayer, physics.engine)
+
+	const totalStaticTiles: Tile[] = filter(
+		tile => (staticTiles.includes(tile) ? true : false),
+		tileLayer.tiles
+	)
+
+	expect(bodies).toHaveLength(totalStaticTiles.length)
+	map(body => {
+		expect(body.type).toBe('body')
+	}, bodies)
 })
