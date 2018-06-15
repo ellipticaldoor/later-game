@@ -25,3 +25,11 @@ test('Get the index of a tile based on its location', () => {
 
 	expect(index).toBe(5)
 })
+
+test('Get the value type of a tile based on its location', () => {
+	const tileLocation: TileLocation = { col: 1, row: 1 }
+
+	const value = getTileType(tileLayer, tileLocation)
+
+	expect(value).toBe(1)
+})
