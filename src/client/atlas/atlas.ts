@@ -1,6 +1,7 @@
 import { map } from 'ramda'
 import { groundTileLayer, topTileLayer } from './atlas.constants'
 import { camera } from '@client/camera/camera'
+import { physics } from '@client/physics/physics'
 import { getContainerByName } from '@client/camera/camera.helpers'
 import {
 	loadAtlasTextures,
@@ -22,7 +23,7 @@ const setup = (): Atlas => {
 	sprites.ground = loadSpritesForLayer(layers.groundTileLayer, atlas.textures)
 	sprites.top = loadSpritesForLayer(layers.topTileLayer, atlas.textures)
 
-	bodies.ground = loadTileBodiesForLayer(layers.groundTileLayer)
+	bodies.ground = loadTileBodiesForLayer(layers.groundTileLayer, physics.engine)
 
 	const ground = getContainerByName('ground', camera.containers)
 	const top = getContainerByName('top', camera.containers)

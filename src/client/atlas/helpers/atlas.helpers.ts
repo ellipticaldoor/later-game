@@ -9,7 +9,6 @@ import {
 	getTileType,
 	tileLayerIterator,
 } from './utils.atlas.helpers'
-import { physics } from '@client/physics/physics'
 import { makeBody } from '@client/physics/physics.helpers'
 
 export const loadAtlasTextures = (tilesImage: Asset): PIXI.Texture[] => {
@@ -61,25 +60,23 @@ export const loadSpritesForLayer = (
 	return tileSprites
 }
 
-// TODO: Pass physics engine through the function instead of globally
-export const loadTileBodiesForLayer = (tileLayer: TileLayer): Matter.Body[] => {
+export const loadTileBodiesForLayer = (
+	tileLayer: TileLayer,
+	engine: Matter.Engine
+): Matter.Body[] => {
 	const { cols, rows } = tileLayer
 	const bodies: Matter.Body[] = []
 
 	const addTileBody = ({ col, row }: TileLocation): void => {
 		const type = getTileType(tileLayer, { col, row })
 		if (staticTiles.includes(type)) {
-			const body = makeBody(
-				physics.engine,
-				getTilePoint({ col, row }),
-				'static'
-			)
+			const body = makeBody(engine, getTilePoint({ col, row }), 'static')
 			bodies.push(body)
 		}
 	}
 
 	tileLayerIterator(cols, rows, addTileBody)
-	World.add(physics.engine.world, bodies)
+	World.add(engine.world, bodies)
 
 	return bodies
 }
