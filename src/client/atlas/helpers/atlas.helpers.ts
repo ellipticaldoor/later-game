@@ -4,7 +4,11 @@ import { map } from 'ramda'
 import { textureOf, cropTexture } from '@client/helpers/sprite.helpers'
 import { tileSize } from '@client/constants'
 import { staticTiles } from '../atlas.constants'
-import { getTilePoint, getTileType, tileLayerIterator } from './utils.helpers'
+import {
+	getTilePoint,
+	getTileType,
+	tileLayerIterator,
+} from './utils.atlas.helpers'
 import { physics } from '@client/physics/physics'
 import { makeBody } from '@client/physics/physics.helpers'
 
