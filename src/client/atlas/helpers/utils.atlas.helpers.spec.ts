@@ -33,3 +33,11 @@ test('Get the value type of a tile based on its location', () => {
 
 	expect(value).toBe(1)
 })
+
+test('Get the coordinates where the a tile is going to be drawed based in its location', () => {
+	const tileLocation: TileLocation = { col: 12, row: 1 }
+
+	const coordinates = getTilePoint(tileLocation)
+
+	expect(coordinates).toEqual({ x: 768, y: 64 })
+})
