@@ -7,7 +7,7 @@ import { map } from 'ramda'
 const pixi = Object.assign({}, pixiMock)
 const delta = 1
 
-describe('Test inputs setup', () => {
+describe('Inputs setup', () => {
 	inputsSetup(pixi)
 
 	test('Input events are bind', () => {

@@ -3,7 +3,7 @@ import { pixiMock } from '@client/constants/testing'
 
 const pixi = Object.assign({}, pixiMock)
 
-describe('Test physics setup', () => {
+describe('Physics setup', () => {
 	physicsSetup(pixi)
 
 	test('A gameloop was added to the ticker', () => {

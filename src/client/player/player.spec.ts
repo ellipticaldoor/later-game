@@ -5,7 +5,7 @@ import { getContainerByName } from '@client/camera/camera.helpers'
 
 const pixi = Object.assign({}, pixiMock)
 
-describe('Test player setup', () => {
+describe('Player setup', () => {
 	playerSetup(pixi)
 
 	test('A gameloop was added to the ticker', () => {

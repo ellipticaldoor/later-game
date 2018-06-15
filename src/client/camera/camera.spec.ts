@@ -5,7 +5,7 @@ import { pixiMock } from '@client/constants/testing'
 
 const pixi = Object.assign({}, pixiMock)
 
-describe('Test camera setup', () => {
+describe('Camera setup', () => {
 	cameraSetup(pixi)
 	const { view, containers } = camera
 
