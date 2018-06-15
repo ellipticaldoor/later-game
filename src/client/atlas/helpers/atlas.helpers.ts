@@ -28,9 +28,9 @@ export const loadAtlasTextures = (tilesImage: Asset): PIXI.Texture[] => {
 }
 
 export const makeTileSprite = (
-	textures: PIXI.Texture[],
 	type: Tile,
-	{ col, row }: TileLocation
+	{ col, row }: TileLocation,
+	textures: PIXI.Texture[]
 ): PIXI.Sprite => {
 	const texture = textures[type - 1]
 	const tile = new Sprite(texture)
@@ -51,7 +51,7 @@ export const loadSpritesForLayer = (
 	const addTileSprite = ({ col, row }: TileLocation) => {
 		const type = getTileType(tileLayer, { col, row })
 		if (type) {
-			const tile = makeTileSprite(textures, type, { col, row })
+			const tile = makeTileSprite(type, { col, row }, textures)
 			tileSprites.push(tile)
 		}
 	}
@@ -61,6 +61,7 @@ export const loadSpritesForLayer = (
 	return tileSprites
 }
 
+// TODO: Pass physics engine through the function instead of globally
 export const loadTileBodiesForLayer = (tileLayer: TileLayer): Matter.Body[] => {
 	const { cols, rows } = tileLayer
 	const bodies: Matter.Body[] = []
