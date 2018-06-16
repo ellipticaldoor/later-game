@@ -5,7 +5,6 @@
   "scripts": {
     "start": "concurrently \"yarn server\" \"yarn client\" \"yarn prettier:watch\" \"yarn prettier:js:watch\"",
     "client": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr",
-    "client:reload": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall",
     "client:no-cache": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr --no-cache",
     "client:build": "rimraf client_build && cross-env NODE_ENV=production parcel build src/client/index.html --no-source-maps --out-dir client_build",
     "client:build:report": "yarn client:build && opn report.html",
@@ -22,7 +21,8 @@
     "prettier": "yarn prettier:base --parser typescript --write 'src/**/*.{ts,tsx}'",
     "prettier:watch": "onchange \"src/**/*.ts\" -- yarn prettier:base --parser typescript --write {{changed}}",
     "prettier:js": "yarn prettier:base --write 'src/**/*.js'",
-    "prettier:js:watch": "onchange \"src/**/*.js\" -- yarn prettier:base --write {{changed}}"
+    "prettier:js:watch": "onchange \"src/**/*.js\" -- yarn prettier:base --write {{changed}}",
+    "tslint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts*'"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -61,6 +61,7 @@
     "standard": "^11.0.1",
     "ts-jest": "^22.4.6",
     "ts-node": "^6.1.1",
+    "tslint": "^5.10.0",
     "typescript": "^2.9.2"
   },
   "engines": {

@@ -27,9 +27,6 @@ Client
 # Start client dev environment
 yarn client
 
-# Start client dev environment with auto reload on code changes
-yarn client:reload
-
 # Start client dev environment without cache
 yarn client:no-cache
 
@@ -86,5 +83,10 @@ yarn prettier:js
 
 # Watch prettier for js and js
 yarn prettier:js:watch
+```
 
+TSLint
+``` shell
+# Run tslint
+yarn tslint
 ```
