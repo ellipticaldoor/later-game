@@ -18,6 +18,7 @@ interface Direction {
 }
 
 type Asset = string
+
 declare module '*.png' {
 	const png: Asset
 	export default png

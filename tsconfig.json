@@ -20,11 +20,13 @@
 		"experimentalDecorators": true,
 		"baseUrl": "./src",
 		"paths": {
+			"@common/*": ["./common/*"],
 			"@client/*": ["./client/*"],
 			"@server/*": ["./server/*"]
 		}
 	},
 	"include": [
+		"src/common/**/*.ts",
 		"src/client/**/*.ts"
 	],
 	"exclude": [
