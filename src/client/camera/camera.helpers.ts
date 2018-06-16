@@ -40,13 +40,13 @@ export const frameView = (
 	view: PIXI.Container,
 	moveTo: Point
 ): void => {
-	const _moveTo: Point = {
+	const screenCenter: Point = {
 		x: Math.floor(renderer.screen.width / 2 - moveTo.x),
 		y: Math.floor(renderer.screen.height / 2 - moveTo.y),
 	}
 
-	const centerX = _moveTo.x - tileSize / 2
-	const centerY = _moveTo.y - tileSize / 2
+	const centerX = screenCenter.x - tileSize / 2
+	const centerY = screenCenter.y - tileSize / 2
 
 	view.position.set(centerX, centerY)
 }

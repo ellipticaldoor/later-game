@@ -28,10 +28,10 @@ const textures = [textureOf(image), textureOf(image)]
 
 test('Create texture tiles from an image that contains a tileset', () => {
 	const mockCropTexture = ((cropTexture as any) = jest.fn())
-	const textures = loadAtlasTextures(tilesetImage)
+	const atlasTextures = loadAtlasTextures(tilesetImage)
 
 	expect(mockCropTexture).toHaveBeenCalledTimes(5)
-	expect(textures).toHaveLength(5)
+	expect(atlasTextures).toHaveLength(5)
 })
 
 test('Make a new sprite based on a tile tipe and textures for it', () => {

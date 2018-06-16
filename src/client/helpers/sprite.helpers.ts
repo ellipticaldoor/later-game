@@ -19,12 +19,17 @@ export const spriteOf = (imagePath: Asset): PIXI.Sprite =>
 	new Sprite(textureOf(imagePath))
 
 export const cropTexture = (
-	_texture: PIXI.Texture,
+	texture: PIXI.Texture,
 	viewport: Point
 ): PIXI.Texture => {
-	const texture = new Texture(_texture)
+	const croppedTexture = new Texture(texture)
 
-	texture.frame = new Rectangle(viewport.x, viewport.y, tileSize, tileSize)
+	croppedTexture.frame = new Rectangle(
+		viewport.x,
+		viewport.y,
+		tileSize,
+		tileSize
+	)
 
-	return texture
+	return croppedTexture
 }
