@@ -26,13 +26,12 @@ const setup = (): Atlas => {
 	sprites.ground = loadSpritesForLayer(layers.groundTileLayer, atlas.textures)
 	sprites.top = loadSpritesForLayer(layers.topTileLayer, atlas.textures)
 
-	bodies.ground = loadTileBodiesForLayer(layers.groundTileLayer, physics.engine)
-
 	const ground = getContainerByName('ground', camera.containers)
 	const top = getContainerByName('top', camera.containers)
-
 	map(sprite => ground.container.addChild(sprite), sprites.ground)
 	map(sprite => top.container.addChild(sprite), sprites.top)
+
+	bodies.ground = loadTileBodiesForLayer(layers.groundTileLayer, physics.engine)
 
 	return atlas
 }
