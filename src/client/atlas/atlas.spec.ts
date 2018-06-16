@@ -1,13 +1,29 @@
 import atlasSetup, { atlas } from './atlas'
+import { cropTexture } from '@client/helpers/sprite.helpers'
+import { staticTiles, groundTileLayer } from './atlas.constants'
+import { filter } from 'ramda'
+
+const mockCropTexture = ((cropTexture as any) = jest.fn())
 
 describe('Atlas setup', () => {
-	// atlasSetup()
-	// TODO: fix image imports https://github.com/parcel-bundler/parcel/issues/1514#issuecomment-395883991
-	// test('Player was added to camera entities container', () => {
-	// 	const entities = getContainerByName('entities', camera.containers)
-	// 	expect(entities.container.getChildIndex(player.sprite))
-	// })
-	// test('Player is centered in the screen by default', () => {
-	// 	expect(player.frame).toBe(true)
-	// })
+	atlasSetup()
+
+	test('The textures have been loaded', () => {
+		expect(mockCropTexture).toHaveBeenCalledTimes(5)
+		expect(atlas.textures).toHaveLength(5)
+	})
+
+	test('The layers have been loaded', () => {
+		expect(atlas.layers).toHaveProperty('groundTileLayer')
+		expect(atlas.layers).toHaveProperty('topTileLayer')
+	})
+
+	test('The static bodies of groundTileLayer have been loaded', () => {
+		const totalStaticTiles: Tile[] = filter(
+			tile => (staticTiles.includes(tile) ? true : false),
+			groundTileLayer.tiles
+		)
+
+		expect(atlas.bodies.ground).toHaveLength(totalStaticTiles.length)
+	})
 })
