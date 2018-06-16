@@ -21,15 +21,18 @@ npm install -g yarn
 Install [https://code.visualstudio.com/](vscode)
 
 * Plugins for code editing
-	* EditorConfig
 	* Bracker Pair Colorizer
 	* ESLint
+	* TSLint
 	* Jest
 
 
 Settings config
 ``` json
 {
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	"editor.detectIndentation": false,
 	"telemetry.enableTelemetry": false,
 	"files.autoSave": "onFocusChange",
 	"editor.multiCursorModifier": "ctrlCmd",
