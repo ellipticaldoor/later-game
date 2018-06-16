@@ -30,9 +30,5 @@
 	"exclude": [
 		".git",
 		"node_modules"
-	],
-	"parcelTsPluginOptions": {
-		// If true type-checking is disabled
-		"transpileOnly": false
-	}
+	]
 }

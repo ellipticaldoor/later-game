@@ -1,4 +1,4 @@
-import { map, isEmpty } from 'ramda'
+import { map } from 'ramda'
 import { groundTileLayer, topTileLayer } from './atlas.constants'
 import { camera } from '@client/camera/camera'
 import { physics } from '@client/physics/physics'
@@ -8,9 +8,7 @@ import {
 	loadSpritesForLayer,
 	loadTileBodiesForLayer,
 } from './helpers/atlas.helpers'
-const _tilesImage = require('@client/assets/img/tiles.png')
-// WARN: Ugly fix for https://github.com/parcel-bundler/parcel/issues/1514
-const tilesImage = isEmpty(_tilesImage) ? 'default' : _tilesImage
+import tilesImage from '@client/assets/img/tiles.png'
 
 export const atlas: Atlas = {
 	textures: [],
