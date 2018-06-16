@@ -21,6 +21,9 @@ export const atlas: Atlas = {
 
 const setup = (): Atlas => {
 	const { layers, sprites, bodies } = atlas
+
+	bodies.ground = loadTileBodiesForLayer(layers.groundTileLayer, physics.engine)
+
 	atlas.textures = loadAtlasTextures(tilesImage)
 
 	sprites.ground = loadSpritesForLayer(layers.groundTileLayer, atlas.textures)
@@ -28,10 +31,9 @@ const setup = (): Atlas => {
 
 	const ground = getContainerByName('ground', camera.containers)
 	const top = getContainerByName('top', camera.containers)
+
 	map(sprite => ground.container.addChild(sprite), sprites.ground)
 	map(sprite => top.container.addChild(sprite), sprites.top)
-
-	bodies.ground = loadTileBodiesForLayer(layers.groundTileLayer, physics.engine)
 
 	return atlas
 }
