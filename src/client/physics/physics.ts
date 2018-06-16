@@ -1,12 +1,12 @@
 import { Engine, Render } from 'matter-js'
 import { renderOptions } from '@client/physics/physics.constants'
-const engine: Matter.Engine = Engine.create()
+const physicsEngine: Matter.Engine = Engine.create()
 const element: any = document.getElementById('physics')
 
 export const physics: Physics = {
-	engine,
+	engine: physicsEngine,
 	render: Render.create({
-		engine,
+		engine: physicsEngine,
 		element,
 		options: renderOptions,
 	}),

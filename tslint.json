@@ -39,6 +39,7 @@
 		"no-console": [
 			false,
 			"warning"
-		]
+		],
+		"no-bitwise": false
 	}
 }

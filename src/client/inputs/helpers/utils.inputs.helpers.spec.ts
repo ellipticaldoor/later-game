@@ -2,7 +2,7 @@ import { bindInputEvents, bindHoldEvent } from './utils.inputs.helpers'
 import * as mousetrap from 'mousetrap'
 
 describe('Ensure input bindings events are set', () => {
-	let mockBind = ((mousetrap.bind as any) = jest.fn())
+	const mockBind = ((mousetrap.bind as any) = jest.fn())
 	let inputs: Inputs
 
 	beforeEach(() => {

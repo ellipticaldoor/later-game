@@ -1,4 +1,4 @@
-import inputs from './inputs.state'
+import inputsState from './inputs.state'
 import { frameView } from '@client/camera/camera.helpers'
 import { camera } from '@client/camera/camera'
 import { player } from '@client/player/player'
@@ -24,10 +24,10 @@ export const gameLoop = (
 }
 
 const setup = ({ ticker, renderer }: PIXI.Application): Inputs => {
-	bindInputEvents(inputs)
-	ticker.add(delta => gameLoop(delta, inputs, renderer))
+	bindInputEvents(inputsState)
+	ticker.add(delta => gameLoop(delta, inputsState, renderer))
 
-	return inputs
+	return inputsState
 }
 
 export default setup
