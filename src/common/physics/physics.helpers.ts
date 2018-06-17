@@ -1,5 +1,5 @@
 import { World, Bodies, Body } from 'matter-js'
-import { tileSize } from 'client/atlas/atlas.constants'
+import { tileSize } from 'common/atlas/atlas.constants'
 import {
 	entityBodyParams,
 	staticBodyParams,

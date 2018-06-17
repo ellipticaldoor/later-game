@@ -2,7 +2,7 @@ import { Texture } from '@pixi/core'
 import { Sprite } from '@pixi/sprite'
 import { TextureCache } from '@pixi/utils'
 import { Rectangle } from '@pixi/math'
-import { tileSize } from 'client/atlas/atlas.constants'
+import { tileSize } from 'common/atlas/atlas.constants'
 
 export const textureOf = (imagePath: Asset): PIXI.Texture => {
 	let texture: PIXI.Texture = TextureCache[imagePath]

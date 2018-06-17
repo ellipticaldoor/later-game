@@ -1,5 +1,5 @@
 import { map, propEq, find } from 'ramda'
-import { tileSize } from 'client/atlas/atlas.constants'
+import { tileSize } from 'common/atlas/atlas.constants'
 
 export const getContainerByName = (
 	name: string,

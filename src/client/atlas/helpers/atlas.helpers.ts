@@ -2,8 +2,8 @@ import { World } from 'matter-js'
 import { Sprite } from '@pixi/sprite'
 import { map } from 'ramda'
 import { textureOf, cropTexture } from 'client/helpers/sprite.helpers'
-import { tileSize } from 'client/atlas/atlas.constants'
-import { staticTiles } from '../atlas.constants'
+import { tileSize } from 'common/atlas/atlas.constants'
+import { staticTiles } from '../../../common/atlas/atlas.constants'
 import {
 	getTilePoint,
 	getTileType,
