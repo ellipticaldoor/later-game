@@ -1,5 +1,8 @@
-import { inputMovePlayer, inputMoveCamera } from './inputs.helpers'
-import inputsDefault from '../inputs.state'
+import {
+	inputMovePlayer,
+	inputMoveCamera,
+} from 'client/inputs/helpers/inputs.helpers'
+import inputsDefault from 'client/inputs/inputs.state'
 import { player as playerDefault } from 'client/player/player'
 import { camera as cameraDefault } from 'client/camera/camera'
 import { map } from 'ramda'

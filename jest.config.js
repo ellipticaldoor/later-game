@@ -1,5 +1,5 @@
 const jestConfig = {
-	moduleFileExtensions: ['ts', 'tsx', 'js'],
+	moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
 	globals: {
 		'ts-jest': {
 			useBabelrc: true,

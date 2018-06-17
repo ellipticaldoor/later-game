@@ -1,12 +1,12 @@
 import { pixiMock } from 'client/constants/testing'
-import { camera } from './camera'
+import { camera } from 'client/camera/camera'
 import {
 	getContainerByName,
 	attachContainersToView,
 	applyContainersZindex,
 	moveCamera,
 	frameView,
-} from './camera.helpers'
+} from 'client/camera/camera.helpers'
 
 const testCamera = Object.assign({}, camera)
 const { view, containers } = testCamera

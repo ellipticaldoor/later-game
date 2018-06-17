@@ -1,4 +1,4 @@
-import playerSetup, { player } from './player'
+import playerSetup, { player } from 'client/player/player'
 import { camera } from 'client/camera/camera'
 import { pixiMock } from 'client/constants/testing'
 import { getContainerByName } from 'client/camera/camera.helpers'

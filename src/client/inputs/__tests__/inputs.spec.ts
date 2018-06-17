@@ -1,5 +1,5 @@
-import inputsSetup, { gameLoop } from './inputs'
-import inputs from './inputs.state'
+import inputsSetup, { gameLoop } from 'client/inputs/inputs'
+import inputs from 'client/inputs/inputs.state'
 import { player } from 'client/player/player'
 import { pixiMock } from 'client/constants/testing'
 import { map } from 'ramda'

@@ -3,7 +3,7 @@ import {
 	getTileType,
 	getTilePoint,
 	tileLayerIterator,
-} from './utils.atlas.helpers'
+} from 'client/atlas/helpers/utils.atlas.helpers'
 import { map } from 'ramda'
 
 // prettier-ignore

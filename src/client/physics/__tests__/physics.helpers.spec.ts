@@ -1,6 +1,10 @@
 import { Engine } from 'matter-js'
 import { Sprite } from '@pixi/sprite'
-import { makeBody, moveBody, syncSpritePosition } from './physics.helpers'
+import {
+	makeBody,
+	moveBody,
+	syncSpritePosition,
+} from 'client/physics/physics.helpers'
 
 const engine: Matter.Engine = Engine.create()
 const point: IPoint = { x: 5, y: 5 }

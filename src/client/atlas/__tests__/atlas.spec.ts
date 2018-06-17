@@ -1,6 +1,10 @@
-import atlasSetup, { atlas } from './atlas'
+import atlasSetup, { atlas } from 'client/atlas/atlas'
 import { cropTexture } from 'client/helpers/sprite.helpers'
-import { staticTiles, groundTileLayer, topTileLayer } from './atlas.constants'
+import {
+	staticTiles,
+	groundTileLayer,
+	topTileLayer,
+} from 'client/atlas/atlas.constants'
 import { camera } from 'client/camera/camera'
 import { getContainerByName } from 'client/camera/camera.helpers'
 import { filter } from 'ramda'

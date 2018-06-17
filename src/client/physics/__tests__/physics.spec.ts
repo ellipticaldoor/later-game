@@ -1,4 +1,4 @@
-import physicsSetup, { physics } from './physics'
+import physicsSetup, { physics } from 'client/physics/physics'
 import { pixiMock } from 'client/constants/testing'
 
 const pixi = Object.assign({}, pixiMock)

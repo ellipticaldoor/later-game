@@ -1,4 +1,7 @@
-import { bindInputEvents, bindHoldEvent } from './utils.inputs.helpers'
+import {
+	bindInputEvents,
+	bindHoldEvent,
+} from 'client/inputs/helpers/utils.inputs.helpers'
 import * as mousetrap from 'mousetrap'
 
 describe('Ensure input bindings events are set', () => {
