@@ -22,7 +22,8 @@
     "prettier:watch": "onchange \"src/**/*.ts\" -- yarn prettier:base --parser typescript --write {{changed}}",
     "prettier:js": "yarn prettier:base --write 'src/**/*.js'",
     "prettier:js:watch": "onchange \"src/**/*.js\" -- yarn prettier:base --write {{changed}}",
-    "tslint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts*'"
+	"tslint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts*'",
+	"clean": "rimraf node_modules .cache dist report.html && yarn"
   },
   "dependencies": {
     "matter-js": "^0.14.2",

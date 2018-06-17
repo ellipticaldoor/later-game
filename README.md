@@ -90,3 +90,9 @@ TSLint
 # Run tslint
 yarn tslint
 ```
+
+Utils
+``` shell
+# Deletes all ignored folders and files and reinstalls dependencies
+yarn clean
+```
