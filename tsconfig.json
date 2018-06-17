@@ -17,13 +17,7 @@
 		"noUnusedParameters": true,
 		"noImplicitAny": true,
 		"noFallthroughCasesInSwitch": true,
-		"experimentalDecorators": true,
-		"baseUrl": "./src",
-		"paths": {
-			"common/*": ["./common/*"],
-			"client/*": ["./client/*"],
-			"server/*": ["./server/*"]
-		}
+		"experimentalDecorators": true
 	},
 	"include": [
 		"src/common/**/*.ts",
