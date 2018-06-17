@@ -25,7 +25,6 @@
     "tslint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts*'"
   },
   "dependencies": {
-    "express": "^4.16.3",
     "matter-js": "^0.14.2",
     "mousetrap": "^1.6.2",
     "pixi.js": "^5.0.0-alpha.2",
@@ -53,7 +52,7 @@
     "node-sass": "^4.9.0",
     "onchange": "^4.0.0",
     "opn-cli": "^3.1.0",
-    "parcel-bundler": "^1.9.0",
+    "parcel-bundler": "^1.9.1",
     "parcel-plugin-bundle-visualiser": "^1.1.2",
     "parcel-plugin-compress": "^1.0.3",
     "prettier": "^1.13.5",
