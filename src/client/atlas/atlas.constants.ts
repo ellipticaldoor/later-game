@@ -1,3 +1,5 @@
+export const tileSize = 64
+
 export const staticTiles: Tile[] = [3]
 
 // prettier-ignore

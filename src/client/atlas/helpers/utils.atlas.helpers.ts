@@ -1,5 +1,5 @@
 import { map, range } from 'ramda'
-import { tileSize } from 'client/constants'
+import { tileSize } from 'client/atlas/atlas.constants'
 
 export const getTileIndex = (
 	cols: number,
