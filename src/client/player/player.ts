@@ -2,7 +2,7 @@ import { spriteOf } from 'client/helpers/sprite.helpers'
 import { camera } from 'client/camera/camera'
 import { getContainerByName } from 'client/camera/camera.helpers'
 import { getTilePoint } from 'client/atlas/helpers/utils.atlas.helpers'
-import { makeBody, syncSpritePosition } from 'client/physics/physics.helpers'
+import { makeBody, syncSpritePosition } from 'common/physics/physics.helpers'
 import { physics } from 'client/physics/physics'
 import characterImage from 'client/assets/img/character.png'
 

@@ -4,7 +4,7 @@ import {
 	makeBody,
 	moveBody,
 	syncSpritePosition,
-} from 'client/physics/physics.helpers'
+} from 'common/physics/physics.helpers'
 
 const engine: Matter.Engine = Engine.create()
 const point: IPoint = { x: 5, y: 5 }

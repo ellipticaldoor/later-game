@@ -9,7 +9,7 @@ import {
 	getTileType,
 	tileLayerIterator,
 } from './utils.atlas.helpers'
-import { makeBody } from 'client/physics/physics.helpers'
+import { makeBody } from 'common/physics/physics.helpers'
 
 export const loadAtlasTextures = (tilesImage: Asset): PIXI.Texture[] => {
 	const viewports: IPoint[] = [
