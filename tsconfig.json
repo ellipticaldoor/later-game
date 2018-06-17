@@ -4,7 +4,7 @@
 		"alwaysStrict": true,
 		"module": "commonjs",
 		"moduleResolution": "node",
-		"types": ["node", "jest", "pixi.js"],
+		"types": ["node", "jest", "pixi.js", "matter-js"],
 		"newLine": "LF",
 		"outDir": "lib",
 		"jsx": "preserve",
