@@ -1,4 +1,4 @@
-import { rand } from 'client/helpers/utils.helpers'
+import { rand } from 'common/helpers/utils.helpers'
 import { map, range } from 'ramda'
 
 test('rand provides a number >= than min and <= than max', () => {
