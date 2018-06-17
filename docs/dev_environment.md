@@ -25,6 +25,7 @@ Install [https://code.visualstudio.com/](vscode)
 	* ESLint
 	* TSLint
 	* Jest
+	* editorconfig
 
 
 Settings config

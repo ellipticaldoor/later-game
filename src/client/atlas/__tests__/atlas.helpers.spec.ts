@@ -2,8 +2,7 @@ import {
 	loadAtlasTextures,
 	makeTileSprite,
 	loadSpritesForLayer,
-	loadTileBodiesForLayer,
-} from 'client/atlas/helpers/atlas.helpers'
+} from 'client/atlas/atlas.helpers'
 import { staticTiles } from 'common/atlas/atlas.constants'
 import { physics } from 'client/physics/physics'
 import { cropTexture, textureOf } from 'client/helpers/sprite.helpers'
@@ -52,18 +51,4 @@ test('Make a new sprite for each non empty tile', () => {
 	map(sprite => {
 		expect(sprite).toBeInstanceOf(Sprite)
 	}, sprites)
-})
-
-test('Make a new matter-js body for each non empty tile', () => {
-	const bodies = loadTileBodiesForLayer(tileLayer, physics.engine)
-
-	const totalStaticTiles = filter(
-		tile => (staticTiles.includes(tile) ? true : false),
-		tileLayer.tiles
-	)
-
-	expect(bodies).toHaveLength(totalStaticTiles.length)
-	map(body => {
-		expect(body.type).toBe('body')
-	}, bodies)
 })

@@ -20,7 +20,7 @@ describe('Atlas setup', () => {
 	})
 
 	test('The static bodies of groundTileLayer have been loaded', () => {
-		const totalStaticTiles: Tile[] = filter(
+		const totalStaticTiles = filter(
 			tile => (staticTiles.includes(tile) ? true : false),
 			groundTileLayer.tiles
 		)
@@ -34,11 +34,11 @@ describe('Atlas setup', () => {
 	})
 
 	describe('Sprites loading', () => {
-		const nonEmptyGroundTiles: Tile[] = filter(
+		const nonEmptyGroundTiles = filter(
 			tile => (tile ? true : false),
 			groundTileLayer.tiles
 		)
-		const nonEmptyTopTiles: Tile[] = filter(
+		const nonEmptyTopTiles = filter(
 			tile => (tile ? true : false),
 			topTileLayer.tiles
 		)
