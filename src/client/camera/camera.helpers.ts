@@ -3,14 +3,14 @@ import { tileSize } from 'client/constants'
 
 export const getContainerByName = (
 	name: string,
-	containers: GameContainer[]
-): GameContainer => find(propEq('name', name))(containers)
+	containers: IGameContainer[]
+): IGameContainer => find(propEq('name', name))(containers)
 
 export const attachContainersToView = (
 	view: PIXI.Container,
-	containers: GameContainer[]
+	containers: IGameContainer[]
 ): void => {
-	map(({ name, container }: GameContainer) => {
+	map(({ name, container }: IGameContainer) => {
 		view.addChild(container)
 		container.name = name
 	}, containers)
@@ -18,9 +18,9 @@ export const attachContainersToView = (
 
 export const applyContainersZindex = (
 	view: PIXI.Container,
-	containers: GameContainer[]
+	containers: IGameContainer[]
 ): void => {
-	map(({ container, zIndex }: GameContainer) => {
+	map(({ container, zIndex }: IGameContainer) => {
 		view.setChildIndex(container, zIndex)
 	}, containers)
 }
@@ -29,7 +29,7 @@ export const moveCamera = (
 	delta: number,
 	view: PIXI.Container,
 	speed: number,
-	dir: Direction
+	dir: IDirection
 ): void => {
 	view.position.x += dir.x * speed * delta * -1
 	view.position.y += dir.y * speed * delta * -1
@@ -38,9 +38,9 @@ export const moveCamera = (
 export const frameView = (
 	renderer: PIXI.Renderer,
 	view: PIXI.Container,
-	moveTo: Point
+	moveTo: IPoint
 ): void => {
-	const screenCenter: Point = {
+	const screenCenter: IPoint = {
 		x: Math.floor(renderer.screen.width / 2 - moveTo.x),
 		y: Math.floor(renderer.screen.height / 2 - moveTo.y),
 	}

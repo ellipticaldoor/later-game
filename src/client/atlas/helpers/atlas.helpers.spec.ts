@@ -11,7 +11,7 @@ import { Sprite } from '@pixi/sprite'
 import { filter, map } from 'ramda'
 
 // prettier-ignore
-const tileLayer: TileLayer = {
+const tileLayer: ITileLayer = {
 	zIndex: 0,
 	cols: 4,
 	rows: 4,
@@ -35,7 +35,7 @@ test('Create texture tiles from an image that contains a tileset', () => {
 })
 
 test('Make a new sprite based on a tile tipe and textures for it', () => {
-	const tileLocation: TileLocation = { col: 3, row: 1 }
+	const tileLocation: ITileLocation = { col: 3, row: 1 }
 	const groundType: Tile = 1
 
 	const tileSprite = makeTileSprite(groundType, tileLocation, textures)

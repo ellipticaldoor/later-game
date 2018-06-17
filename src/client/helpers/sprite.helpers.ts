@@ -20,7 +20,7 @@ export const spriteOf = (imagePath: Asset): PIXI.Sprite =>
 
 export const cropTexture = (
 	texture: PIXI.Texture,
-	viewport: Point
+	viewport: IPoint
 ): PIXI.Texture => {
 	const croppedTexture = new Texture(texture)
 

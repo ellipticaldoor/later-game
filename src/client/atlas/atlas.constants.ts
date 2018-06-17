@@ -1,7 +1,7 @@
 export const staticTiles: Tile[] = [3]
 
 // prettier-ignore
-export const groundTileLayer: TileLayer = {
+export const groundTileLayer: ITileLayer = {
 	zIndex: 0,
 	cols: 15,
 	rows: 12,
@@ -22,7 +22,7 @@ export const groundTileLayer: TileLayer = {
 }
 
 // prettier-ignore
-export const topTileLayer: TileLayer = {
+export const topTileLayer: ITileLayer = {
 	zIndex: 2,
 	cols: 15,
 	rows: 12,

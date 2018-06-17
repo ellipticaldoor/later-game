@@ -79,7 +79,7 @@ describe('Move camera position', () => {
 })
 
 test('Frame a point in the center of a camera', () => {
-	const playerPosition: Point = { x: 200, y: 400 }
+	const playerPosition: IPoint = { x: 200, y: 400 }
 
 	view.position.set(0, 0)
 

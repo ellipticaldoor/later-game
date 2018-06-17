@@ -3,7 +3,7 @@ import * as mousetrap from 'mousetrap'
 
 describe('Ensure input bindings events are set', () => {
 	const mockBind = ((mousetrap.bind as any) = jest.fn())
-	let inputs: Inputs
+	let inputs: IInputs
 
 	beforeEach(() => {
 		mockBind.mockClear()

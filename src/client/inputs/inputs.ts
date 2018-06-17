@@ -7,7 +7,7 @@ import { bindInputEvents } from './helpers/utils.inputs.helpers'
 
 export const gameLoop = (
 	delta: number,
-	inputs: Inputs,
+	inputs: IInputs,
 	renderer: PIXI.Renderer
 ): void => {
 	if (inputMoveCamera(delta, camera, inputs)) {
@@ -23,7 +23,7 @@ export const gameLoop = (
 	}
 }
 
-const setup = ({ ticker, renderer }: PIXI.Application): Inputs => {
+const setup = ({ ticker, renderer }: PIXI.Application): IInputs => {
 	bindInputEvents(inputsState)
 	ticker.add(delta => gameLoop(delta, inputsState, renderer))
 

@@ -1,4 +1,4 @@
-interface TileLocation {
+interface ITileLocation {
 	col: number
 	row: number
 }
@@ -11,16 +11,16 @@ type Tile =
 	| 4 // TopOfTree
 	| 5 // Bush
 
-interface TileLayer {
+interface ITileLayer {
 	zIndex: number
 	cols: number
 	rows: number
 	tiles: Tile[]
 }
 
-interface Atlas {
+interface IAtlas {
 	textures: PIXI.Texture[]
-	layers: Dictionary<TileLayer>
+	layers: Dictionary<ITileLayer>
 	sprites: Dictionary<PIXI.Sprite[]>
 	bodies: Dictionary<Matter.Body[]>
 }

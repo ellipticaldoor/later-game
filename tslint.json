@@ -32,10 +32,6 @@
 				"esSpecCompliant": true
 			}
 		],
-		"interface-name": [
-			false,
-			"always-prefix"
-		],
 		"no-console": [
 			false,
 			"warning"

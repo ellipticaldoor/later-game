@@ -1,11 +1,11 @@
-interface GameContainer {
+interface IGameContainer {
 	name: string
 	zIndex: number
 	container: PIXI.Container
 }
 
-interface Camera {
+interface ICamera {
 	view: PIXI.Container
-	containers: GameContainer[]
+	containers: IGameContainer[]
 	speed: number
 }

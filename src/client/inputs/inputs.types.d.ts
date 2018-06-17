@@ -1,9 +1,9 @@
-interface Input {
+interface IInput {
 	readonly kind?: 'press' | 'hold' | 'release'
 	readonly key: string
 	state: boolean
 }
 
-interface Inputs {
-	[key: string]: Input
+interface IInputs {
+	[key: string]: IInput
 }

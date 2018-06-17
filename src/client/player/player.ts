@@ -8,7 +8,7 @@ import characterImage from 'client/assets/img/character.png'
 
 const initialPlayerPoint = getTilePoint({ col: 2, row: 3 })
 
-export const player: Player = {
+export const player: IPlayer = {
 	sprite: spriteOf(characterImage),
 	body: makeBody(physics.engine, initialPlayerPoint, 'entity'),
 	speed: 0.8,
@@ -19,7 +19,7 @@ const gameLoop = (sprite: PIXI.Sprite, body: Matter.Body): void => {
 	syncSpritePosition(sprite, body)
 }
 
-const setup = ({ ticker }: PIXI.Application): Player => {
+const setup = ({ ticker }: PIXI.Application): IPlayer => {
 	player.sprite.position.set(initialPlayerPoint.x, initialPlayerPoint.y)
 
 	const entities = getContainerByName('entities', camera.containers)

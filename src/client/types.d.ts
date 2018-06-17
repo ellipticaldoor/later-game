@@ -1,18 +1,18 @@
-interface Dictionary<T> {
+interface IDictionary<T> {
 	[key: string]: T
 }
 
-interface Size {
+interface ISize {
 	width: number
 	height: number
 }
 
-interface Point {
+interface IPoint {
 	x: number
 	y: number
 }
 
-interface Direction {
+interface IDirection {
 	x: 0 | 1 | -1
 	y: 0 | 1 | -1
 }

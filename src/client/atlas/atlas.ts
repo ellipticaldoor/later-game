@@ -10,14 +10,14 @@ import {
 } from './helpers/atlas.helpers'
 import tilesImage from 'client/assets/img/tiles.png'
 
-export const atlas: Atlas = {
+export const atlas: IAtlas = {
 	textures: [],
 	layers: { groundTileLayer, topTileLayer },
 	sprites: {},
 	bodies: {},
 }
 
-const setup = (): Atlas => {
+const setup = (): IAtlas => {
 	const { layers, sprites, bodies } = atlas
 
 	bodies.ground = loadTileBodiesForLayer(layers.groundTileLayer, physics.engine)

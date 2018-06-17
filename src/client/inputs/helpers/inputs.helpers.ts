@@ -3,8 +3,8 @@ import { moveCamera } from 'client/camera/camera.helpers'
 
 export const inputMoveCamera = (
 	delta: number,
-	camera: Camera,
-	{ cameraUp, cameraLeft, cameraDown, cameraRight }: Inputs
+	camera: ICamera,
+	{ cameraUp, cameraLeft, cameraDown, cameraRight }: IInputs
 ): boolean => {
 	const cameraMoved =
 		cameraUp.state || cameraLeft.state || cameraDown.state || cameraRight.state
@@ -22,7 +22,7 @@ export const inputMoveCamera = (
 export const inputMovePlayer = (
 	delta: number,
 	player: Player,
-	{ playerUp, playerLeft, playerDown, playerRight }: Inputs
+	{ playerUp, playerLeft, playerDown, playerRight }: IInputs
 ): boolean => {
 	const playerMoved =
 		playerUp.state || playerLeft.state || playerDown.state || playerRight.state

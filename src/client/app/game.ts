@@ -4,15 +4,15 @@ import atlasSetup from 'client/atlas/atlas'
 import playerSetup from 'client/player/player'
 import inputsSetup from 'client/inputs/inputs'
 
-interface Game {
-	physics: Physics
-	camera: Camera
-	atlas: Atlas
-	player: Player
-	inputs: Inputs
+interface IGame {
+	physics: IPhysics
+	camera: ICamera
+	atlas: IAtlas
+	player: IPlayer
+	inputs: IInputs
 }
 
-export default (pixi: PIXI.Application): Game => ({
+export default (pixi: PIXI.Application): IGame => ({
 	physics: physicsSetup(pixi),
 	camera: cameraSetup(pixi),
 	atlas: atlasSetup(),

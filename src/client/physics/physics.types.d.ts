@@ -1,4 +1,4 @@
-interface Physics {
+interface IPhysics {
 	engine: Matter.Engine
 	render: Matter.Render
 }
