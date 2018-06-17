@@ -3,7 +3,7 @@ import { renderOptions } from 'client/physics/physics.constants'
 const physicsEngine: Matter.Engine = Engine.create()
 const element: any = document.getElementById('physics')
 
-export const physics: Physics = {
+export const physics: IPhysics = {
 	engine: physicsEngine,
 	render: Render.create({
 		engine: physicsEngine,
@@ -16,7 +16,7 @@ const gameLoop = (delta: number, engine: Matter.Engine): void => {
 	Engine.update(engine, delta)
 }
 
-const setup = ({ ticker }: PIXI.Application): Physics => {
+const setup = ({ ticker }: PIXI.Application): IPhysics => {
 	physics.engine.world.gravity.y = 0
 
 	Render.run(physics.render)

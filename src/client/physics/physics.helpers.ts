@@ -1,10 +1,13 @@
 import { World, Bodies, Body } from 'matter-js'
 import { tileSize } from 'client/constants'
-import { entityBodyParams, staticBodyParams } from './physics.constants'
+import {
+	entityBodyParams,
+	staticBodyParams,
+} from 'common/physics/physics.constants'
 
 export const makeBody = (
 	engine: Matter.Engine,
-	point: Point,
+	point: IPoint,
 	bodyType: BodyType
 ): Matter.Body => {
 	const options: Matter.IBodyDefinition =
@@ -27,7 +30,7 @@ export const moveBody = (
 	delta: number,
 	body: Matter.Body,
 	speed: number,
-	dir: Direction
+	dir: IDirection
 ): void => {
 	Body.setVelocity(body, {
 		x: body.velocity.x + dir.x * speed * delta,

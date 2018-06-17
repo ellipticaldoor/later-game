@@ -21,7 +21,7 @@ export const inputMoveCamera = (
 
 export const inputMovePlayer = (
 	delta: number,
-	player: Player,
+	player: IPlayer,
 	{ playerUp, playerLeft, playerDown, playerRight }: IInputs
 ): boolean => {
 	const playerMoved =

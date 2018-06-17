@@ -15,7 +15,7 @@ export const getTileType = (
 	return tileLayer.tiles[tileIndex]
 }
 
-export const getTilePoint = ({ col, row }: ITileLocation): Point => ({
+export const getTilePoint = ({ col, row }: ITileLocation): IPoint => ({
 	x: col * tileSize,
 	y: row * tileSize,
 })

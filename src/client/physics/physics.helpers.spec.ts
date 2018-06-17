@@ -3,7 +3,7 @@ import { Sprite } from '@pixi/sprite'
 import { makeBody, moveBody, syncSpritePosition } from './physics.helpers'
 
 const engine: Matter.Engine = Engine.create()
-const point: Point = { x: 5, y: 5 }
+const point: IPoint = { x: 5, y: 5 }
 const defaultBody = makeBody(engine, point, 'entity')
 const delta = 1
 const speed = 10
