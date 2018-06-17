@@ -4,7 +4,7 @@ import {
 	staticTiles,
 	groundTileLayer,
 	topTileLayer,
-} from 'client/atlas/atlas.constants'
+} from 'common/atlas/atlas.constants'
 import { camera } from 'client/camera/camera'
 import { getContainerByName } from 'client/camera/camera.helpers'
 import { filter } from 'ramda'

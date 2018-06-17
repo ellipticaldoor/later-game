@@ -4,7 +4,7 @@ import {
 	loadSpritesForLayer,
 	loadTileBodiesForLayer,
 } from 'client/atlas/helpers/atlas.helpers'
-import { staticTiles } from 'client/atlas/atlas.constants'
+import { staticTiles } from 'common/atlas/atlas.constants'
 import { physics } from 'client/physics/physics'
 import { cropTexture, textureOf } from 'client/helpers/sprite.helpers'
 import { Sprite } from '@pixi/sprite'
