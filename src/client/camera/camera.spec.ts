@@ -1,7 +1,7 @@
 import cameraSetup, { camera } from './camera'
 import { defaultContainers } from './camera.constants'
 import { getContainerByName } from './camera.helpers'
-import { pixiMock } from '@client/constants/testing'
+import { pixiMock } from 'client/constants/testing'
 
 const pixi = Object.assign({}, pixiMock)
 

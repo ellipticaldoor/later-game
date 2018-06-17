@@ -1,15 +1,15 @@
 import { World } from 'matter-js'
 import { Sprite } from '@pixi/sprite'
 import { map } from 'ramda'
-import { textureOf, cropTexture } from '@client/helpers/sprite.helpers'
-import { tileSize } from '@client/constants'
+import { textureOf, cropTexture } from 'client/helpers/sprite.helpers'
+import { tileSize } from 'client/constants'
 import { staticTiles } from '../atlas.constants'
 import {
 	getTilePoint,
 	getTileType,
 	tileLayerIterator,
 } from './utils.atlas.helpers'
-import { makeBody } from '@client/physics/physics.helpers'
+import { makeBody } from 'client/physics/physics.helpers'
 
 export const loadAtlasTextures = (tilesImage: Asset): PIXI.Texture[] => {
 	const viewports: Point[] = [

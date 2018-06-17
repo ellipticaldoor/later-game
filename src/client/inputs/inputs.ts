@@ -1,7 +1,7 @@
 import inputsState from './inputs.state'
-import { frameView } from '@client/camera/camera.helpers'
-import { camera } from '@client/camera/camera'
-import { player } from '@client/player/player'
+import { frameView } from 'client/camera/camera.helpers'
+import { camera } from 'client/camera/camera'
+import { player } from 'client/player/player'
 import { inputMovePlayer, inputMoveCamera } from './helpers/inputs.helpers'
 import { bindInputEvents } from './helpers/utils.inputs.helpers'
 

@@ -1,5 +1,5 @@
 import { World, Bodies, Body } from 'matter-js'
-import { tileSize } from '@client/constants'
+import { tileSize } from 'client/constants'
 import { entityBodyParams, staticBodyParams } from './physics.constants'
 
 export const makeBody = (

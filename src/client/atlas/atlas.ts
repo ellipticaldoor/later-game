@@ -1,14 +1,14 @@
 import { map } from 'ramda'
 import { groundTileLayer, topTileLayer } from './atlas.constants'
-import { camera } from '@client/camera/camera'
-import { physics } from '@client/physics/physics'
-import { getContainerByName } from '@client/camera/camera.helpers'
+import { camera } from 'client/camera/camera'
+import { physics } from 'client/physics/physics'
+import { getContainerByName } from 'client/camera/camera.helpers'
 import {
 	loadAtlasTextures,
 	loadSpritesForLayer,
 	loadTileBodiesForLayer,
 } from './helpers/atlas.helpers'
-import tilesImage from '@client/assets/img/tiles.png'
+import tilesImage from 'client/assets/img/tiles.png'
 
 export const atlas: Atlas = {
 	textures: [],

@@ -1,5 +1,5 @@
 import { map, propEq, find } from 'ramda'
-import { tileSize } from '@client/constants'
+import { tileSize } from 'client/constants'
 
 export const getContainerByName = (
 	name: string,

@@ -1,8 +1,8 @@
 import atlasSetup, { atlas } from './atlas'
-import { cropTexture } from '@client/helpers/sprite.helpers'
+import { cropTexture } from 'client/helpers/sprite.helpers'
 import { staticTiles, groundTileLayer, topTileLayer } from './atlas.constants'
-import { camera } from '@client/camera/camera'
-import { getContainerByName } from '@client/camera/camera.helpers'
+import { camera } from 'client/camera/camera'
+import { getContainerByName } from 'client/camera/camera.helpers'
 import { filter } from 'ramda'
 
 const mockCropTexture = ((cropTexture as any) = jest.fn())

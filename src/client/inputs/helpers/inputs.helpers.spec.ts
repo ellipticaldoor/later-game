@@ -1,7 +1,7 @@
 import { inputMovePlayer, inputMoveCamera } from './inputs.helpers'
 import inputsDefault from '../inputs.state'
-import { player as playerDefault } from '@client/player/player'
-import { camera as cameraDefault } from '@client/camera/camera'
+import { player as playerDefault } from 'client/player/player'
+import { camera as cameraDefault } from 'client/camera/camera'
 import { map } from 'ramda'
 
 const inputs = Object.assign({}, inputsDefault)

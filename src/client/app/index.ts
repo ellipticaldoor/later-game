@@ -1,6 +1,6 @@
 import pixi from './pixi'
-import resize from '@client/helpers/resize.helpers'
-import assets from '@client/assets'
+import resize from 'client/helpers/resize.helpers'
+import assets from 'client/assets'
 import { Loader } from '@pixi/loaders'
 
 document.body.appendChild(pixi.view)

@@ -20,9 +20,9 @@
 		"experimentalDecorators": true,
 		"baseUrl": "./src",
 		"paths": {
-			"@common/*": ["./common/*"],
-			"@client/*": ["./client/*"],
-			"@server/*": ["./server/*"]
+			"common/*": ["./common/*"],
+			"client/*": ["./client/*"],
+			"server/*": ["./server/*"]
 		}
 	},
 	"include": [

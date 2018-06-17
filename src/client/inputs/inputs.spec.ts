@@ -1,7 +1,7 @@
 import inputsSetup, { gameLoop } from './inputs'
 import inputs from './inputs.state'
-import { player } from '@client/player/player'
-import { pixiMock } from '@client/constants/testing'
+import { player } from 'client/player/player'
+import { pixiMock } from 'client/constants/testing'
 import { map } from 'ramda'
 
 const pixi = Object.assign({}, pixiMock)

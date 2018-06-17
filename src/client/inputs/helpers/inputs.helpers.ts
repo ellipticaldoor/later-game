@@ -1,5 +1,5 @@
-import { moveBody } from '@client/physics/physics.helpers'
-import { moveCamera } from '@client/camera/camera.helpers'
+import { moveBody } from 'client/physics/physics.helpers'
+import { moveCamera } from 'client/camera/camera.helpers'
 
 export const inputMoveCamera = (
 	delta: number,

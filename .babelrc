@@ -8,9 +8,9 @@
 		}],
 		["module-resolver", {
 			"alias": {
-				"@common": "./src/common",
-				"@client": "./src/client",
-				"@server": "./src/server"
+				"common": "./src/common",
+				"client": "./src/client",
+				"server": "./src/server"
 			}
 		}],
 		"transform-object-rest-spread",

@@ -1,4 +1,4 @@
-import { pixiMock } from '@client/constants/testing'
+import { pixiMock } from 'client/constants/testing'
 import { camera } from './camera'
 import {
 	getContainerByName,

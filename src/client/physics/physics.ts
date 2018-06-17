@@ -1,5 +1,5 @@
 import { Engine, Render } from 'matter-js'
-import { renderOptions } from '@client/physics/physics.constants'
+import { renderOptions } from 'client/physics/physics.constants'
 const physicsEngine: Matter.Engine = Engine.create()
 const element: any = document.getElementById('physics')
 

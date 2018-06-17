@@ -1,8 +1,8 @@
-import physicsSetup from '@client/physics/physics'
-import cameraSetup from '@client/camera/camera'
-import atlasSetup from '@client/atlas/atlas'
-import playerSetup from '@client/player/player'
-import inputsSetup from '@client/inputs/inputs'
+import physicsSetup from 'client/physics/physics'
+import cameraSetup from 'client/camera/camera'
+import atlasSetup from 'client/atlas/atlas'
+import playerSetup from 'client/player/player'
+import inputsSetup from 'client/inputs/inputs'
 
 interface Game {
 	physics: Physics
