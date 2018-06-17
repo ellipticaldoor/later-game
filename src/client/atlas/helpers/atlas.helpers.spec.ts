@@ -22,8 +22,8 @@ const tileLayer: ITileLayer = {
 		0, 1, 3, 3,
 	],
 }
-const tilesetImage = 'default'
-const image = 'default'
+const tilesetImage: Asset = 'default'
+const image: Asset = 'default'
 const textures = [textureOf(image), textureOf(image)]
 
 test('Create texture tiles from an image that contains a tileset', () => {
@@ -46,10 +46,7 @@ test('Make a new sprite based on a tile tipe and textures for it', () => {
 test('Make a new sprite for each non empty tile', () => {
 	const sprites = loadSpritesForLayer(tileLayer, textures)
 
-	const nonEmptyTiles: Tile[] = filter(
-		tile => (tile ? true : false),
-		tileLayer.tiles
-	)
+	const nonEmptyTiles = filter(tile => (tile ? true : false), tileLayer.tiles)
 
 	expect(sprites).toHaveLength(nonEmptyTiles.length)
 	map(sprite => {
@@ -60,7 +57,7 @@ test('Make a new sprite for each non empty tile', () => {
 test('Make a new matter-js body for each non empty tile', () => {
 	const bodies = loadTileBodiesForLayer(tileLayer, physics.engine)
 
-	const totalStaticTiles: Tile[] = filter(
+	const totalStaticTiles = filter(
 		tile => (staticTiles.includes(tile) ? true : false),
 		tileLayer.tiles
 	)

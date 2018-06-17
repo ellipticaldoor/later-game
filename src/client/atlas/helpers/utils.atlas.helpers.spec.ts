@@ -7,7 +7,7 @@ import {
 import { map } from 'ramda'
 
 // prettier-ignore
-const tileLayer: TileLayer = {
+const tileLayer: ITileLayer = {
 	zIndex: 0,
 	cols: 4,
 	rows: 4,
@@ -20,7 +20,7 @@ const tileLayer: TileLayer = {
 }
 
 test('Get the index of a tile based on its location', () => {
-	const tileLocation: TileLocation = { col: 1, row: 1 }
+	const tileLocation: ITileLocation = { col: 1, row: 1 }
 
 	const index = getTileIndex(tileLayer.cols, tileLocation)
 
@@ -28,7 +28,7 @@ test('Get the index of a tile based on its location', () => {
 })
 
 test('Get the value type of a tile based on its location', () => {
-	const tileLocation: TileLocation = { col: 1, row: 1 }
+	const tileLocation: ITileLocation = { col: 1, row: 1 }
 
 	const value = getTileType(tileLayer, tileLocation)
 
@@ -36,7 +36,7 @@ test('Get the value type of a tile based on its location', () => {
 })
 
 test('Get the coordinates where the a tile is going to be drawed based in its location', () => {
-	const tileLocation: TileLocation = { col: 3, row: 1 }
+	const tileLocation: ITileLocation = { col: 3, row: 1 }
 
 	const coordinates = getTilePoint(tileLocation)
 

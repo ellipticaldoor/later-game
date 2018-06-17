@@ -1,6 +1,6 @@
 import { Engine, Render } from 'matter-js'
 import { renderOptions } from 'client/physics/physics.constants'
-const physicsEngine: Matter.Engine = Engine.create()
+const physicsEngine = Engine.create()
 const element: any = document.getElementById('physics')
 
 export const physics: IPhysics = {
