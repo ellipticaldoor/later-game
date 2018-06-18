@@ -27,8 +27,10 @@ console.log(`Listening socket.io on port ${port}`)
 
 io.on('connect', socket => {
 	console.log('client connected')
+	// TODO: Add entity body
 
 	socket.on('disconnect', () => {
 		console.log(`client disconnected`)
+		// TODO: Destroy entity body
 	})
 })
