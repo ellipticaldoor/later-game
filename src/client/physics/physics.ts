@@ -6,19 +6,16 @@ export const physicsGameLoop = (delta: number, engine: Matter.Engine): void => {
 }
 
 export const physicsState = (): IPhysics => {
-	const physicsEngine = Engine.create()
 	const element: any = document.getElementById('physics')
+	const engine = Engine.create()
+	engine.world.gravity.y = 0
 
-	const physics: IPhysics = {
-		engine: physicsEngine,
+	return {
+		engine,
 		render: Render.create({
-			engine: physicsEngine,
+			engine,
 			element,
 			options: renderOptions,
 		}),
 	}
-
-	physics.engine.world.gravity.y = 0
-
-	return physics
 }

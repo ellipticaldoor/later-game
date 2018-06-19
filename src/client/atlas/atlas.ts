@@ -9,33 +9,21 @@ import tilesImage from 'client/assets/img/tiles.png'
 import { map } from 'ramda'
 
 export const atlasState = ({ engine }: IPhysics): IAtlas => {
-	const atlas: IAtlas = {
-		textures: [],
-		layers: { groundTileLayer, topTileLayer },
-		sprites: {},
-		bodies: { ground: [] },
+	const textures = loadAtlasTextures(tilesImage)
+
+	return {
+		textures,
+		bodies: {
+			ground: loadTileBodiesForLayer(groundTileLayer, engine),
+		},
+		sprites: {
+			ground: loadSpritesForLayer(groundTileLayer, textures),
+			top: loadSpritesForLayer(topTileLayer, textures),
+		},
 	}
-
-	atlas.textures = loadAtlasTextures(tilesImage)
-
-	atlas.bodies.ground = loadTileBodiesForLayer(
-		atlas.layers.groundTileLayer,
-		engine
-	)
-
-	atlas.sprites.ground = loadSpritesForLayer(
-		atlas.layers.groundTileLayer,
-		atlas.textures
-	)
-	atlas.sprites.top = loadSpritesForLayer(
-		atlas.layers.topTileLayer,
-		atlas.textures
-	)
-
-	return atlas
 }
 
-export const loadAtlasSprites = (
+export const loadAtlasSpritesIntoCameraState = (
 	{ sprites }: IAtlas,
 	{ containers }: ICamera
 ): void => {

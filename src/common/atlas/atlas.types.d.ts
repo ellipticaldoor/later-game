@@ -20,7 +20,6 @@ interface ITileLayer {
 
 interface IAtlas {
 	textures: PIXI.Texture[]
-	layers: IDictionary<ITileLayer>
-	sprites: IDictionary<PIXI.Sprite[]>
 	bodies: IDictionary<Matter.Body[]>
+	sprites: IDictionary<PIXI.Sprite[]>
 }
