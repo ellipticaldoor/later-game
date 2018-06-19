@@ -15,6 +15,10 @@ const jestConfig = {
 	},
 	testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
 	coveragePathIgnorePatterns: ['.*\\.d\\.ts', '<rootDir>/node_modules/'],
+	watchPlugins: [
+		'jest-watch-typeahead/filename',
+		'jest-watch-typeahead/testname',
+	],
 }
 
 if (process.env.COVERAGE === 'all') {
