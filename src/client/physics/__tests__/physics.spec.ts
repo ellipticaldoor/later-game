@@ -1,16 +1,20 @@
-import physicsSetup, { physics } from 'client/physics/physics'
-import { pixiMock } from 'client/constants/testing'
-
-const pixi = Object.assign({}, pixiMock)
+import { physicsState, physicsGameLoop } from 'client/physics/physics'
 
 describe('Physics setup', () => {
-	physicsSetup(pixi)
+	const physics = physicsState()
 
-	test('A gameloop was added to the ticker', () => {
-		expect(pixi.ticker.add).toHaveBeenCalledTimes(1)
+	test('Create a new physics state', () => {
+		expect(physics)
 	})
 
 	test('Gravity was disabled', () => {
 		expect(physics.engine.world.gravity.y).toBe(0)
+	})
+
+	test('Physics game loop', () => {
+		const delta = 1
+		physicsGameLoop(delta, physics.engine)
+
+		// TODO: Check physics engine gets updated
 	})
 })

@@ -1,7 +1,7 @@
 import { loadTileBodiesForLayer } from 'common/atlas/helpers/atlas.helpers'
 import { staticTiles } from 'common/atlas/atlas.constants'
-import { physics } from 'client/physics/physics'
 import { filter, map } from 'ramda'
+import { Engine } from 'matter-js'
 
 // prettier-ignore
 const tileLayer: ITileLayer = {
@@ -17,7 +17,8 @@ const tileLayer: ITileLayer = {
 }
 
 test('Make a new matter-js body for each non empty tile', () => {
-	const bodies = loadTileBodiesForLayer(tileLayer, physics.engine)
+	const engine = Engine.create()
+	const bodies = loadTileBodiesForLayer(tileLayer, engine)
 
 	const totalStaticTiles = filter(
 		tile => (staticTiles.includes(tile) ? true : false),

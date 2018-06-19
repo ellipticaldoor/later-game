@@ -6,7 +6,7 @@ import {
 	syncSpritePosition,
 } from 'common/physics/physics.helpers'
 
-const engine: Matter.Engine = Engine.create()
+const engine = Engine.create()
 const point: IPoint = { x: 5, y: 5 }
 const defaultBody = makeBody(engine, point, 'entity')
 const delta = 1
