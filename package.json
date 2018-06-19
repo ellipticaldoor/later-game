@@ -16,7 +16,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:coverage:all": "cross-env COVERAGE=all jest --coverage",
-    "test:report": "open coverage/lcov-report/index.html",
+    "test:report": "opn coverage/lcov-report/index.html",
     "prettier:base": "prettier --config .prettierrc",
     "prettier": "yarn prettier:base --parser typescript --write 'src/**/*.{ts,tsx}'",
     "prettier:watch": "onchange \"src/**/*.ts\" -- yarn prettier:base --parser typescript --write {{changed}}",

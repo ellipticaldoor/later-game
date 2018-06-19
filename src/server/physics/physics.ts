@@ -43,7 +43,7 @@ setInterval(() => {
 
 // Load socket.io
 // More examples https://github.com/mcpetersen/Evaluation-app
-const app = new Koa()
+const app = new Koa() // TODO: Remove Koa, not needed at the moment
 const server = new Server(app.callback())
 const io = IO(server)
 const port = process.env.PORT || 4000
