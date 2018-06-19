@@ -1,13 +1,14 @@
-import inputsState from './inputs.state'
+import { playerInputs, cameraInputs } from './inputs.states'
 import { frameView } from 'client/camera/camera.helpers'
-import { camera } from 'client/camera/camera'
-import { player } from 'client/player/player'
 import { inputMovePlayer, inputMoveCamera } from './helpers/inputs.helpers'
-import { bindInputEvents } from './helpers/utils.inputs.helpers'
 
-export const gameLoop = (
+export const inputsState = (): IInputs => ({ ...playerInputs, ...cameraInputs })
+
+export const inputsGameLoop = (
 	delta: number,
 	inputs: IInputs,
+	camera: ICamera,
+	player: IPlayer,
 	renderer: PIXI.Renderer
 ): void => {
 	if (inputMoveCamera(delta, camera, inputs)) {
@@ -22,12 +23,3 @@ export const gameLoop = (
 		frameView(renderer, camera.view, player.sprite.position)
 	}
 }
-
-const setup = ({ ticker, renderer }: PIXI.Application): IInputs => {
-	bindInputEvents(inputsState)
-	ticker.add(delta => gameLoop(delta, inputsState, renderer))
-
-	return inputsState
-}
-
-export default setup

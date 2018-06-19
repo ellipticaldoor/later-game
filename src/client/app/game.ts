@@ -6,6 +6,8 @@ import {
 	loadPlayerSprite,
 	playerGameLoop,
 } from 'client/player/player'
+import { inputsState, inputsGameLoop } from 'client/inputs/inputs'
+import { bindInputEvents } from 'client/inputs/helpers/utils.inputs.helpers'
 
 export default (pixi: PIXI.Application): void => {
 	const physics = physicsState()
@@ -19,12 +21,12 @@ export default (pixi: PIXI.Application): void => {
 	const player = playerState(physics)
 	loadPlayerSprite(player, camera)
 
+	const inputs = inputsState()
+	bindInputEvents(inputs)
+
 	pixi.ticker.add(delta => {
 		physicsGameLoop(delta, physics.engine)
 		playerGameLoop(player)
+		inputsGameLoop(delta, inputs, camera, player, pixi.renderer)
 	})
 }
-
-// export default (pixi: PIXI.Application): IGame => ({
-// 	inputs: inputsSetup(pixi),
-// })
