@@ -1,10 +1,6 @@
 import { Engine, Render } from 'matter-js'
 import { renderOptions } from 'client/physics/physics.constants'
 
-export const physicsGameLoop = (delta: number, engine: Matter.Engine): void => {
-	Engine.update(engine, delta)
-}
-
 export const physicsState = (): IPhysics => {
 	const element: any = document.getElementById('physics')
 	const engine = Engine.create()
@@ -18,4 +14,8 @@ export const physicsState = (): IPhysics => {
 			options: renderOptions,
 		}),
 	}
+}
+
+export const physicsGameLoop = (delta: number, engine: Matter.Engine): void => {
+	Engine.update(engine, delta)
 }

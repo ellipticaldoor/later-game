@@ -23,7 +23,7 @@ export const atlasState = ({ engine }: IPhysics): IAtlas => {
 	}
 }
 
-export const loadAtlasSpritesIntoCameraState = (
+export const loadAtlasSprites = (
 	{ sprites }: IAtlas,
 	{ containers }: ICamera
 ): void => {
