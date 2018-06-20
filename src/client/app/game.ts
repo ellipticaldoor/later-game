@@ -1,4 +1,8 @@
-import { physicsState, physicsGameLoop } from 'client/physics/physics'
+import {
+	physicsState,
+	physicsGameLoop,
+	renderPhysicsView,
+} from 'client/physics/physics'
 import { cameraState } from 'client/camera/camera'
 import { atlasState, loadAtlasSprites } from 'client/atlas/atlas'
 import {
@@ -11,6 +15,7 @@ import { bindInputEvents } from 'client/inputs/helpers/utils.inputs.helpers'
 
 export default (pixi: PIXI.Application): void => {
 	const physics = physicsState()
+	renderPhysicsView(physics.engine)
 
 	const camera = cameraState()
 	pixi.stage.addChild(camera.view)
