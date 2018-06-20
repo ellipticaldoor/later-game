@@ -1,17 +1,10 @@
-import cameraSetup, { camera } from 'client/camera/camera'
+import { cameraState } from 'client/camera/camera'
 import { defaultContainers } from 'client/camera/camera.constants'
 import { getContainerByName } from 'client/camera/camera.helpers'
-import { pixiMock } from 'client/constants/testing'
-
-const pixi = Object.assign({}, pixiMock)
 
 describe('Camera setup', () => {
-	cameraSetup(pixi)
+	const camera = cameraState()
 	const { view, containers } = camera
-
-	test('The main camera view was added to the game view', () => {
-		expect(pixi.stage.addChild).toHaveBeenCalledTimes(1)
-	})
 
 	test('The default containers were added to the main camera view', () => {
 		expect(camera.view.children.length).toBe(defaultContainers.length)

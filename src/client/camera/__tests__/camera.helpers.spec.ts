@@ -1,5 +1,5 @@
 import { pixiMock } from 'client/constants/testing'
-import { camera } from 'client/camera/camera'
+import { cameraState } from 'client/camera/camera'
 import {
 	getContainerByName,
 	attachContainersToView,
@@ -8,8 +8,8 @@ import {
 	frameView,
 } from 'client/camera/camera.helpers'
 
-const testCamera = Object.assign({}, camera)
-const { view, containers } = testCamera
+const camera = cameraState()
+const { view, containers } = camera
 const speed = 1
 const delta = 1
 
