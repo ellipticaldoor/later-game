@@ -1,31 +1,15 @@
-import atlasSetup, { atlas } from 'client/atlas/atlas'
+import { atlasState, loadAtlasSprites } from 'client/atlas/atlas'
+import { physicsState } from 'client/physics/physics'
 import { cropTexture } from 'client/helpers/sprite.helpers'
-import {
-	staticTiles,
-	groundTileLayer,
-	topTileLayer,
-} from 'common/atlas/atlas.constants'
-import { camera } from 'client/camera/camera'
+import { cameraState } from 'client/camera/camera'
 import { getContainerByName } from 'client/camera/camera.helpers'
-import { filter } from 'ramda'
-
-const mockCropTexture = ((cropTexture as any) = jest.fn())
 
 describe('Atlas setup', () => {
-	atlasSetup()
+	const mockCropTexture = ((cropTexture as any) = jest.fn())
+	const atlas = atlasState(physicsState())
 
-	test('The layers have been loaded', () => {
-		expect(atlas.layers).toHaveProperty('groundTileLayer')
-		expect(atlas.layers).toHaveProperty('topTileLayer')
-	})
-
-	test('The static bodies of groundTileLayer have been loaded', () => {
-		const totalStaticTiles = filter(
-			tile => (staticTiles.includes(tile) ? true : false),
-			groundTileLayer.tiles
-		)
-
-		expect(atlas.bodies.ground).toHaveLength(totalStaticTiles.length)
+	test('New atlas state', () => {
+		expect(atlas)
 	})
 
 	test('The textures have been loaded', () => {
@@ -33,27 +17,14 @@ describe('Atlas setup', () => {
 		expect(atlas.textures).toHaveLength(5)
 	})
 
-	describe('Sprites loading', () => {
-		const nonEmptyGroundTiles = filter(
-			tile => (tile ? true : false),
-			groundTileLayer.tiles
-		)
-		const nonEmptyTopTiles = filter(
-			tile => (tile ? true : false),
-			topTileLayer.tiles
-		)
+	test('Sprite loading into the camera container', () => {
+		const camera = cameraState()
+		loadAtlasSprites(atlas, camera)
 
-		test('The sprites have been loaded', () => {
-			expect(atlas.sprites.ground).toHaveLength(nonEmptyGroundTiles.length)
-			expect(atlas.sprites.top).toHaveLength(nonEmptyTopTiles.length)
-		})
+		const groundCamera = getContainerByName('ground', camera.containers)
+		const topCamera = getContainerByName('top', camera.containers)
 
-		test('The sprites have been loaded into the camera', () => {
-			const ground = getContainerByName('ground', camera.containers)
-			const top = getContainerByName('top', camera.containers)
-
-			expect(ground.container.children).toHaveLength(nonEmptyGroundTiles.length)
-			expect(top.container.children).toHaveLength(nonEmptyTopTiles.length)
-		})
+		expect(groundCamera.container.children.length).toBeGreaterThan(0)
+		expect(topCamera.container.children.length).toBeGreaterThan(0)
 	})
 })

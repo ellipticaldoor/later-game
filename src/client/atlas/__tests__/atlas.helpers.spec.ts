@@ -3,8 +3,6 @@ import {
 	makeTileSprite,
 	loadSpritesForLayer,
 } from 'client/atlas/atlas.helpers'
-import { staticTiles } from 'common/atlas/atlas.constants'
-import { physics } from 'client/physics/physics'
 import { cropTexture, textureOf } from 'client/helpers/sprite.helpers'
 import { Sprite } from '@pixi/sprite'
 import { filter, map } from 'ramda'
