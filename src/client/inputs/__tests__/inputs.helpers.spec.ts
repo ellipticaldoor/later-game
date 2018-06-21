@@ -2,12 +2,13 @@ import {
 	inputMovePlayer,
 	inputMoveCamera,
 } from 'client/inputs/helpers/inputs.helpers'
-import inputsDefault from 'client/inputs/inputs.state'
-import { player as playerDefault } from 'client/player/player'
-import { camera as cameraDefault } from 'client/camera/camera'
+import { inputsState } from 'client/inputs/inputs'
+import { physicsState } from 'client/physics/physics'
+import { playerState } from 'client/player/player'
+import { cameraState } from 'client/camera/camera'
 import { map } from 'ramda'
 
-const inputs = Object.assign({}, inputsDefault)
+const inputs = inputsState()
 const delta = 1
 
 beforeEach(() => {
@@ -16,7 +17,7 @@ beforeEach(() => {
 
 describe('Input event actions', () => {
 	describe('Player inputs events', () => {
-		const player = Object.assign({}, playerDefault)
+		const player = playerState(physicsState())
 		player.speed = 10
 
 		beforeEach(() => {
@@ -79,7 +80,7 @@ describe('Input event actions', () => {
 	})
 
 	describe('Camera inputs events', () => {
-		const camera = Object.assign({}, cameraDefault)
+		const camera = cameraState()
 		camera.speed = 15
 
 		beforeEach(() => {
