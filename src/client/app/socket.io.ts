@@ -7,5 +7,5 @@ socket.on('connect', () => {
 })
 
 socket.on('gamestate', (gamestate: any) => {
-	// console.log(gamestate)
+	console.log(Object.keys(gamestate).length)
 })

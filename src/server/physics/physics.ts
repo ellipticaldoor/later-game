@@ -1,4 +1,4 @@
-import { Engine } from 'matter-js'
+import { Engine, World } from 'matter-js'
 import { groundTileLayer } from 'common/atlas/atlas.constants'
 import { loadTileBodiesForLayer } from 'common/atlas/helpers/atlas.helpers'
 import { makeBody } from 'common/physics/physics.helpers'
@@ -8,7 +8,8 @@ import * as Koa from 'koa'
 import { Server } from 'http'
 import * as IO from 'socket.io'
 
-import { map } from 'ramda'
+import { reduce } from 'ramda'
+import * as uniqid from 'uniqid'
 
 // Load physics
 const physicsEngine = Engine.create()
@@ -17,13 +18,21 @@ physicsEngine.world.gravity.y = 0
 loadTileBodiesForLayer(groundTileLayer, physicsEngine)
 
 const updateGamestate = (entities: any) => {
-	return map(entity => {
-		return {
-			x: entity.position.x,
-			y: entity.position.y,
-			label: entity.label,
-		}
-	}, entities)
+	return reduce(
+		(acc, entityId) => {
+			const entity = entities[entityId]
+
+			acc[entityId] = {
+				x: entity.position.x,
+				y: entity.position.y,
+				label: entity.label,
+			}
+
+			return acc
+		},
+		{} as any,
+		Object.keys(entities)
+	)
 }
 
 // Load socket.io
@@ -37,7 +46,8 @@ server.listen(port)
 console.log(`Listening socket.io on port ${port}`)
 
 // Create entities
-const bodies: any = []
+// This bodies array is used to store only bodies that need to be updated
+const bodies: any = {}
 
 io.on('connect', socket => {
 	console.log('client connected')
@@ -48,11 +58,14 @@ io.on('connect', socket => {
 		'entity',
 		'player'
 	)
-	bodies.push(playerBody)
+	const playerId = uniqid()
+	bodies[playerId] = playerBody
 
 	socket.on('disconnect', () => {
 		console.log(`client disconnected`)
-		// TODO: destroyBody()
+
+		World.remove(physicsEngine.world, playerBody)
+		delete bodies[playerId]
 	})
 })
 
