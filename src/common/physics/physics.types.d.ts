@@ -3,3 +3,5 @@ interface IPhysics {
 }
 
 type BodyType = 'entity' | 'static'
+
+type BodyLabel = 'player' | 'tile'

@@ -50,8 +50,6 @@ io.on('connect', socket => {
 	)
 	bodies.push(playerBody)
 
-	console.log(bodies)
-
 	socket.on('disconnect', () => {
 		console.log(`client disconnected`)
 		// TODO: destroyBody()

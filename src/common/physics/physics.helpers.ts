@@ -9,7 +9,7 @@ export const makeBody = (
 	engine: Matter.Engine,
 	point: IPoint,
 	bodyType: BodyType,
-	label?: string
+	label: BodyLabel
 ): Matter.Body => {
 	const options: Matter.IBodyDefinition =
 		bodyType === 'entity' ? entityBodyParams : staticBodyParams

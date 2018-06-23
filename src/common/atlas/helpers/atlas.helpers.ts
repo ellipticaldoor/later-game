@@ -17,7 +17,12 @@ export const loadTileBodiesForLayer = (
 	const addTileBody = ({ col, row }: ITileLocation): void => {
 		const type = getTileType(tileLayer, { col, row })
 		if (staticTiles.includes(type)) {
-			const body = makeBody(engine, getTilePoint({ col, row }), 'static')
+			const body = makeBody(
+				engine,
+				getTilePoint({ col, row }),
+				'static',
+				'tile'
+			)
 			bodies.push(body)
 		}
 	}
