@@ -3,6 +3,7 @@ import { groundTileLayer } from 'common/atlas/atlas.constants'
 import { loadTileBodiesForLayer } from 'common/atlas/helpers/atlas.helpers'
 import { makeBody } from 'common/physics/physics.helpers'
 import { getTilePoint } from 'common/atlas/helpers/utils.atlas.helpers'
+import { rand } from 'common/helpers/utils.helpers'
 
 import * as Koa from 'koa'
 import { Server } from 'http'
@@ -53,7 +54,7 @@ io.on('connect', socket => {
 
 	const playerBody = makeBody(
 		physicsEngine,
-		getTilePoint({ col: 2, row: 3 }),
+		getTilePoint({ col: rand(1, 10), row: rand(1, 10) }),
 		'player'
 	)
 	const playerId = uniqid()
@@ -72,5 +73,5 @@ setInterval(() => {
 }, 1000 / 60)
 
 setInterval(() => {
-	io.emit('gamestate', updateGamestate(bodies))
+	io.emit('gameState', updateGamestate(bodies))
 }, 1000 / 24)

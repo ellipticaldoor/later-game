@@ -14,8 +14,8 @@ describe('Player setup', () => {
 
 	test('Player was added to camera entities container', () => {
 		loadPlayerSprite(player, camera)
-		const entities = getContainerByName('entities', camera.containers)
-		expect(entities.container.getChildIndex(player.sprite))
+		const entitiesCamera = getContainerByName('entities', camera.containers)
+		expect(entitiesCamera.container.getChildIndex(player.sprite))
 	})
 
 	test('Player is centered in the screen by default', () => {

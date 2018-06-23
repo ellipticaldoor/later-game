@@ -12,6 +12,7 @@ import {
 } from 'client/player/player'
 import { inputsState, inputsGameLoop } from 'client/inputs/inputs'
 import { bindInputEvents } from 'client/inputs/helpers/utils.inputs.helpers'
+import { entitiesState, entitiesGameLoop } from 'client/entities/entities'
 
 export default (pixi: PIXI.Application): void => {
 	const physics = physicsState()
@@ -26,12 +27,15 @@ export default (pixi: PIXI.Application): void => {
 	const player = playerState(physics)
 	loadPlayerSprite(player, camera)
 
+	const entities = entitiesState(physics, camera)
+
 	const inputs = inputsState()
 	bindInputEvents(inputs)
 
 	pixi.ticker.add(delta => {
 		physicsGameLoop(delta, physics.engine)
 		playerGameLoop(player)
+		entitiesGameLoop(entities)
 		inputsGameLoop(delta, inputs, camera, player, pixi.renderer)
 	})
 }
