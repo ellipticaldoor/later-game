@@ -3,16 +3,17 @@ import { tileSize } from 'common/atlas/atlas.constants'
 import {
 	entityBodyParams,
 	staticBodyParams,
+	staticBodies,
 } from 'common/physics/physics.constants'
 
 export const makeBody = (
 	engine: Matter.Engine,
 	point: IPoint,
-	bodyType: BodyType,
 	label: BodyLabel
 ): Matter.Body => {
-	const options: Matter.IBodyDefinition =
-		bodyType === 'entity' ? entityBodyParams : staticBodyParams
+	const options = staticBodies.includes(label)
+		? staticBodyParams
+		: entityBodyParams
 
 	const body: Matter.Body = Bodies.rectangle(
 		point.x,
@@ -22,8 +23,7 @@ export const makeBody = (
 		options
 	)
 
-	body.label = label || bodyType
-
+	body.label = label
 	World.add(engine.world, body)
 
 	return body

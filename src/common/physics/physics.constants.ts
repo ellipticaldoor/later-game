@@ -10,3 +10,5 @@ export const staticBodyParams: Matter.IBodyDefinition = {
 	friction: 0,
 	restitution: 0,
 }
+
+export const staticBodies: BodyLabel[] = ['tile']

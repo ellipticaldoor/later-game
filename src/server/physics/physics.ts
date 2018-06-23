@@ -17,8 +17,8 @@ physicsEngine.world.gravity.y = 0
 
 loadTileBodiesForLayer(groundTileLayer, physicsEngine)
 
-const updateGamestate = (entities: any) => {
-	return reduce(
+const updateGamestate = (entities: any) =>
+	reduce(
 		(acc, entityId) => {
 			const entity = entities[entityId]
 
@@ -33,7 +33,6 @@ const updateGamestate = (entities: any) => {
 		{} as any,
 		Object.keys(entities)
 	)
-}
 
 // Load socket.io
 // More examples https://github.com/mcpetersen/Evaluation-app
@@ -55,7 +54,6 @@ io.on('connect', socket => {
 	const playerBody = makeBody(
 		physicsEngine,
 		getTilePoint({ col: 2, row: 3 }),
-		'entity',
 		'player'
 	)
 	const playerId = uniqid()
