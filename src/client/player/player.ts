@@ -12,7 +12,7 @@ export const playerState = ({ engine }: IPhysics): IPlayer => {
 	return {
 		sprite,
 		body: makeBody(engine, initialPlayerPoint, 'player'),
-		speed: 0.8,
+		speed: 0.06,
 		frame: true, // Tells if the player is centered in the screen
 	}
 }

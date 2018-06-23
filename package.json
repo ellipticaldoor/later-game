@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "koa": "^2.5.1",
+    "mainloop.js": "^1.0.4",
     "matter-js": "^0.14.2",
     "mousetrap": "^1.6.2",
     "pixi.js": "^5.0.0-alpha.2",
@@ -38,6 +39,7 @@
   "devDependencies": {
     "@types/jest": "^22.2.3",
     "@types/koa": "^2.0.46",
+    "@types/mainloop.js": "^1.0.5",
     "@types/matter-js": "^0.10.1",
     "@types/mousetrap": "^1.6.0",
     "@types/node": "^10.3.5",

@@ -13,6 +13,17 @@ export const entitiesState = (
 	const entities: any = {}
 
 	socket.on('gameState', (serverGameState: any) => {
+		// Delete entities on the client that are not present on the server
+		map(key => {
+			const serverStateHasProperty = has(key, serverGameState)
+
+			if (!serverStateHasProperty) {
+				entitiesCamera.container.removeChild(entities[key].sprite)
+				delete entities[key]
+			}
+		}, Object.keys(entities))
+
+		// Update and create entities
 		map(key => {
 			const playerState = serverGameState[key]
 			const clientStateHasProperty = has(key, entities)

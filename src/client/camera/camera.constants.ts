@@ -6,4 +6,4 @@ export const defaultContainers: IGameContainer[] = [
 	{ name: 'top', zIndex: 2, container: new Container() },
 ]
 
-export const defaultCameraSpeed = 12
+export const defaultCameraSpeed = 0.8
