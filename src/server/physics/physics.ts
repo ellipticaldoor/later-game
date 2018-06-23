@@ -77,7 +77,7 @@ setInterval(() => {
 	Engine.update(physicsEngine, delta)
 	map(
 		(body: any) => {
-			moveBody(delta, body, 0.01, { x: -1, y: 0 })
+			moveBody(delta, body, 0.06, { x: -1, y: 0 })
 		},
 		bodies as any
 	)

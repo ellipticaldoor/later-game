@@ -37,20 +37,15 @@ export default (pixi: PIXI.Application): void => {
 		event.preventDefault()
 	})
 
-	const ticker: MainLoop = Object.assign(mainloop)
+	mainloop.setUpdate(delta => {
+		physicsGameLoop(delta, physics.engine)
+		inputsGameLoop(delta, inputs, camera, player, pixi.renderer)
+	})
 
-	ticker
-		.setMaxAllowedFPS(60)
-		// Logic updates
-		.setUpdate(delta => {
-			physicsGameLoop(delta, physics.engine)
-			inputsGameLoop(delta, inputs, camera, player, pixi.renderer)
-		})
-		// Drawing updates
-		.setDraw(() => {
-			playerGameLoop(player)
-			entitiesGameLoop(entities)
-		})
+	mainloop.setDraw(() => {
+		playerGameLoop(player)
+		entitiesGameLoop(entities)
+	})
 
-	ticker.start()
+	mainloop.start()
 }

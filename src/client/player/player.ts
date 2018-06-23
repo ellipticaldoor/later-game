@@ -5,7 +5,7 @@ import { makeBody, syncSpritePosition } from 'common/physics/physics.helpers'
 import characterImage from 'client/assets/img/character.png'
 
 export const playerState = ({ engine }: IPhysics): IPlayer => {
-	const initialPlayerPoint = getTilePoint({ col: 2, row: 3 })
+	const initialPlayerPoint = getTilePoint({ col: 8, row: 5 })
 	const sprite = spriteOf(characterImage)
 	sprite.position.set(initialPlayerPoint.x, initialPlayerPoint.y)
 
@@ -13,7 +13,7 @@ export const playerState = ({ engine }: IPhysics): IPlayer => {
 		sprite,
 		body: makeBody(engine, initialPlayerPoint, 'player'),
 		speed: 0.06,
-		frame: true, // Tells if the player is centered in the screen
+		frame: true, // Moves camera to put the player on the center of the screen
 	}
 }
 
