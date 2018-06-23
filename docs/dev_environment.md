@@ -44,7 +44,8 @@ Settings config
 	"editor.lightbulb.enabled": false,
 	"javascript.suggestionActions.enabled": false,
 	"files.trimTrailingWhitespace": true,
-	"editor.formatOnPaste": true
+	"editor.formatOnPaste": true,
+	"window.title": "${activeEditorMedium}${separator}${rootName}"
 }
 ```
 

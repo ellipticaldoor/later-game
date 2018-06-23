@@ -8,7 +8,8 @@ import {
 export const makeBody = (
 	engine: Matter.Engine,
 	point: IPoint,
-	bodyType: BodyType
+	bodyType: BodyType,
+	label?: string
 ): Matter.Body => {
 	const options: Matter.IBodyDefinition =
 		bodyType === 'entity' ? entityBodyParams : staticBodyParams
@@ -20,6 +21,8 @@ export const makeBody = (
 		tileSize,
 		options
 	)
+
+	body.label = label || bodyType
 
 	World.add(engine.world, body)
 
