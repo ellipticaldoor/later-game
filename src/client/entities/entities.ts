@@ -3,43 +3,52 @@ import { getContainerByName } from 'client/camera/camera.helpers'
 import { map, has } from 'ramda'
 import characterImage from 'client/assets/img/character.png'
 import { spriteOf } from 'client/helpers/sprite.helpers'
-import { makeBody, syncSpritePosition } from 'common/physics/physics.helpers'
+// import { makeBody, syncSpritePosition } from 'common/physics/physics.helpers'
 
 export const entitiesState = (
 	{ engine }: IPhysics,
 	{ containers }: ICamera
 ): any => {
 	const entitiesCamera = getContainerByName('entities', containers)
-	const states: any = {}
 	const entities: any = {}
 
 	socket.on('gameState', (serverGameState: any) => {
 		map(key => {
-			const clientStateHasProperty = has(key, states)
+			const playerState = serverGameState[key]
+			const clientStateHasProperty = has(key, entities)
 
-			if (!clientStateHasProperty) {
-				const playerState = serverGameState[key]
+			if (clientStateHasProperty) {
+				const playerEntity = entities[key]
+				playerEntity.state = playerState
+
+				playerEntity.sprite.position.x = playerState.x
+				playerEntity.sprite.position.y = playerState.y
+
+				// playerEntity.body.position.x = playerState.x
+				// playerEntity.body.position.y = playerState.y
+			} else {
 				entities[key] = { sprite: undefined, body: undefined }
+
+				entities[key].state = playerState
 
 				const playerSprite = spriteOf(characterImage)
 				playerSprite.position.set(playerState.x, playerState.y)
 				entities[key].sprite = playerSprite
 
-				const playerPoint = { x: playerState.x, y: playerState.y }
-				const playerBody = makeBody(engine, playerPoint, 'player')
-				entities[key].body = playerBody
+				// const playerPoint = { x: playerState.x, y: playerState.y }
+				// const playerBody = makeBody(engine, playerPoint, 'player')
+				// entities[key].body = playerBody
 
-				states[key] = playerState
 				entitiesCamera.container.addChild(playerSprite)
 			}
 		}, Object.keys(serverGameState))
 	})
 
-	return { states, entities }
+	return { entities }
 }
 
 export const entitiesGameLoop = ({ entities }: any): void => {
-	map(({ sprite, body }) => {
-		syncSpritePosition(sprite, body)
-	}, entities)
+	// map(({ sprite, body }) => {
+	// 	syncSpritePosition(sprite, body)
+	// }, entities)
 }

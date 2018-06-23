@@ -1,9 +1,10 @@
 import { Engine, World } from 'matter-js'
 import { groundTileLayer } from 'common/atlas/atlas.constants'
 import { loadTileBodiesForLayer } from 'common/atlas/helpers/atlas.helpers'
-import { makeBody } from 'common/physics/physics.helpers'
+import { makeBody, moveBody } from 'common/physics/physics.helpers'
 import { getTilePoint } from 'common/atlas/helpers/utils.atlas.helpers'
 import { rand } from 'common/helpers/utils.helpers'
+import { map } from 'ramda'
 
 import * as Koa from 'koa'
 import { Server } from 'http'
@@ -24,9 +25,9 @@ const updateGamestate = (entities: any) =>
 			const entity = entities[entityId]
 
 			acc[entityId] = {
-				x: entity.position.x,
-				y: entity.position.y,
 				label: entity.label,
+				x: Math.trunc(entity.position.x),
+				y: Math.trunc(entity.position.y),
 			}
 
 			return acc
@@ -51,10 +52,12 @@ const bodies: any = {}
 
 io.on('connect', socket => {
 	console.log('client connected')
+	const col = rand(7, 7) // TODO: Check if col / row are not reversed
+	const row = rand(3, 3)
 
 	const playerBody = makeBody(
 		physicsEngine,
-		getTilePoint({ col: rand(1, 10), row: rand(1, 10) }),
+		getTilePoint({ col, row }),
 		'player'
 	)
 	const playerId = uniqid()
@@ -68,10 +71,18 @@ io.on('connect', socket => {
 	})
 })
 
+// TODO: Use propper delta ticker
+const delta = 1000 / 60
 setInterval(() => {
-	Engine.update(physicsEngine, 1000 / 60)
-}, 1000 / 60)
+	Engine.update(physicsEngine, delta)
+	map(
+		(body: any) => {
+			moveBody(delta, body, 0.01, { x: -1, y: 0 })
+		},
+		bodies as any
+	)
+}, delta)
 
 setInterval(() => {
 	io.emit('gameState', updateGamestate(bodies))
-}, 1000 / 24)
+}, 1000 / 20)
