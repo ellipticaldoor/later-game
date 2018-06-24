@@ -12,6 +12,8 @@ import * as IO from 'socket.io'
 
 import { reduce } from 'ramda'
 import * as uniqid from 'uniqid'
+import * as mainloop from 'mainloop.js'
+// import { debounce } from 'throttle-debounce'
 
 // Load physics
 const physicsEngine = Engine.create()
@@ -53,7 +55,7 @@ const bodies: any = {}
 io.on('connect', socket => {
 	console.log('client connected')
 	const col = rand(7, 7) // TODO: Check if col / row are not reversed
-	const row = rand(3, 3)
+	const row = rand(3, 5)
 
 	const playerBody = makeBody(
 		physicsEngine,
@@ -71,18 +73,27 @@ io.on('connect', socket => {
 	})
 })
 
-// TODO: Use propper delta ticker
-const delta = 1000 / 60
-setInterval(() => {
+let leftRight: any = 1
+setInterval(() => (leftRight = leftRight * -1), 2000)
+mainloop.setUpdate(delta => {
 	Engine.update(physicsEngine, delta)
 	map(
 		(body: any) => {
-			moveBody(delta, body, 0.06, { x: -1, y: 0 })
+			moveBody(delta, body, 0.06, { x: leftRight, y: 0 })
 		},
 		bodies as any
 	)
-}, delta)
+})
 
-setInterval(() => {
-	io.emit('gameState', updateGamestate(bodies))
-}, 1000 / 20)
+const nus = 24 // Number of updates per second - 1 min, 60 max
+let emit = true
+setInterval(() => (emit = true), 1000 / nus)
+
+mainloop.setEnd(() => {
+	if (emit) {
+		io.emit('gameState', updateGamestate(bodies))
+		emit = false
+	}
+})
+
+mainloop.start()
