@@ -55,7 +55,7 @@ const bodies: any = {}
 io.on('connect', socket => {
 	console.log('client connected')
 	const col = rand(7, 7) // TODO: Check if col / row are not reversed
-	const row = rand(3, 5)
+	const row = rand(3, 3)
 
 	const playerBody = makeBody(
 		physicsEngine,
@@ -85,7 +85,7 @@ mainloop.setUpdate(delta => {
 	)
 })
 
-const nus = 24 // Number of updates per second - 1 min, 60 max
+const nus = 20 // Number of updates per second - 1 min, 60 max
 let emit = true
 setInterval(() => (emit = true), 1000 / nus)
 
