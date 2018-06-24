@@ -1,4 +1,4 @@
-import './physics/physics'
+import './game'
 
 const port = Number(process.env.PORT || 2222)
 

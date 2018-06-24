@@ -4,7 +4,7 @@ import { loadTileBodiesForLayer } from 'common/atlas/helpers/atlas.helpers'
 import { makeBody, moveBody } from 'common/physics/physics.helpers'
 import { getTilePoint } from 'common/atlas/helpers/utils.atlas.helpers'
 import { rand } from 'common/helpers/utils.helpers'
-import { map } from 'ramda'
+// import { map } from 'ramda'
 
 import * as Koa from 'koa'
 import { Server } from 'http'
@@ -72,7 +72,7 @@ io.on('connect', socket => {
 	})
 })
 
-const nus = 30 // Number of updates per second - 0, 10, 20, 30, 40, 50 or 60
+const nus = 60 // Number of updates per second - 0, 10, 20, 30, 40, 50 or 60
 const limit = 60 / nus
 let counter = 1
 let emit = true
@@ -83,17 +83,17 @@ mainloop.setBegin(() => {
 	counter = emit ? 1 : counter + 1
 })
 
-let leftRight: any = -1
-setInterval(() => (leftRight = leftRight * -1), 2000)
+// let leftRight: any = -1
+// setInterval(() => (leftRight = leftRight * -1), 2000)
 
 mainloop.setUpdate(delta => {
 	Engine.update(physicsEngine, delta)
-	map(
-		(body: any) => {
-			moveBody(delta, body, 0.06, { x: leftRight, y: 0 })
-		},
-		bodies as any
-	)
+	// map(
+	// 	(body: any) => {
+	// 		moveBody(delta, body, 0.06, { x: leftRight, y: 0 })
+	// 	},
+	// 	bodies as any
+	// )
 })
 
 mainloop.setEnd(() => {

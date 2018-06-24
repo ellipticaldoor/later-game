@@ -2,6 +2,10 @@
 	"compilerOptions": {
 		"strict": true,
 		"alwaysStrict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitAny": true,
+		"noFallthroughCasesInSwitch": true,
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"types": ["node", "jest", "pixi.js", "matter-js"],
@@ -13,10 +17,6 @@
 			"es2017",
 			"dom"
 		],
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noImplicitAny": true,
-		"noFallthroughCasesInSwitch": true,
 		"experimentalDecorators": true,
 		"baseUrl": "./src",
 		"paths": {
