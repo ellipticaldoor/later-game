@@ -13,7 +13,6 @@ import * as IO from 'socket.io'
 import { reduce } from 'ramda'
 import * as uniqid from 'uniqid'
 import * as mainloop from 'mainloop.js'
-// import { debounce } from 'throttle-debounce'
 
 // Load physics
 const physicsEngine = Engine.create()
@@ -73,7 +72,15 @@ io.on('connect', socket => {
 	})
 })
 
-let leftRight: any = 1
+// TODO: Use setBegin for input
+
+const nus = 20 // Number of updates per second - 0, 10, 20, 30, 40, 50 or 60
+let emit = true
+// setInterval(() => (emit = true), 1000 / nus)
+const limit = 60 / nus
+let counter = 1
+
+let leftRight: any = -1
 setInterval(() => (leftRight = leftRight * -1), 2000)
 mainloop.setUpdate(delta => {
 	Engine.update(physicsEngine, delta)
@@ -83,16 +90,14 @@ mainloop.setUpdate(delta => {
 		},
 		bodies as any
 	)
-})
 
-const nus = 20 // Number of updates per second - 1 min, 60 max
-let emit = true
-setInterval(() => (emit = true), 1000 / nus)
+	emit = counter === limit
+	counter = emit ? 1 : counter + 1
+})
 
 mainloop.setEnd(() => {
 	if (emit) {
 		io.emit('gameState', updateGamestate(bodies))
-		emit = false
 	}
 })
 

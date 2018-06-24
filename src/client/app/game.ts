@@ -37,6 +37,8 @@ export default (pixi: PIXI.Application): void => {
 		event.preventDefault()
 	})
 
+	// TODO: Use setBegin for input
+
 	mainloop.setUpdate(delta => {
 		physicsGameLoop(delta, physics.engine)
 		inputsGameLoop(delta, inputs, camera, player, pixi.renderer)
