@@ -47,9 +47,12 @@ const port = process.env.PORT || 4000
 server.listen(port)
 console.log(`Listening socket.io on port ${port}`)
 
+let gameDelta = 0
+
 // Create entities
 // This bodies array is used to store only bodies that need to be updated
 const bodies: any = {}
+const playersMeta: any = {}
 
 io.on('connect', socket => {
 	console.log('client connected')
@@ -64,13 +67,28 @@ io.on('connect', socket => {
 	const playerId = uniqid()
 	bodies[playerId] = playerBody
 
+	playersMeta[socket.id] = { playerId }
+
 	socket.on('disconnect', () => {
-		console.log(`client disconnected`)
+		console.log('client disconnected')
 
 		World.remove(physicsEngine.world, playerBody)
 		delete bodies[playerId]
+		delete playersMeta[playerId]
+	})
+
+	socket.emit('playerMeta', playersMeta[socket.id])
+
+	socket.on('playerMove', dir => {
+		// TODO: moveBody inside the setUpdate before updating the engine
+		moveBody(gameDelta, playerBody, 0.06, dir)
 	})
 })
+
+// TODO: Can this be done with io?
+// io.on('playerMove', dir => {
+// 	moveBody(gameDelta, playerBody, 0.06, dir)
+// })
 
 const nus = 60 // Number of updates per second - 0, 10, 20, 30, 40, 50 or 60
 const limit = 60 / nus
@@ -87,6 +105,7 @@ mainloop.setBegin(() => {
 // setInterval(() => (leftRight = leftRight * -1), 2000)
 
 mainloop.setUpdate(delta => {
+	gameDelta = delta
 	Engine.update(physicsEngine, delta)
 	// map(
 	// 	(body: any) => {

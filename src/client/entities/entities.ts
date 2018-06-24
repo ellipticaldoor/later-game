@@ -1,7 +1,7 @@
 import socket from 'client/app/socket.io'
 import { getContainerByName } from 'client/camera/camera.helpers'
 import { map, has } from 'ramda'
-import characterImage from 'client/assets/img/character.png'
+import characterImage from 'client/assets/img/character_online.png'
 import { spriteOf } from 'client/helpers/sprite.helpers'
 // import { makeBody, syncSpritePosition } from 'common/physics/physics.helpers'
 

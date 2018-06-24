@@ -1,5 +1,6 @@
 import { moveBody } from 'common/physics/physics.helpers'
 import { moveCamera } from 'client/camera/camera.helpers'
+import socket from 'client/app/socket.io'
 
 export const inputMoveCamera = (
 	delta: number,
@@ -28,10 +29,14 @@ export const inputMovePlayer = (
 		playerUp.state || playerLeft.state || playerDown.state || playerRight.state
 
 	if (playerMoved) {
-		moveBody(delta, player.body, player.speed, {
+		const dir: IDirection = {
 			x: playerLeft.state ? -1 : playerRight.state ? 1 : 0,
 			y: playerUp.state ? -1 : playerDown.state ? 1 : 0,
-		})
+		}
+
+		moveBody(delta, player.body, player.speed, dir)
+
+		socket.emit('playerMove', dir)
 	}
 
 	return playerMoved
