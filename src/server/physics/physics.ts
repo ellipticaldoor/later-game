@@ -72,16 +72,20 @@ io.on('connect', socket => {
 	})
 })
 
-// TODO: Use setBegin for input
-
-const nus = 20 // Number of updates per second - 0, 10, 20, 30, 40, 50 or 60
-let emit = true
-// setInterval(() => (emit = true), 1000 / nus)
+const nus = 30 // Number of updates per second - 0, 10, 20, 30, 40, 50 or 60
 const limit = 60 / nus
 let counter = 1
+let emit = true
+
+mainloop.setBegin(() => {
+	// TODO: Process input here
+	emit = counter === limit
+	counter = emit ? 1 : counter + 1
+})
 
 let leftRight: any = -1
 setInterval(() => (leftRight = leftRight * -1), 2000)
+
 mainloop.setUpdate(delta => {
 	Engine.update(physicsEngine, delta)
 	map(
@@ -90,9 +94,6 @@ mainloop.setUpdate(delta => {
 		},
 		bodies as any
 	)
-
-	emit = counter === limit
-	counter = emit ? 1 : counter + 1
 })
 
 mainloop.setEnd(() => {
