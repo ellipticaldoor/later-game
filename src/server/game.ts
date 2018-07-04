@@ -6,13 +6,29 @@ import { getTilePoint } from 'common/atlas/helpers/utils.atlas.helpers'
 import { rand } from 'common/helpers/utils.helpers'
 
 import * as Koa from 'koa'
+import * as Router from 'koa-router'
 import { Server } from 'http'
 import * as IO from 'socket.io'
 
 // Load socket.io
 // More examples https://github.com/mcpetersen/Evaluation-app
+// https://github.com/xmj-alliance/chatroom-node/blob/master/src/server/chatroom-node.ts
 const app = new Koa()
+const router = new Router()
 const server = new Server(app.callback())
+
+const playersMeta: any = {}
+
+router.get('/', async ctx => {
+	ctx.body = 'api works finally!'
+})
+
+router.get('/players-meta', async ctx => {
+	ctx.body = playersMeta
+})
+
+app.use(router.routes())
+
 const io = IO(server)
 const port = process.env.PORT || 4000
 
@@ -50,7 +66,6 @@ let gameDelta = 0
 // Create entities
 // This bodies array is used to store only bodies that need to be updated
 const bodies: any = {}
-const playersMeta: any = {}
 
 io.on('connect', socket => {
 	console.log('client connected')
