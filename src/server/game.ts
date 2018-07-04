@@ -4,11 +4,16 @@ import { loadTileBodiesForLayer } from 'common/atlas/helpers/atlas.helpers'
 import { makeBody, moveBody } from 'common/physics/physics.helpers'
 import { getTilePoint } from 'common/atlas/helpers/utils.atlas.helpers'
 import { rand } from 'common/helpers/utils.helpers'
-// import { map } from 'ramda'
 
-import * as Koa from 'koa'
-import { Server } from 'http'
-import * as IO from 'socket.io'
+import { createServer } from 'http'
+import * as socketio from 'socket.io'
+
+const port = process.env.PORT || 4000
+const server = createServer()
+const io = socketio(server)
+
+server.listen(port)
+console.log(`Listening socket.io on port ${port}`)
 
 import { reduce } from 'ramda'
 import * as uniqid from 'uniqid'
@@ -36,16 +41,6 @@ const updateGamestate = (entities: any) =>
 		{} as any,
 		Object.keys(entities)
 	)
-
-// Load socket.io
-// More examples https://github.com/mcpetersen/Evaluation-app
-const app = new Koa()
-const server = new Server(app.callback())
-const io = IO(server)
-const port = process.env.PORT || 4000
-
-server.listen(port)
-console.log(`Listening socket.io on port ${port}`)
 
 let gameDelta = 0
 
