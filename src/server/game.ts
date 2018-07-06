@@ -44,7 +44,6 @@ let gameDelta = 0
 // Create entities
 // This bodies array is used to store only bodies that need to be updated
 const bodies: any = {}
-const playersMeta: any = {}
 
 io.on('connect', socket => {
 	console.log('client connected')
@@ -59,21 +58,18 @@ io.on('connect', socket => {
 	const playerId = uniqid()
 	bodies[playerId] = playerBody
 
-	playersMeta[socket.id] = { playerId }
+	socket.emit('connected', { playerId })
+
+	socket.on('playerMove', dir => {
+		// TODO: moveBody inside the setUpdate before updating the engine
+		moveBody(gameDelta, playerBody, 0.06, dir)
+	})
 
 	socket.on('disconnect', () => {
 		console.log('client disconnected')
 
 		World.remove(physicsEngine.world, playerBody)
 		delete bodies[playerId]
-		delete playersMeta[playerId]
-	})
-
-	socket.emit('playerMeta', playersMeta[socket.id])
-
-	socket.on('playerMove', dir => {
-		// TODO: moveBody inside the setUpdate before updating the engine
-		moveBody(gameDelta, playerBody, 0.06, dir)
 	})
 })
 
