@@ -27,8 +27,6 @@
   },
   "dependencies": {
     "express": "^4.16.3",
-    "koa": "^2.5.1",
-    "koa-router": "^7.4.0",
     "mainloop.js": "^1.0.4",
     "matter-js": "^0.14.2",
     "mousetrap": "^1.6.2",
@@ -40,8 +38,6 @@
   },
   "devDependencies": {
     "@types/jest": "^22.2.3",
-    "@types/koa": "^2.0.46",
-    "@types/koa-router": "^7.0.30",
     "@types/mainloop.js": "^1.0.5",
     "@types/matter-js": "^0.10.1",
     "@types/mousetrap": "^1.6.0",
