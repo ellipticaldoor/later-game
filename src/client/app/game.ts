@@ -32,12 +32,10 @@ export default (pixi: PIXI.Application): void => {
 
 	const inputs = inputsState()
 	bindInputEvents(inputs)
-	// Disable right click
-	document.addEventListener('contextmenu', event => {
-		event.preventDefault()
-	})
 
-	// TODO: Use setBegin for input
+	document.addEventListener('contextmenu', event => {
+		event.preventDefault() // Disable right click
+	})
 
 	mainloop.setUpdate(delta => {
 		physicsGameLoop(delta, physics.engine)

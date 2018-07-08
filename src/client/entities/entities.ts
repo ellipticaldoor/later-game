@@ -12,6 +12,7 @@ export const entitiesState = (
 	const entitiesCamera = getContainerByName('entities', containers)
 	const entities: any = {}
 
+	// TODO: Remove socket logic from here
 	socket.on('gameState', (serverGameState: any) => {
 		// Delete entities on the client that are not present on the server
 		map(key => {
