@@ -6,6 +6,7 @@
 		"noUnusedParameters": true,
 		"noImplicitAny": true,
 		"noFallthroughCasesInSwitch": true,
+		"experimentalDecorators": true,
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"types": ["node", "jest", "pixi.js", "matter-js"],
@@ -13,26 +14,15 @@
 		"outDir": "lib",
 		"jsx": "preserve",
 		"target": "es2017",
-		"lib": [
-			"es2017",
-			"dom"
-		],
-		"experimentalDecorators": true,
-		"baseUrl": "./src",
-		"paths": {
-			"client/*": [
-				"./client/*"
-			],
-			"server/*": [
-				"./server/*"
-			]
-		}
+		"lib": ["es2017", "dom"],
+		"baseUrl": "./src"
 	},
-	"include": [
-		"src/client/**/*.ts"
-	],
 	"exclude": [
+		".cache",
 		".git",
-		"node_modules"
+		"dist",
+		"node_modules",
+		"server_build",
+		"client_build"
 	]
 }

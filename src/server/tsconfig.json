@@ -4,6 +4,9 @@
 		"outDir": "../../server_build",
 	},
     "include": [
-		"**/*.ts"
+		"../**/*.ts"
+	],
+	"exclude": [
+		"../client"
 	]
 }
