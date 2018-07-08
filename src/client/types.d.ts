@@ -5,8 +5,6 @@ declare module '*.png' {
 	export default png
 }
 
-declare module 'debounce'
-
 declare module '@pixi/core'
 declare module '@pixi/loaders'
 declare module '@pixi/app' {
