@@ -17,9 +17,9 @@ Loader.shared
 
 		socket.on(
 			'connected',
-			(initialServerData: any): void => {
-				console.log(initialServerData)
-				game(pixi)
+			(playerStateMeta: any): void => {
+				// TODO: Find better name for playerStateMeta
+				game(pixi, playerStateMeta)
 			}
 		)
 	})

@@ -15,7 +15,9 @@ import { bindInputEvents } from 'client/inputs/helpers/utils.inputs.helpers'
 import { entitiesState, entitiesGameLoop } from 'client/entities/entities'
 import * as mainloop from 'mainloop.js'
 
-export default (pixi: PIXI.Application): void => {
+export default (pixi: PIXI.Application, playerStateMeta: any): void => {
+	console.log(playerStateMeta)
+
 	const physics = physicsState()
 	renderPhysicsView(physics.engine)
 
