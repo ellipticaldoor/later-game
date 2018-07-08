@@ -8,7 +8,6 @@
 		}],
 		["module-resolver", {
 			"alias": {
-				"common": "./src/common",
 				"client": "./src/client",
 				"server": "./src/server"
 			}
