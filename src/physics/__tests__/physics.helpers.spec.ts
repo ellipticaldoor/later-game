@@ -1,5 +1,5 @@
 import { Engine } from 'matter-js'
-import { makeBody, moveBody } from 'physics/physics.helpers'
+import { makeBody, moveBody } from '../physics.helpers'
 
 const engine = Engine.create()
 const point: IPoint = { x: 5, y: 5 }

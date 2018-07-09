@@ -4,7 +4,7 @@ import {
 	ENTITY_BODY_PARAMS,
 	STATIC_BODIES_PARAMS,
 	STATIC_BODIES,
-} from 'physics/physics.constants'
+} from './physics.constants'
 
 export const makeBody = (
 	engine: Matter.Engine,

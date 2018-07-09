@@ -1,4 +1,4 @@
-import { physicsState, physicsGameLoop } from 'physics/physics'
+import { physicsState, physicsGameLoop } from '../physics'
 
 describe('Physics setup', () => {
 	const physics = physicsState()

@@ -1,3 +1,6 @@
-const port = Number(process.env.PORT || 2222)
+import { GROUND_TILES } from 'tiles/tiles.constants'
+import { physicsState } from 'physics/physics'
+import { loadBodiesFromTiles } from 'tiles/helpers/tiles.helpers'
 
-console.log(`\n👂 Backend server Listening on http://localhost:${port}`)
+const physics = physicsState()
+loadBodiesFromTiles(GROUND_TILES, physics.engine)
