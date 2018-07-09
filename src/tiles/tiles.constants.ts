@@ -1,10 +1,10 @@
 export const TILE_SIZE = 64
 
 // Static tiles are tiles that doesn't move
-export const static_tiles: Tile[] = [3]
+export const STATIC_TILES: Tile[] = [3]
 
 // prettier-ignore
-export const ground_tiles: ITileLayer = {
+export const GROUND_TILES: ITileLayer = {
 	zIndex: 0,
 	cols: 15,
 	rows: 12,
@@ -25,7 +25,7 @@ export const ground_tiles: ITileLayer = {
 }
 
 // prettier-ignore
-export const top_tiles: ITileLayer = {
+export const TOP_TILES: ITileLayer = {
 	zIndex: 2,
 	cols: 15,
 	rows: 12,
