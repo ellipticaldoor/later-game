@@ -1,4 +1,5 @@
 const jestConfig = {
+	moduleDirectories: ['node_modules', 'src'],
 	moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
 	globals: {
 		'ts-jest': {
@@ -15,12 +16,6 @@ const jestConfig = {
 	},
 	testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
 	coveragePathIgnorePatterns: ['.*\\.d\\.ts', '<rootDir>/node_modules/'],
-	// Update to jest 23 to enable this when this bug is fixed:
-	// https://github.com/jest-community/vscode-jest/issues/316
-	// watchPlugins: [
-	// 	'jest-watch-typeahead/filename',
-	// 	'jest-watch-typeahead/testname',
-	// ],
 }
 
 if (process.env.COVERAGE === 'all') {
