@@ -7,7 +7,7 @@ import {
 } from './utils.tiles.helpers'
 import { makeBody } from 'physics/physics.helpers'
 
-export const loadBodiesFromTiles = (
+export const loadTileBodies = (
 	tileLayer: ITileLayer,
 	engine: Matter.Engine
 ): Matter.Body[] => {
