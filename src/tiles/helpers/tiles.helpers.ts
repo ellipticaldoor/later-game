@@ -11,17 +11,18 @@ export const loadTileBodies = (
 	tileLayer: ITileLayer,
 	engine: Matter.Engine
 ): Matter.Body[] => {
-	const { cols, rows } = tileLayer
 	const bodies: Matter.Body[] = []
 
 	const addTileBody = ({ col, row }: ITileLocation): void => {
 		const type = getTileType(tileLayer, { col, row })
+
 		if (STATIC_TILES.includes(type)) {
 			const body = makeBody(engine, getTilePoint({ col, row }), 'tile')
 			bodies.push(body)
 		}
 	}
 
+	const { cols, rows } = tileLayer
 	tileLayerIterator(cols, rows, addTileBody)
 	World.add(engine.world, bodies)
 
