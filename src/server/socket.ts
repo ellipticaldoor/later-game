@@ -1,12 +1,12 @@
 import { createServer } from 'http'
-import * as IO from 'socket.io'
+import * as Socket from 'socket.io'
 
 export const server = createServer()
-const io = IO(server)
+const socket = Socket(server)
 
 const connect = (socket: any): void => {
 	console.log('client connected')
-	socket.emit('connected', {})
+	socket.emit('connected', { data: 'data' })
 }
 
-io.on('connect', connect)
+socket.on('connect', connect)
