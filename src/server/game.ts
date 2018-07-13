@@ -8,7 +8,7 @@ import { physicsState, physicsGameLoop } from 'physics/physics'
 import { loadTileBodies } from 'tiles/helpers/tiles.helpers'
 import { makeBody } from 'physics/physics.helpers'
 import { getTilePoint } from 'tiles/helpers/utils.tiles.helpers'
-import { updateGamestate } from 'server/state/state.helpers'
+import { updateGamestate } from 'state/state.helpers'
 
 const physics = physicsState()
 
@@ -39,7 +39,7 @@ mainloop.setUpdate((delta): void => {
 })
 
 mainloop.setEnd((): void => {
-	// socket.emit('gameState', updateGamestate(entityBodies))
+	socket.emit('gameState', updateGamestate(entityBodies))
 })
 
 mainloop.start()

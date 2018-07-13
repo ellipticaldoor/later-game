@@ -1,6 +1,6 @@
 import 'game'
 import { server } from 'server/socket'
-import 'server/state/state'
+import 'server/game'
 
 const port = process.env.PORT || 4000
 
