@@ -1,4 +1,4 @@
-import { reduce, pipe } from 'ramda'
+import { reduce } from 'ramda'
 
 export const updateGamestate = (entities: IDictionary<Matter.Body>): any =>
 	reduce(
