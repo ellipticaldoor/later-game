@@ -8,7 +8,7 @@ Loader.shared.add(assets).load(async () => {
 		import('client/game'),
 	])
 
-	socket.on('connected', (playerStateMeta: any): void => {
-		game(pixi, playerStateMeta)
+	socket.on('connected', (connectionInfo: any): void => {
+		game(pixi, connectionInfo)
 	})
 })

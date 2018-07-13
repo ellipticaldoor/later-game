@@ -1,8 +1,10 @@
-export default (pixi: PIXI.Application, playerStateMeta: any): void => {
-	// socket.on('gameState', (state: any): void => {
-	// 	// console.log(state)
-	// })
+import socket from 'client/socket'
 
-	console.log(playerStateMeta)
+export default (pixi: PIXI.Application, connectionInfo: any): void => {
+	socket.on('gameState', (serverEntitiesState: any): void => {
+		// console.log(serverEntitiesState)
+	})
+
+	console.log(connectionInfo)
 	console.log(pixi)
 }
