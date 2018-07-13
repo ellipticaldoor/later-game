@@ -7,5 +7,5 @@ socket.on('connected', (state: any): void => {
 })
 
 socket.on('gameState', (state: any): void => {
-	console.log(state)
+	// console.log(state)
 })

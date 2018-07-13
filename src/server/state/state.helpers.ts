@@ -1,11 +1,9 @@
-import { reduce } from 'ramda'
+import { reduce, pipe } from 'ramda'
 
-export const updateGamestate = (entities: IDictionary<Matter.Body>) =>
+export const updateGamestate = (entities: IDictionary<Matter.Body>): any =>
 	reduce(
-		(acc, entityId) => {
-			const entity = entities[entityId]
-
-			acc[entityId] = {
+		(acc, [id, entity]) => {
+			acc[id] = {
 				label: entity.label,
 				x: Math.trunc(entity.position.x),
 				y: Math.trunc(entity.position.y),
@@ -14,5 +12,5 @@ export const updateGamestate = (entities: IDictionary<Matter.Body>) =>
 			return acc
 		},
 		{} as any,
-		Object.keys(entities)
+		Object.entries(entities)
 	)

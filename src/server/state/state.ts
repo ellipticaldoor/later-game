@@ -26,6 +26,8 @@ socket.on('connect', (clientSocket): void => {
 
 	entityBodies[clientId] = entityBody
 
+	updateGamestate(entityBodies)
+
 	clientSocket.emit('connected', { clientId })
 
 	clientSocket.on('disconnect', () => {
@@ -39,7 +41,7 @@ mainloop.setUpdate((delta): void => {
 })
 
 mainloop.setEnd((): void => {
-	socket.emit('gameState', updateGamestate(entityBodies))
+	// socket.emit('gameState', updateGamestate(entityBodies))
 })
 
 mainloop.start()
