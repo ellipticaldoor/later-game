@@ -26,8 +26,6 @@ socket.on('connect', (clientSocket): void => {
 
 	entityBodies[clientId] = entityBody
 
-	updateGamestate(entityBodies)
-
 	clientSocket.emit('connected', { clientId })
 
 	clientSocket.on('disconnect', () => {
