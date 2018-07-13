@@ -8,8 +8,8 @@ import {
 import { makeBody } from 'physics/physics.helpers'
 
 export const loadTileBodies = (
-	tileLayer: ITileLayer,
-	engine: Matter.Engine
+	engine: Matter.Engine,
+	tileLayer: ITileLayer
 ): Matter.Body[] => {
 	const bodies: Matter.Body[] = []
 
