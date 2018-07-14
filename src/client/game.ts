@@ -1,10 +1,16 @@
+import { cameraState } from 'client/camera/camera'
 import socket from 'client/socket'
 
 export default (pixi: PIXI.Application, connectionInfo: any): void => {
-	socket.on('gameState', (serverEntitiesState: any): void => {
-		// console.log(serverEntitiesState)
-	})
+	const camera = cameraState()
+	pixi.stage.addChild(camera.view)
 
-	console.log(connectionInfo)
-	console.log(pixi)
+	console.log(camera)
+
+	socket.on(
+		'gameState',
+		(gameState: any): void => {
+			// console.log(gameState)
+		}
+	)
 }

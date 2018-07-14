@@ -6,7 +6,7 @@ import { loadTileBodies } from 'tiles/helpers/tiles.helpers'
 const physics = physicsState()
 loadTileBodies(physics.engine, GROUND_TILES)
 
-mainloop.setUpdate((delta) => {
+mainloop.setUpdate(delta => {
 	physicsGameLoop(delta, physics.engine)
 })
 

@@ -25,8 +25,8 @@ export const tileLayerIterator = (
 	rows: number,
 	method: ({ col, row }: ITileLocation) => void
 ): void => {
-	map((col) => {
-		map((row) => {
+	map(col => {
+		map(row => {
 			method({ col, row })
 		}, range(0, rows))
 	}, range(0, cols))

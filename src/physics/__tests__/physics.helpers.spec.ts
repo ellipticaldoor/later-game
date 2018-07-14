@@ -26,28 +26,40 @@ describe('Increase body velocity to move it', () => {
 	const body = makeBody(engine, point, 'player')
 
 	test('Accelerate body Up', () => {
-		moveBody(delta, body, speed, { x: 0, y: -1 })
+		moveBody(delta, body, speed, {
+			x: 0,
+			y: -1,
+		})
 
 		expect(body.velocity.x).toBe(0)
 		expect(body.velocity.y).toBe(speed * -1)
 	})
 
 	test('Accelerate body Down', () => {
-		moveBody(delta, body, speed, { x: 0, y: 1 })
+		moveBody(delta, body, speed, {
+			x: 0,
+			y: 1,
+		})
 
 		expect(body.velocity.x).toBe(0)
 		expect(body.velocity.y).toBe(0)
 	})
 
 	test('Accelerate body Rigth', () => {
-		moveBody(delta, body, speed, { x: 1, y: 0 })
+		moveBody(delta, body, speed, {
+			x: 1,
+			y: 0,
+		})
 
 		expect(body.velocity.x).toBe(speed)
 		expect(body.velocity.y).toBe(0)
 	})
 
 	test('Accelerate body Left', () => {
-		moveBody(delta, body, speed, { x: -1, y: 0 })
+		moveBody(delta, body, speed, {
+			x: -1,
+			y: 0,
+		})
 
 		expect(body.velocity.x).toBe(0)
 		expect(body.velocity.y).toBe(0)

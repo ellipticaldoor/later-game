@@ -1,17 +1,25 @@
 {
-	"env": { "browser": true },
+	"env": {
+		"browser": true
+	},
 	"ignore": [],
 	"plugins": [
-		["transform-runtime", {
-			"polyfill": false,
-			"regenerator": true
-		}],
-		["module-resolver", {
-			"alias": {
-				"client": "./src/client",
-				"server": "./src/server"
+		[
+			"transform-runtime",
+			{
+				"polyfill": false,
+				"regenerator": true
 			}
-		}],
+		],
+		[
+			"module-resolver",
+			{
+				"alias": {
+					"client": "./src/client",
+					"tiles": "./src/tiles"
+				}
+			}
+		],
 		"transform-object-rest-spread",
 		"ramda"
 	],

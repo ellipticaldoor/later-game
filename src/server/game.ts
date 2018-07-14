@@ -15,31 +15,43 @@ const physics = physicsState()
 loadTileBodies(physics.engine, GROUND_TILES)
 const entityBodies: IDictionary<Matter.Body> = {}
 
-socket.on('connect', (clientSocket): void => {
-	const entityBody = makeBody(
-		physics.engine,
-		getTilePoint({ col: rand(3, 7), row: rand(1, 3) }),
-		'player'
-	)
+socket.on(
+	'connect',
+	(clientSocket): void => {
+		const entityBody = makeBody(
+			physics.engine,
+			getTilePoint({
+				col: rand(3, 7),
+				row: rand(1, 3),
+			}),
+			'player'
+		)
 
-	const clientId = uniqid()
+		const clientId = uniqid()
 
-	entityBodies[clientId] = entityBody
+		entityBodies[clientId] = entityBody
 
-	clientSocket.emit('connected', { clientId })
+		clientSocket.emit('connected', {
+			clientId,
+		})
 
-	clientSocket.on('disconnect', () => {
-		World.remove(physics.engine.world, entityBody)
-		delete entityBodies[clientId]
-	})
-})
+		clientSocket.on('disconnect', () => {
+			World.remove(physics.engine.world, entityBody)
+			delete entityBodies[clientId]
+		})
+	}
+)
 
-mainloop.setUpdate((delta): void => {
-	physicsGameLoop(delta, physics.engine)
-})
+mainloop.setUpdate(
+	(delta): void => {
+		physicsGameLoop(delta, physics.engine)
+	}
+)
 
-mainloop.setEnd((): void => {
-	socket.emit('gameState', updateGamestate(entityBodies))
-})
+mainloop.setEnd(
+	(): void => {
+		socket.emit('gameState', updateGamestate(entityBodies))
+	}
+)
 
 mainloop.start()
