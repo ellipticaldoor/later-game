@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"strict": true,
 		"alwaysStrict": true,
-		"noUnusedLocals": true,
+		"noUnusedLocals": false,
 		"noUnusedParameters": true,
 		"noImplicitAny": true,
 		"noFallthroughCasesInSwitch": true,

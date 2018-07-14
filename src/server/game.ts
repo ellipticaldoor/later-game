@@ -20,10 +20,7 @@ socket.on(
 	(clientSocket): void => {
 		const entityBody = makeBody(
 			physics.engine,
-			getTilePoint({
-				col: rand(3, 7),
-				row: rand(1, 3),
-			}),
+			getTilePoint({ col: rand(3, 7), row: rand(1, 3) }),
 			'player'
 		)
 
@@ -31,9 +28,7 @@ socket.on(
 
 		entityBodies[clientId] = entityBody
 
-		clientSocket.emit('connected', {
-			clientId,
-		})
+		clientSocket.emit('connected', { clientId })
 
 		clientSocket.on('disconnect', () => {
 			World.remove(physics.engine.world, entityBody)
