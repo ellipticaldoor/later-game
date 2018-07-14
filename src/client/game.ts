@@ -36,15 +36,11 @@ export default (pixi: PIXI.Application, connectionInfo: any): void => {
 
 				playerEntity.sprite.position.set(playerState.x, playerState.y)
 			} else {
-				entities[key] = { sprite: undefined }
-
-				entities[key].state = playerState
-
 				const playerSprite = spriteOf(characterImage)
 				playerSprite.position.set(playerState.x, playerState.y)
-				entities[key].sprite = playerSprite
-
 				entitiesCamera.container.addChild(playerSprite)
+
+				entities[key] = { sprite: playerSprite, state: playerState }
 			}
 		}, Object.keys(serverGameState))
 	})
