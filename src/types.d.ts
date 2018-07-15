@@ -17,8 +17,6 @@ interface IDirection {
 	y: 0 | 1 | -1
 }
 
-interface IClientEntity {}
-
 interface IEntity {
 	label: string
 	x: number
