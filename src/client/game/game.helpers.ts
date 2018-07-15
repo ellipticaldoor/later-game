@@ -3,8 +3,8 @@ import { spriteOf } from 'client/helpers/sprite.helpers'
 import characterImage from 'client/assets/img/character_online.png'
 
 export const updateEntities = (
-	entitySprites: IDictionary<PIXI.Sprite>,
 	entitiesCamera: IGameContainer,
+	entitySprites: IDictionary<PIXI.Sprite>,
 	serverGameState: IDictionary<IEntity>
 ): void => {
 	// Delete entities that are not present on the state

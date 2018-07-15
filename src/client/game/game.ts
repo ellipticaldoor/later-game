@@ -10,5 +10,5 @@ export default (pixi: PIXI.Application, connectionInfo: any): void => {
 
 	const entitiesCamera = getContainerByName('entities', camera.containers)
 	const entitySprites: IDictionary<PIXI.Sprite> = {}
-	socket.on('gameState', curry(updateEntities)(entitySprites, entitiesCamera))
+	socket.on('gameState', curry(updateEntities)(entitiesCamera, entitySprites))
 }
