@@ -5,11 +5,11 @@ import characterImage from 'client/assets/img/character_online.png'
 export const updateEntities = (
 	entitiesCamera: IGameContainer,
 	entitySprites: IDictionary<PIXI.Sprite>,
-	serverGameState: IDictionary<IEntity>
+	gameState: IDictionary<IEntity>
 ): void => {
 	// Delete entities that are not present on the state
 	map(key => {
-		if (!has(key, serverGameState)) {
+		if (!has(key, gameState)) {
 			entitiesCamera.container.removeChild(entitySprites[key])
 			delete entitySprites[key]
 		}
@@ -26,5 +26,5 @@ export const updateEntities = (
 			sprite.position.set(entityState.x, entityState.y)
 			entitiesCamera.container.addChild(sprite)
 		}
-	}, Object.entries(serverGameState))
+	}, Object.entries(gameState))
 }
