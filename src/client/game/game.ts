@@ -9,7 +9,6 @@ export default (pixi: PIXI.Application, connectionInfo: any): void => {
 	pixi.stage.addChild(camera.view)
 
 	const entitiesCamera = getContainerByName('entities', camera.containers)
-	const clientEntities: any = {}
-
-	socket.on('gameState', curry(updateEntities)(clientEntities, entitiesCamera))
+	const entitySprites: IDictionary<PIXI.Sprite> = {}
+	socket.on('gameState', curry(updateEntities)(entitySprites, entitiesCamera))
 }

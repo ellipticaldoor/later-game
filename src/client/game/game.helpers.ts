@@ -3,30 +3,28 @@ import { spriteOf } from 'client/helpers/sprite.helpers'
 import characterImage from 'client/assets/img/character_online.png'
 
 export const updateEntities = (
-	entities: any,
+	entitySprites: IDictionary<PIXI.Sprite>,
 	entitiesCamera: IGameContainer,
 	serverGameState: IDictionary<IEntity>
 ): void => {
 	// Delete entities that are not present on the state
 	map(key => {
 		if (!has(key, serverGameState)) {
-			entitiesCamera.container.removeChild(entities[key].sprite)
-			delete entities[key]
+			entitiesCamera.container.removeChild(entitySprites[key])
+			delete entitySprites[key]
 		}
-	}, Object.keys(entities))
+	}, Object.keys(entitySprites))
 
 	// Create and update state entities
 	map(([key, entityState]) => {
-		if (has(key, entities)) {
-			const entity = entities[key]
-			entity.state = entityState
-			entity.sprite.position.set(entityState.x, entityState.y)
+		if (has(key, entitySprites)) {
+			entitySprites[key].position.set(entityState.x, entityState.y)
 		} else {
-			const playerSprite = spriteOf(characterImage)
-			playerSprite.position.set(entityState.x, entityState.y)
+			const sprite = spriteOf(characterImage)
+			entitySprites[key] = sprite
 
-			entitiesCamera.container.addChild(playerSprite)
-			entities[key] = { sprite: playerSprite, state: entityState }
+			sprite.position.set(entityState.x, entityState.y)
+			entitiesCamera.container.addChild(sprite)
 		}
 	}, Object.entries(serverGameState))
 }
