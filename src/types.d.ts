@@ -16,3 +16,9 @@ interface IDirection {
 	x: 0 | 1 | -1
 	y: 0 | 1 | -1
 }
+
+interface IEntity {
+	label: string
+	x: number
+	y: number
+}

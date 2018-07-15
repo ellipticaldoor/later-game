@@ -14,7 +14,7 @@ export default (pixi: PIXI.Application, connectionInfo: any): void => {
 	const entities: any = {}
 
 	// TODO: Remove socket logic from here
-	socket.on('gameState', (serverGameState: any) => {
+	socket.on('gameState', (serverGameState: IDictionary<IEntity>) => {
 		// Delete entities on the client that are not present on the server
 		map(key => {
 			const serverStateHasProperty = has(key, serverGameState)
@@ -26,22 +26,20 @@ export default (pixi: PIXI.Application, connectionInfo: any): void => {
 		}, Object.keys(entities))
 
 		// Update and create entities
-		map(key => {
-			const playerState = serverGameState[key]
+		map(([key, entityState]) => {
 			const clientStateHasProperty = has(key, entities)
 
 			if (clientStateHasProperty) {
-				const playerEntity = entities[key]
-				playerEntity.state = playerState
-
-				playerEntity.sprite.position.set(playerState.x, playerState.y)
+				const entity = entities[key]
+				entity.state = entityState
+				entity.sprite.position.set(entityState.x, entityState.y)
 			} else {
 				const playerSprite = spriteOf(characterImage)
-				playerSprite.position.set(playerState.x, playerState.y)
-				entitiesCamera.container.addChild(playerSprite)
+				playerSprite.position.set(entityState.x, entityState.y)
 
-				entities[key] = { sprite: playerSprite, state: playerState }
+				entitiesCamera.container.addChild(playerSprite)
+				entities[key] = { sprite: playerSprite, state: entityState }
 			}
-		}, Object.keys(serverGameState))
+		}, Object.entries(serverGameState))
 	})
 }
