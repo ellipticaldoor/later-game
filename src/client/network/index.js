@@ -1,33 +1,5 @@
 import { Entity, applyInputToEntity } from './entity'
-
-// =============================================================================
-//  A message queue with simulated network lag.
-// =============================================================================
-var LagNetwork = function() {
-	this.messages = []
-}
-
-// "Send" a message. Store each message with the timestamp when it should be
-// received, to simulate lag.
-LagNetwork.prototype.send = function(lag_ms, message) {
-	this.messages.push({
-		recv_ts: +new Date() + lag_ms,
-		payload: message,
-	})
-}
-
-// Returns a "received" message, or undefined if there are no messages available
-// yet.
-LagNetwork.prototype.receive = function() {
-	var now = +new Date()
-	for (let i = 0; i < this.messages.length; i++) {
-		var message = this.messages[i]
-		if (message.recv_ts <= now) {
-			this.messages.splice(i, 1)
-			return message.payload
-		}
-	}
-}
+import { LagNetwork, sendMessage, receiveMessage } from './messages'
 
 // =============================================================================
 //  The Client.
@@ -41,7 +13,7 @@ var Client = function(canvas, status) {
 	this.key_right = false
 
 	// Simulated network connection.
-	this.network = new LagNetwork()
+	this.network = LagNetwork()
 	this.server = null
 	this.lag = 0
 
@@ -116,13 +88,9 @@ Client.prototype.processInputs = function() {
 	// Package player's input.
 	var input
 	if (this.key_right) {
-		input = {
-			press_time: dt_sec,
-		}
+		input = { press_time: dt_sec }
 	} else if (this.key_left) {
-		input = {
-			press_time: -dt_sec,
-		}
+		input = { press_time: -dt_sec }
 	} else {
 		// Nothing interesting happened.
 		return
@@ -131,7 +99,7 @@ Client.prototype.processInputs = function() {
 	// Send the input to the server.
 	input.input_sequence_number = this.input_sequence_number++
 	input.entity_id = this.entity_id
-	this.server.network.send(this.lag, input)
+	sendMessage(this.lag, input, this.server.network.messages)
 
 	// Do client-side prediction.
 	if (this.client_side_prediction) {
@@ -146,7 +114,7 @@ Client.prototype.processInputs = function() {
 // If enabled, do server reconciliation.
 Client.prototype.processServerMessages = function() {
 	while (true) {
-		var message = this.network.receive()
+		var message = receiveMessage(this.network.messages)
 		if (!message) {
 			break
 		}
@@ -254,7 +222,7 @@ var Server = function(canvas, status) {
 	this.last_processed_input = []
 
 	// Simulated network connection.
-	this.network = new LagNetwork()
+	this.network = LagNetwork()
 
 	// UI.
 	this.canvas = canvas
@@ -312,7 +280,7 @@ Server.prototype.validateInput = function(input) {
 Server.prototype.processInputs = function() {
 	// Process all pending messages from clients.
 	while (true) {
-		var message = this.network.receive()
+		var message = receiveMessage(this.network.messages)
 		if (!message) {
 			break
 		}
@@ -352,7 +320,7 @@ Server.prototype.sendWorldState = function() {
 	// Broadcast the state to all the clients.
 	for (let i = 0; i < num_clients; i++) {
 		var client = this.clients[i]
-		client.network.send(client.lag, world_state)
+		sendMessage(client.lag, world_state, client.network.messages)
 	}
 }
 
