@@ -1,214 +1,7 @@
 import { Entity, applyInputToEntity } from './entity'
 import { LagNetwork, sendMessage, receiveMessage } from './messages'
-
-// =============================================================================
-//  The Client.
-// =============================================================================
-var Client = function(canvas, status) {
-	// Local representation of the entities.
-	this.entities = {}
-
-	// Input state.
-	this.key_left = false
-	this.key_right = false
-
-	// Simulated network connection.
-	this.network = LagNetwork()
-	this.server = null
-	this.lag = 0
-
-	// Unique ID of our entity. Assigned by Server on connection.
-	this.entity_id = null
-
-	// Data needed for reconciliation.
-	this.client_side_prediction = false
-	this.server_reconciliation = false
-	this.input_sequence_number = 0
-	this.pending_inputs = []
-
-	// Entity interpolation toggle.
-	this.entity_interpolation = true
-
-	// UI.
-	this.canvas = canvas
-	this.status = status
-
-	// Update rate.
-	this.setUpdateRate(50)
-}
-
-Client.prototype.setUpdateRate = function(hz) {
-	this.update_rate = hz
-
-	clearInterval(this.update_interval)
-	this.update_interval = setInterval(
-		(function(self) {
-			return function() {
-				self.update()
-			}
-		})(this),
-		1000 / this.update_rate
-	)
-}
-
-// Update Client state.
-Client.prototype.update = function() {
-	// Listen to the server.
-	this.processServerMessages()
-
-	if (this.entity_id == null) {
-		return // Not connected yet.
-	}
-
-	// Process inputs.
-	this.processInputs()
-
-	// Interpolate other entities.
-	if (this.entity_interpolation) {
-		this.interpolateEntities()
-	}
-
-	// Render the World.
-	renderWorld(this.canvas, this.entities)
-
-	// Show some info.
-	var info = 'Non-acknowledged inputs: ' + this.pending_inputs.length
-	this.status.textContent = info
-}
-
-// Get inputs and send them to the server.
-// If enabled, do client-side prediction.
-Client.prototype.processInputs = function() {
-	// Compute delta time since last update.
-	var now_ts = +new Date()
-	var last_ts = this.last_ts || now_ts
-	var dt_sec = (now_ts - last_ts) / 1000.0
-	this.last_ts = now_ts
-
-	// Package player's input.
-	var input
-	if (this.key_right) {
-		input = { press_time: dt_sec }
-	} else if (this.key_left) {
-		input = { press_time: -dt_sec }
-	} else {
-		// Nothing interesting happened.
-		return
-	}
-
-	// Send the input to the server.
-	input.input_sequence_number = this.input_sequence_number++
-	input.entity_id = this.entity_id
-	sendMessage(this.lag, input, this.server.network.messages)
-
-	// Do client-side prediction.
-	if (this.client_side_prediction) {
-		applyInputToEntity(input, this.entities[this.entity_id])
-	}
-
-	// Save this input for later reconciliation.
-	this.pending_inputs.push(input)
-}
-
-// Process all messages from the server, i.e. world updates.
-// If enabled, do server reconciliation.
-Client.prototype.processServerMessages = function() {
-	while (true) {
-		var message = receiveMessage(this.network.messages)
-		if (!message) {
-			break
-		}
-
-		// World state is a list of entity states.
-		for (let i = 0; i < message.length; i++) {
-			var state = message[i]
-			let entity
-
-			// If this is the first time we see this entity, create a local representation.
-			if (!this.entities[state.entity_id]) {
-				entity = new Entity()
-				entity.entity_id = state.entity_id
-				this.entities[state.entity_id] = entity
-			}
-
-			entity = this.entities[state.entity_id]
-
-			if (state.entity_id == this.entity_id) {
-				// Received the authoritative position of this client's entity.
-				entity.x = state.position
-
-				if (this.server_reconciliation) {
-					// Server Reconciliation. Re-apply all the inputs not yet processed by
-					// the server.
-					var j = 0
-					while (j < this.pending_inputs.length) {
-						var input = this.pending_inputs[j]
-						if (input.input_sequence_number <= state.last_processed_input) {
-							// Already processed. Its effect is already taken into account into the world update
-							// we just got, so we can drop it.
-							this.pending_inputs.splice(j, 1)
-						} else {
-							// Not processed by the server yet. Re-apply it.
-							applyInputToEntity(input, entity)
-							j++
-						}
-					}
-				} else {
-					// Reconciliation is disabled, so drop all the saved inputs.
-					this.pending_inputs = []
-				}
-			} else {
-				// Received the position of an entity other than this client's.
-
-				if (!this.entity_interpolation) {
-					// Entity interpolation is disabled - just accept the server's position.
-					entity.x = state.position
-				} else {
-					// Add it to the position buffer.
-					var timestamp = +new Date()
-					entity.position_buffer.push([timestamp, state.position])
-				}
-			}
-		}
-	}
-}
-
-Client.prototype.interpolateEntities = function() {
-	// Compute render timestamp.
-	var now = +new Date()
-	var render_timestamp = now - 1000.0 / server.update_rate
-
-	for (var i in this.entities) {
-		var entity = this.entities[i]
-
-		// No point in interpolating this client's entity.
-		if (entity.entity_id == this.entity_id) {
-			continue
-		}
-
-		// Find the two authoritative positions surrounding the rendering timestamp.
-		var buffer = entity.position_buffer
-
-		// Drop older positions.
-		while (buffer.length >= 2 && buffer[1][0] <= render_timestamp) {
-			buffer.shift()
-		}
-
-		// Interpolate between the two surrounding authoritative positions.
-		if (
-			buffer.length >= 2 &&
-			buffer[0][0] <= render_timestamp &&
-			render_timestamp <= buffer[1][0]
-		) {
-			var x0 = buffer[0][1]
-			var x1 = buffer[1][1]
-			var t0 = buffer[0][0]
-			var t1 = buffer[1][0]
-
-			entity.x = x0 + ((x1 - x0) * (render_timestamp - t0)) / (t1 - t0)
-		}
-	}
-}
+import { renderWorld } from './helpers'
+import { Client } from './client'
 
 // =============================================================================
 //  The Server.
@@ -325,40 +118,6 @@ Server.prototype.sendWorldState = function() {
 }
 
 // =============================================================================
-//  Helpers.
-// =============================================================================
-
-// Render all the entities in the given canvas.
-var renderWorld = function(canvas, entities) {
-	// Clear the canvas.
-	canvas.width = canvas.width
-
-	var colours = ['blue', 'red']
-
-	for (var i in entities) {
-		var entity = entities[i]
-
-		// Compute size and position.
-		var radius = (canvas.height * 0.9) / 2
-		var x = (entity.x / 10.0) * canvas.width
-
-		// Draw the entity.
-		var ctx = canvas.getContext('2d')
-		ctx.beginPath()
-		ctx.arc(x, canvas.height / 2, radius, 0, 2 * Math.PI, false)
-		ctx.fillStyle = colours[entity.entity_id]
-		ctx.fill()
-		ctx.lineWidth = 5
-		ctx.strokeStyle = 'dark' + colours[entity.entity_id]
-		ctx.stroke()
-	}
-}
-
-var element = function(id) {
-	return document.getElementById(id)
-}
-
-// =============================================================================
 //  Get everything up and running.
 // =============================================================================
 
@@ -378,8 +137,8 @@ inputs.map(element => {
 var updatePlayerParameters = function(client, prefix) {
 	client.lag = updateNumberFromUI(player1.lag, prefix + '_lag')
 
-	var cb_prediction = element(prefix + '_prediction')
-	var cb_reconciliation = element(prefix + '_reconciliation')
+	var cb_prediction = document.getElementById(prefix + '_prediction')
+	var cb_reconciliation = document.getElementById(prefix + '_reconciliation')
 
 	// Client Side Prediction disabled => disable Server Reconciliation.
 	if (client.client_side_prediction && !cb_prediction.checked) {
@@ -394,11 +153,13 @@ var updatePlayerParameters = function(client, prefix) {
 	client.client_side_prediction = cb_prediction.checked
 	client.server_reconciliation = cb_reconciliation.checked
 
-	client.entity_interpolation = element(prefix + '_interpolation').checked
+	client.entity_interpolation = document.getElementById(
+		prefix + '_interpolation'
+	).checked
 }
 
 var updateNumberFromUI = function(old_value, element_id) {
-	var input = element(element_id)
+	var input = document.getElementById(element_id)
 	var new_value = parseInt(input.value)
 	if (isNaN(new_value)) {
 		new_value = old_value
@@ -424,9 +185,20 @@ document.body.onkeydown = keyHandler
 document.body.onkeyup = keyHandler
 
 // Setup a server, the player's client, and another player.
-var server = new Server(element('server_canvas'), element('server_status'))
-var player1 = new Client(element('player1_canvas'), element('player1_status'))
-var player2 = new Client(element('player2_canvas'), element('player2_status'))
+var server = new Server(
+	document.getElementById('server_canvas'),
+	document.getElementById('server_status')
+)
+var player1 = new Client(
+	document.getElementById('player1_canvas'),
+	document.getElementById('player1_status'),
+	server
+)
+var player2 = new Client(
+	document.getElementById('player2_canvas'),
+	document.getElementById('player2_status'),
+	server
+)
 
 // Connect the clients to the server.
 server.connect(player1)
