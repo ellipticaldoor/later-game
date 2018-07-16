@@ -1,25 +1,25 @@
+import { map } from 'ramda'
+const COLOURS = ['blue', 'red']
+
 // Render all the entities in the given canvas.
-export const renderWorld = function(canvas, entities) {
+export const renderWorld = (canvas, entities) => {
 	// Clear the canvas.
 	canvas.width = canvas.width
 
-	var colours = ['blue', 'red']
+	const ctx = canvas.getContext('2d')
 
-	for (var i in entities) {
-		var entity = entities[i]
-
+	map(entity => {
 		// Compute size and position.
-		var radius = (canvas.height * 0.9) / 2
-		var x = (entity.x / 10.0) * canvas.width
+		const radius = (canvas.height * 0.9) / 2
+		const x = (entity.x / 10.0) * canvas.width
 
 		// Draw the entity.
-		var ctx = canvas.getContext('2d')
 		ctx.beginPath()
 		ctx.arc(x, canvas.height / 2, radius, 0, 2 * Math.PI, false)
-		ctx.fillStyle = colours[entity.entity_id]
+		ctx.fillStyle = COLOURS[entity.entity_id]
 		ctx.fill()
 		ctx.lineWidth = 5
-		ctx.strokeStyle = 'dark' + colours[entity.entity_id]
+		ctx.strokeStyle = 'dark' + COLOURS[entity.entity_id]
 		ctx.stroke()
-	}
+	}, entities)
 }
