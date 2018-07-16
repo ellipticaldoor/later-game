@@ -5,7 +5,7 @@
 	"scripts": {
 		"start": "concurrently \"yarn server\" \"yarn client\" \"yarn prettier:watch\" \"yarn prettier:js:watch\"",
 		"client": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr",
-		"network": "cross-env NODE_ENV=development parcel src/client/network/index.html --no-autoinstall --port 1111",
+		"network": "cross-env NODE_ENV=development parcel src/client/network/index.html --no-autoinstall --no-hmr --no-cache",
 		"client:no-cache": "cross-env NODE_ENV=development parcel src/client/index.html --no-autoinstall --no-hmr --no-cache",
 		"client:build": "rimraf client_build && cross-env NODE_ENV=production parcel build src/client/index.html --no-source-maps --out-dir client_build",
 		"client:build:report": "yarn client:build && opn report.html",

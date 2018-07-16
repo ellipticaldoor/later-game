@@ -32,7 +32,7 @@ LagNetwork.prototype.send = function (lag_ms, message) {
 // yet.
 LagNetwork.prototype.receive = function () {
 	var now = +new Date()
-	for (var i = 0; i < this.messages.length; i++) {
+	for (let i = 0; i < this.messages.length; i++) {
 		var message = this.messages[i]
 		if (message.recv_ts <= now) {
 			this.messages.splice(i, 1)
@@ -164,17 +164,18 @@ Client.prototype.processServerMessages = function () {
 		}
 
 		// World state is a list of entity states.
-		for (var i = 0; i < message.length; i++) {
+		for (let i = 0; i < message.length; i++) {
 			var state = message[i]
+			let entity
 
 			// If this is the first time we see this entity, create a local representation.
 			if (!this.entities[state.entity_id]) {
-				var entity = new Entity()
+				entity = new Entity()
 				entity.entity_id = state.entity_id
 				this.entities[state.entity_id] = entity
 			}
 
-			var entity = this.entities[state.entity_id]
+			entity = this.entities[state.entity_id]
 
 			if (state.entity_id == this.entity_id) {
 				// Received the authoritative position of this client's entity.
@@ -339,7 +340,7 @@ Server.prototype.processInputs = function () {
 
 	// Show some info.
 	var info = 'Last acknowledged input: '
-	for (var i = 0; i < this.clients.length; ++i) {
+	for (let i = 0; i < this.clients.length; ++i) {
 		info += 'Player ' + i + ': #' + (this.last_processed_input[i] || 0) + '   '
 	}
 	this.status.textContent = info
@@ -351,7 +352,7 @@ Server.prototype.sendWorldState = function () {
 	// (e.g. position of invisible enemies).
 	var world_state = []
 	var num_clients = this.clients.length
-	for (var i = 0; i < num_clients; i++) {
+	for (let i = 0; i < num_clients; i++) {
 		var entity = this.entities[i]
 		world_state.push({
 			entity_id: entity.entity_id,
@@ -361,7 +362,7 @@ Server.prototype.sendWorldState = function () {
 	}
 
 	// Broadcast the state to all the clients.
-	for (var i = 0; i < num_clients; i++) {
+	for (let i = 0; i < num_clients; i++) {
 		var client = this.clients[i]
 		client.network.send(client.lag, world_state)
 	}
@@ -404,9 +405,6 @@ var element = function (id) {
 // =============================================================================
 //  Get everything up and running.
 // =============================================================================
-
-// World update rate of the Server.
-var server_fps = 4
 
 // Update simulation parameters from UI.
 var updateParameters = function () {
@@ -464,8 +462,6 @@ var keyHandler = function (e) {
 		player2.key_right = e.type == 'keydown'
 	} else if (e.key == 'a') {
 		player2.key_left = e.type == 'keydown'
-	} else {
-		console.log(e)
 	}
 }
 document.body.onkeydown = keyHandler
