@@ -3,6 +3,7 @@ import { Client } from './client'
 import { keyHandler, updateParameters } from './ui'
 import { curry } from 'ramda'
 
+// Simulation
 const server = new Server(
 	document.getElementById('server_canvas'),
 	document.getElementById('server_status')
@@ -21,10 +22,10 @@ const player2 = new Client(
 server.connect(player1)
 server.connect(player2)
 
+// UI
 document.body.onkeydown = curry(keyHandler)(player1, player2)
 document.body.onkeyup = curry(keyHandler)(player1, player2)
 
-// Read initial parameters from the UI.
 updateParameters(server, player1, player2)
 
 Array.from(document.getElementsByTagName('input')).map(element => {
