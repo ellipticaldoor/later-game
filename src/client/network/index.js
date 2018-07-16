@@ -1,27 +1,15 @@
-// =============================================================================
-//  An Entity in the world.
-// =============================================================================
-var Entity = function () {
-	this.x = 0
-	this.speed = 2 // units/s
-	this.position_buffer = []
-}
-
-// Apply user's input to this entity.
-Entity.prototype.applyInput = function (input) {
-	this.x += input.press_time * this.speed
-}
+import { Entity, applyInputToEntity } from './entity'
 
 // =============================================================================
 //  A message queue with simulated network lag.
 // =============================================================================
-var LagNetwork = function () {
+var LagNetwork = function() {
 	this.messages = []
 }
 
 // "Send" a message. Store each message with the timestamp when it should be
 // received, to simulate lag.
-LagNetwork.prototype.send = function (lag_ms, message) {
+LagNetwork.prototype.send = function(lag_ms, message) {
 	this.messages.push({
 		recv_ts: +new Date() + lag_ms,
 		payload: message,
@@ -30,7 +18,7 @@ LagNetwork.prototype.send = function (lag_ms, message) {
 
 // Returns a "received" message, or undefined if there are no messages available
 // yet.
-LagNetwork.prototype.receive = function () {
+LagNetwork.prototype.receive = function() {
 	var now = +new Date()
 	for (let i = 0; i < this.messages.length; i++) {
 		var message = this.messages[i]
@@ -44,7 +32,7 @@ LagNetwork.prototype.receive = function () {
 // =============================================================================
 //  The Client.
 // =============================================================================
-var Client = function (canvas, status) {
+var Client = function(canvas, status) {
 	// Local representation of the entities.
 	this.entities = {}
 
@@ -77,13 +65,13 @@ var Client = function (canvas, status) {
 	this.setUpdateRate(50)
 }
 
-Client.prototype.setUpdateRate = function (hz) {
+Client.prototype.setUpdateRate = function(hz) {
 	this.update_rate = hz
 
 	clearInterval(this.update_interval)
 	this.update_interval = setInterval(
-		(function (self) {
-			return function () {
+		(function(self) {
+			return function() {
 				self.update()
 			}
 		})(this),
@@ -92,7 +80,7 @@ Client.prototype.setUpdateRate = function (hz) {
 }
 
 // Update Client state.
-Client.prototype.update = function () {
+Client.prototype.update = function() {
 	// Listen to the server.
 	this.processServerMessages()
 
@@ -118,7 +106,7 @@ Client.prototype.update = function () {
 
 // Get inputs and send them to the server.
 // If enabled, do client-side prediction.
-Client.prototype.processInputs = function () {
+Client.prototype.processInputs = function() {
 	// Compute delta time since last update.
 	var now_ts = +new Date()
 	var last_ts = this.last_ts || now_ts
@@ -147,7 +135,7 @@ Client.prototype.processInputs = function () {
 
 	// Do client-side prediction.
 	if (this.client_side_prediction) {
-		this.entities[this.entity_id].applyInput(input)
+		applyInputToEntity(input, this.entities[this.entity_id])
 	}
 
 	// Save this input for later reconciliation.
@@ -156,7 +144,7 @@ Client.prototype.processInputs = function () {
 
 // Process all messages from the server, i.e. world updates.
 // If enabled, do server reconciliation.
-Client.prototype.processServerMessages = function () {
+Client.prototype.processServerMessages = function() {
 	while (true) {
 		var message = this.network.receive()
 		if (!message) {
@@ -193,7 +181,7 @@ Client.prototype.processServerMessages = function () {
 							this.pending_inputs.splice(j, 1)
 						} else {
 							// Not processed by the server yet. Re-apply it.
-							entity.applyInput(input)
+							applyInputToEntity(input, entity)
 							j++
 						}
 					}
@@ -217,7 +205,7 @@ Client.prototype.processServerMessages = function () {
 	}
 }
 
-Client.prototype.interpolateEntities = function () {
+Client.prototype.interpolateEntities = function() {
 	// Compute render timestamp.
 	var now = +new Date()
 	var render_timestamp = now - 1000.0 / server.update_rate
@@ -257,7 +245,7 @@ Client.prototype.interpolateEntities = function () {
 // =============================================================================
 //  The Server.
 // =============================================================================
-var Server = function (canvas, status) {
+var Server = function(canvas, status) {
 	// Connected clients and their entities.
 	this.clients = []
 	this.entities = []
@@ -276,7 +264,7 @@ var Server = function (canvas, status) {
 	this.setUpdateRate(10)
 }
 
-Server.prototype.connect = function (client) {
+Server.prototype.connect = function(client) {
 	// Give the Client enough data to identify itself.
 	client.server = this
 	client.entity_id = this.clients.length
@@ -292,13 +280,13 @@ Server.prototype.connect = function (client) {
 	entity.x = spawn_points[client.entity_id]
 }
 
-Server.prototype.setUpdateRate = function (hz) {
+Server.prototype.setUpdateRate = function(hz) {
 	this.update_rate = hz
 
 	clearInterval(this.update_interval)
 	this.update_interval = setInterval(
-		(function (self) {
-			return function () {
+		(function(self) {
+			return function() {
 				self.update()
 			}
 		})(this),
@@ -306,7 +294,7 @@ Server.prototype.setUpdateRate = function (hz) {
 	)
 }
 
-Server.prototype.update = function () {
+Server.prototype.update = function() {
 	this.processInputs()
 	this.sendWorldState()
 	renderWorld(this.canvas, this.entities)
@@ -314,14 +302,14 @@ Server.prototype.update = function () {
 
 // Check whether this input seems to be valid (e.g. "make sense" according
 // to the physical rules of the World)
-Server.prototype.validateInput = function (input) {
+Server.prototype.validateInput = function(input) {
 	if (Math.abs(input.press_time) > 1 / 40) {
 		return false
 	}
 	return true
 }
 
-Server.prototype.processInputs = function () {
+Server.prototype.processInputs = function() {
 	// Process all pending messages from clients.
 	while (true) {
 		var message = this.network.receive()
@@ -333,7 +321,7 @@ Server.prototype.processInputs = function () {
 		// We just ignore inputs that don't look valid; this is what prevents clients from cheating.
 		if (this.validateInput(message)) {
 			var id = message.entity_id
-			this.entities[id].applyInput(message)
+			applyInputToEntity(message, this.entities[id])
 			this.last_processed_input[id] = message.input_sequence_number
 		}
 	}
@@ -347,7 +335,7 @@ Server.prototype.processInputs = function () {
 }
 
 // Send the world state to all the connected clients.
-Server.prototype.sendWorldState = function () {
+Server.prototype.sendWorldState = function() {
 	// Gather the state of the world. In a real app, state could be filtered to avoid leaking data
 	// (e.g. position of invisible enemies).
 	var world_state = []
@@ -373,7 +361,7 @@ Server.prototype.sendWorldState = function () {
 // =============================================================================
 
 // Render all the entities in the given canvas.
-var renderWorld = function (canvas, entities) {
+var renderWorld = function(canvas, entities) {
 	// Clear the canvas.
 	canvas.width = canvas.width
 
@@ -398,7 +386,7 @@ var renderWorld = function (canvas, entities) {
 	}
 }
 
-var element = function (id) {
+var element = function(id) {
 	return document.getElementById(id)
 }
 
@@ -407,7 +395,7 @@ var element = function (id) {
 // =============================================================================
 
 // Update simulation parameters from UI.
-var updateParameters = function () {
+var updateParameters = function() {
 	updatePlayerParameters(player1, 'player1')
 	updatePlayerParameters(player2, 'player2')
 	server.setUpdateRate(updateNumberFromUI(server.update_rate, 'server_fps'))
@@ -419,7 +407,7 @@ inputs.map(element => {
 	element.onchange = () => updateParameters()
 })
 
-var updatePlayerParameters = function (client, prefix) {
+var updatePlayerParameters = function(client, prefix) {
 	client.lag = updateNumberFromUI(player1.lag, prefix + '_lag')
 
 	var cb_prediction = element(prefix + '_prediction')
@@ -441,7 +429,7 @@ var updatePlayerParameters = function (client, prefix) {
 	client.entity_interpolation = element(prefix + '_interpolation').checked
 }
 
-var updateNumberFromUI = function (old_value, element_id) {
+var updateNumberFromUI = function(old_value, element_id) {
 	var input = element(element_id)
 	var new_value = parseInt(input.value)
 	if (isNaN(new_value)) {
@@ -452,7 +440,7 @@ var updateNumberFromUI = function (old_value, element_id) {
 }
 
 // When the player presses the arrow keys, set the corresponding flag in the client.
-var keyHandler = function (e) {
+var keyHandler = function(e) {
 	e = e || window.event
 	if (e.keyCode == 39) {
 		player1.key_right = e.type == 'keydown'
