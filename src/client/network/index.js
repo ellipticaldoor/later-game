@@ -1,92 +1,32 @@
 import { Server } from './server'
 import { Client } from './client'
+import { keyHandler, updateParameters } from './ui'
+import { curry } from 'ramda'
 
-// =============================================================================
-//  Get everything up and running.
-// =============================================================================
-
-// Update simulation parameters from UI.
-var updateParameters = function() {
-	updatePlayerParameters(player1, 'player1')
-	updatePlayerParameters(player2, 'player2')
-	server.setUpdateRate(updateNumberFromUI(server.update_rate, 'server_fps'))
-	return true
-}
-
-const inputs = Array.from(document.getElementsByTagName('input'))
-inputs.map(element => {
-	element.onchange = () => updateParameters()
-})
-
-var updatePlayerParameters = function(client, prefix) {
-	client.lag = updateNumberFromUI(player1.lag, prefix + '_lag')
-
-	var cb_prediction = document.getElementById(prefix + '_prediction')
-	var cb_reconciliation = document.getElementById(prefix + '_reconciliation')
-
-	// Client Side Prediction disabled => disable Server Reconciliation.
-	if (client.client_side_prediction && !cb_prediction.checked) {
-		cb_reconciliation.checked = false
-	}
-
-	// Server Reconciliation enabled => enable Client Side Prediction.
-	if (!client.server_reconciliation && cb_reconciliation.checked) {
-		cb_prediction.checked = true
-	}
-
-	client.client_side_prediction = cb_prediction.checked
-	client.server_reconciliation = cb_reconciliation.checked
-
-	client.entity_interpolation = document.getElementById(
-		prefix + '_interpolation'
-	).checked
-}
-
-var updateNumberFromUI = function(old_value, element_id) {
-	var input = document.getElementById(element_id)
-	var new_value = parseInt(input.value)
-	if (isNaN(new_value)) {
-		new_value = old_value
-	}
-	input.value = new_value
-	return new_value
-}
-
-// When the player presses the arrow keys, set the corresponding flag in the client.
-var keyHandler = function(e) {
-	e = e || window.event
-	if (e.keyCode == 39) {
-		player1.key_right = e.type == 'keydown'
-	} else if (e.keyCode == 37) {
-		player1.key_left = e.type == 'keydown'
-	} else if (e.key == 'd') {
-		player2.key_right = e.type == 'keydown'
-	} else if (e.key == 'a') {
-		player2.key_left = e.type == 'keydown'
-	}
-}
-document.body.onkeydown = keyHandler
-document.body.onkeyup = keyHandler
-
-// Setup a server, the player's client, and another player.
-var server = new Server(
+const server = new Server(
 	document.getElementById('server_canvas'),
 	document.getElementById('server_status')
 )
-var player1 = new Client(
+const player1 = new Client(
 	document.getElementById('player1_canvas'),
 	document.getElementById('player1_status'),
 	server
 )
-var player2 = new Client(
+const player2 = new Client(
 	document.getElementById('player2_canvas'),
 	document.getElementById('player2_status'),
 	server
 )
 
-// Connect the clients to the server.
 server.connect(player1)
 server.connect(player2)
 
+document.body.onkeydown = curry(keyHandler)(player1, player2)
+document.body.onkeyup = curry(keyHandler)(player1, player2)
+
 // Read initial parameters from the UI.
-updateParameters()
+updateParameters(server, player1, player2)
+
+Array.from(document.getElementsByTagName('input')).map(element => {
+	element.onchange = () => updateParameters(server, player1, player2)
+})
