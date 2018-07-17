@@ -4,7 +4,7 @@ import {
 	getTilePoint,
 	getTileType,
 	tileLayerIterator,
-} from './utils.tiles.helpers'
+} from 'tiles/helpers/utils.tiles.helpers'
 import { makeBody } from 'physics/physics.helpers'
 
 export const loadTileBodies = (

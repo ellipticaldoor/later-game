@@ -1,4 +1,3 @@
-import 'game'
 import { server } from 'server/socket'
 import 'server/game'
 

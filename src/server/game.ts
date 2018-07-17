@@ -3,8 +3,8 @@ import * as uniqid from 'uniqid'
 import { World } from 'matter-js'
 import { rand } from 'helpers/utils.helpers'
 import { socket } from 'server/socket'
-import { GROUND_TILES } from 'tiles/tiles.constants'
 import { physicsState, physicsGameLoop } from 'physics/physics'
+import { GROUND_TILES } from 'tiles/tiles.constants'
 import { loadTileBodies } from 'tiles/helpers/tiles.helpers'
 import { makeBody } from 'physics/physics.helpers'
 import { getTilePoint } from 'tiles/helpers/utils.tiles.helpers'
@@ -12,7 +12,7 @@ import { updateGamestate } from 'state/state.helpers'
 
 const physics = physicsState()
 
-loadTileBodies(physics.engine, GROUND_TILES)
+// loadTileBodies(physics.engine, GROUND_TILES)
 const entityBodies: IDictionary<Matter.Body> = {}
 
 socket.on(
