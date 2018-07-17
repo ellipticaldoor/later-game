@@ -5,9 +5,9 @@ import { rand } from 'helpers/utils.helpers'
 import { socket } from 'server/socket'
 import { physicsState, physicsGameLoop } from 'physics/physics'
 import { GROUND_TILES } from 'tiles/tiles.constants'
-import { loadTileBodies } from 'tiles/helpers/tiles.helpers'
+import { loadTileBodies } from 'tiles/tiles.helpers'
+import { getTilePoint } from 'tiles/tiles.utils'
 import { makeBody } from 'physics/physics.helpers'
-import { getTilePoint } from 'tiles/helpers/utils.tiles.helpers'
 import { updateGamestate } from 'state/state.helpers'
 
 const physics = physicsState()

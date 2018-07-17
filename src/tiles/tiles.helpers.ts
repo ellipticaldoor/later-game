@@ -1,11 +1,7 @@
 import { World } from 'matter-js'
-import { STATIC_TILES } from 'tiles/tiles.constants'
-import {
-	getTilePoint,
-	getTileType,
-	tileLayerIterator,
-} from 'tiles/helpers/utils.tiles.helpers'
 import { makeBody } from 'physics/physics.helpers'
+import { STATIC_TILES } from 'tiles/tiles.constants'
+import { getTilePoint, getTileType, tileLayerIterator } from 'tiles/tiles.utils'
 
 export const loadTileBodies = (
 	engine: Matter.Engine,
