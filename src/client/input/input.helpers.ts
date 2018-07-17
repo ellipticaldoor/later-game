@@ -17,7 +17,7 @@ export const bindHoldEvent = (input: IInput): void => {
 	mousetrap.bind(input.key, () => (input.state = false), 'keyup')
 }
 
-export const getInputDirection = (input: IMoveInput): IDirection => ({
-	x: input.left.state ? -1 : input.right.state ? 1 : 0,
-	y: input.up.state ? -1 : input.down.state ? 1 : 0,
+export const getInputDirection = (moveInput: IMoveInput): IDirection => ({
+	x: moveInput.left.state ? -1 : moveInput.right.state ? 1 : 0,
+	y: moveInput.up.state ? -1 : moveInput.down.state ? 1 : 0,
 })
