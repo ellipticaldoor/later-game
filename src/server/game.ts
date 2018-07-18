@@ -7,13 +7,30 @@ import { physicsState, physicsGameLoop } from 'physics/physics'
 import { GROUND_TILES } from 'tiles/tiles.constants'
 import { loadTileBodies } from 'tiles/tiles.helpers'
 import { getTilePoint } from 'tiles/tiles.utils'
-import { makeBody } from 'physics/physics.helpers'
+import { makeBody, moveBody } from 'physics/physics.helpers'
 import { updateGamestate } from 'state/state.helpers'
 
 const physics = physicsState()
 
 // loadTileBodies(physics.engine, GROUND_TILES)
 const entityBodies: IDictionary<Matter.Body> = {}
+
+let gameDelta = 0
+
+mainloop.setUpdate(
+	(delta): void => {
+		gameDelta = delta
+		physicsGameLoop(delta, physics.engine)
+	}
+)
+
+mainloop.setEnd(
+	(): void => {
+		socket.emit('gameState', updateGamestate(entityBodies))
+	}
+)
+
+mainloop.start()
 
 socket.on(
 	'connect',
@@ -34,19 +51,9 @@ socket.on(
 			World.remove(physics.engine.world, entityBody)
 			delete entityBodies[clientId]
 		})
+
+		clientSocket.on('playerMove', dir => {
+			moveBody(gameDelta, entityBody, 0.06, dir)
+		})
 	}
 )
-
-mainloop.setUpdate(
-	(delta): void => {
-		physicsGameLoop(delta, physics.engine)
-	}
-)
-
-mainloop.setEnd(
-	(): void => {
-		socket.emit('gameState', updateGamestate(entityBodies))
-	}
-)
-
-mainloop.start()

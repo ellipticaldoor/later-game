@@ -18,11 +18,11 @@ export default (pixi: PIXI.Application, connectionInfo: any): void => {
 	const input = inputState()
 	bindInputEvents(input)
 
-	// mainloop.setUpdate(delta => {})
-
-	mainloop.setDraw(() => {
+	mainloop.setUpdate(delta => {
 		inputGameLoop(input)
 	})
+
+	mainloop.setDraw(() => {})
 
 	mainloop.start()
 }
